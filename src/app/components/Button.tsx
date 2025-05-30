@@ -53,13 +53,12 @@ export default function Button({ type = "button", label, variant = "primary", di
     );
 
     if (href) {
-        return <Link className="btn-primary" href={href}>
+        return <Link className={`btn-primary ${className}`} href={href}>
             {label}
         </Link>
     }
 
     return (
-        // !processing ? (
         <button
             type={type}
             className={`${variantClass} ${className}`}
