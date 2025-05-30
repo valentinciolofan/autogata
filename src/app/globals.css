@@ -37,72 +37,40 @@
   }
 
   .btn-primary {
-    @apply 
-    text-white
-    bg-primary
-    px-8
-    py-4
-    hover:bg-accent-hover
-    cursor-pointer
-    w-fit
-    h-fit
-    rounded-md
-    text-nowrap
+    @apply text-white bg-primary px-8 py-4 hover:bg-accent-hover cursor-pointer w-fit h-fit rounded-md text-nowrap
   }
+
   .btn-success {
-    @apply 
-    text-white
-    bg-success
-    px-8
-    py-4
-    hover:bg-accent-hover
-    cursor-pointer
-    w-fit
-    h-fit
-    rounded-md
-    text-nowrap
+    @apply text-white bg-success px-8 py-4 hover:bg-accent-hover cursor-pointer w-fit h-fit rounded-md text-nowrap
   }
+
   .btn-danger {
-    @apply 
-    text-white
-    bg-danger
-    px-8
-    py-4
-    hover:bg-accent-hover
-    cursor-pointer
-    w-fit
-    h-fit
-    rounded-md
-    text-nowrap
+    @apply text-white bg-danger px-8 py-4 hover:bg-accent-hover cursor-pointer w-fit h-fit rounded-md text-nowrap
   }
+
   .btn-processing {
-    @apply 
-    text-white
-    bg-primary
-    opacity-70
-    px-8
-    py-4
-    cursor-not-allowed
-    flex
-    w-fit
-    h-fit
-    rounded-md
-    text-nowrap
+    @apply text-white bg-primary opacity-70 px-8 py-4 cursor-not-allowed flex w-fit h-fit rounded-md text-nowrap
   }
+
   .btn.active {
-    @apply
-    text-accent
+    @apply text-accent
   }
+
   .contract-input-field {
-    @apply
-    border 
-    border-custom 
-    rounded-md 
-    pl-2 
-    py-2 
-    outline-accent
+    @apply border border-custom rounded-md pl-2 py-2 outline-accent
   }
+
   label span {
-    @apply
-    mb-1.5
+    @apply mb-1.5
+  }
+
+  .tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    left: 10%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #777777 transparent transparent transparent;
   }

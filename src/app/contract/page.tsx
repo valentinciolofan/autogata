@@ -1,6 +1,7 @@
 "use client"
 
 import Header from "@/app/components/Header";
+import Tooltip from "@/app/components/Tooltip";
 import Button, { ButtonVariant } from "@/app/components/Button";
 import React, { useState } from 'react';
 
@@ -64,39 +65,39 @@ export default function ContractPage() {
     return (
         <main className="shadow-lg rounded-lg border border-custom px-5 py-10 bg-white mx-5 md:mx-8 lg:mx-14 xl-max-w-8/10 lg:p-20 mt-20 mb-30">
 
-            <h1 className="text-md font-semibold uppercase text-center md:text-xl lg:text-2xl xl:text-3xl">Contract de vânzare-cumpărare auto</h1>
+            <h1 className="text-md font-semibold uppercase mb-16 text-center md:text-xl lg:text-2xl xl:text-3xl">Contract de vânzare-cumpărare auto</h1>
 
             <form className="flex flex-col align-center gap-16" onSubmit={collectContractData}>
                 <fieldset>
-                    <legend className="font-bold mb-4">1. Persoana care înstrăinează (vânzător)</legend>
+                    <legend className="font-bold mb-6">1. Persoana care înstrăinează (vânzător)</legend>
                     <div className="flex flex-col gap-4 md:flex-row">
                         <div className="flex flex-col gap-4 md:basis-1/2">
-                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Nume / Prenume <span className="text-red-500">*</span></span>
-                                <input className="contract-input-field" type="text" name="Nume/denumire vanzator" />
+                            <label className="flex flex-col text-sm font-medium text-gray-700 relative"><span>Nume / Prenume <span className="text-red-500">*</span></span>
+                                <input className="contract-input-field" type="text" name="Nume/denumire vanzator" required />
                             </label>
 
                             <label className="flex flex-col text-sm font-medium text-gray-700"><span>Țara</span>
                                 <input className="contract-input-field" type="text" name="Tara vanzator" />
                             </label>
 
-                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Județ</span>
-                                <input className="contract-input-field" type="text" name="Judet vanzator" />
+                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Județ <span className="text-red-500">*</span></span>
+                                <input className="contract-input-field" type="text" name="Judet vanzator" required />
                             </label>
 
                             <label className="flex flex-col text-sm font-medium text-gray-700"><span>Cod poștal</span>
                                 <input className="contract-input-field" type="text" name="CP vanzator" />
                             </label>
 
-                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Municipiu / oraș / comună</span>
-                                <input className="contract-input-field" type="text" name="Municipiu/oras/comuna vanzator" />
+                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Municipiu / oraș / comună <span className="text-red-500">*</span></span>
+                                <input className="contract-input-field" type="text" name="Municipiu/oras/comuna vanzator" required />
                             </label>
 
-                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Sat / sector</span>
-                                <input className="contract-input-field" type="text" name="Sat/sector vanzator" />
+                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Sat / sector <span className="text-red-500">*</span></span>
+                                <input className="contract-input-field" type="text" name="Sat/sector vanzator" required />
                             </label>
 
-                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Strada</span>
-                                <input className="contract-input-field" type="text" name="Str vanzator" />
+                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Strada <span className="text-red-500">*</span></span>
+                                <input className="contract-input-field" type="text" name="Str vanzator" required />
                             </label>
 
                             <label className="flex flex-col text-sm font-medium text-gray-700"><span>Număr</span>
@@ -119,12 +120,12 @@ export default function ContractPage() {
                                 <input className="contract-input-field" type="text" name="Ap vanzator" />
                             </label>
 
-                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Serie act identitate</span>
-                                <input className="contract-input-field" type="text" name="Serie CI vanzator" />
+                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Serie act identitate <span className="text-red-500">*</span></span>
+                                <input className="contract-input-field" type="text" name="Serie CI vanzator" required />
                             </label>
 
-                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Număr act de identitate</span>
-                                <input className="contract-input-field" type="text" name="Nr CI vanzator" />
+                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Număr act de identitate <span className="text-red-500">*</span></span>
+                                <input className="contract-input-field" type="text" name="Nr CI vanzator" required />
                             </label>
 
                             <label className="flex flex-col text-sm font-medium text-gray-700"><span>Telefon / Fax</span>
@@ -213,20 +214,20 @@ export default function ContractPage() {
                 </fieldset>
 
                 <fieldset>
-                    <legend className="font-bold mb-4">2. Persoana care dobândește (cumpărător)</legend>
+                    <legend className="font-bold mb-6">2. Persoana care dobândește (cumpărător)</legend>
 
                     <div className="flex flex-col gap-4 md:flex-row">
                         <div className="flex flex-col gap-4 md:basis-1/2">
-                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Nume / Prenume</span>
-                                <input className="contract-input-field" type="text" name="Nume/denumire cumparator" />
+                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Nume / Prenume <span className="text-red-500">*</span></span>
+                                <input className="contract-input-field" type="text" name="Nume/denumire cumparator" required />
                             </label>
 
                             <label className="flex flex-col text-sm font-medium text-gray-700"><span>Țara</span>
                                 <input className="contract-input-field" type="text" name="Tara cumparator" />
                             </label>
 
-                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Județ</span>
-                                <input className="contract-input-field" type="text" name="Judet cumparator" />
+                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Județ <span className="text-red-500">*</span></span>
+                                <input className="contract-input-field" type="text" name="Judet cumparator" required />
                             </label>
 
                             <label className="flex flex-col text-sm font-medium text-gray-700"><span>Cod poștal</span>
@@ -234,15 +235,15 @@ export default function ContractPage() {
                             </label>
 
                             <label className="flex flex-col text-sm font-medium text-gray-700"><span>Municipiu / oraș / comună <span className="text-red-500">*</span></span>
-                                <input className="contract-input-field" type="text" name="Municipiu/oras/comuna cumparator" />
+                                <input className="contract-input-field" type="text" name="Municipiu/oras/comuna cumparator" required />
                             </label>
 
-                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Sat / sector</span>
-                                <input className="contract-input-field" type="text" name="Sat/sector cumparator" />
+                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Sat / sector <span className="text-red-500">*</span></span>
+                                <input className="contract-input-field" type="text" name="Sat/sector cumparator" required />
                             </label>
 
                             <label className="flex flex-col text-sm font-medium text-gray-700"><span>Strada  <span className="text-red-500">*</span></span>
-                                <input className="contract-input-field" type="text" name="Str cumparator" />
+                                <input className="contract-input-field" type="text" name="Str cumparator" required />
                             </label>
 
                             <label className="flex flex-col text-sm font-medium text-gray-700"><span>Număr</span>
@@ -266,11 +267,11 @@ export default function ContractPage() {
                             </label>
 
                             <label className="flex flex-col text-sm font-medium text-gray-700"><span>Serie act identitate  <span className="text-red-500">*</span></span>
-                                <input className="contract-input-field" type="text" name="Serie CI cumparator" />
+                                <input className="contract-input-field" type="text" name="Serie CI cumparator" required />
                             </label>
 
                             <label className="flex flex-col text-sm font-medium text-gray-700"><span>Număr act de identitate <span className="text-red-500">*</span></span>
-                                <input className="contract-input-field" type="text" name="Nr CI cumparator" />
+                                <input className="contract-input-field" type="text" name="Nr CI cumparator" required />
                             </label>
 
                             <label className="flex flex-col text-sm font-medium text-gray-700"><span>Telefon / Fax</span>
@@ -359,36 +360,71 @@ export default function ContractPage() {
                 </fieldset>
 
                 <fieldset>
-                    <legend className="font-bold mb-4">3. Obiectul contractului</legend>
+                    <legend className="font-bold mb-6">3. Obiectul contractului</legend>
 
                     <div className="flex flex-col gap-4 md:flex-row">
                         <div className="flex flex-col gap-4 md:basis-1/2">
-                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Mijloc de transport - marca (punctul X din talon) <span className="text-red-500">*</span></span>
-                                <input className="contract-input-field" type="text" name="Marca mijlocului de transport" />
+                            <label className="flex flex-col text-sm font-medium text-gray-700">
+                                <span className="flex items-center">
+                                    Marca autovehiculul
+                                    <span className="text-red-500">*</span>
+                                    <Tooltip label="Pozitia D.1 din talon" />
+                                </span>
+                                <input className="contract-input-field" type="text" name="Marca mijlocului de transport" required />
                             </label>
 
-                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Tipul modelului (punctul D3) <span className="text-red-500">*</span></span>
-                                <input className="contract-input-field" type="text" name="Tipul mijlocului de transport" />
+                            <label className="flex flex-col text-sm font-medium text-gray-700">
+                                <span className="flex items-center">
+                                    Tipul modelului
+                                    <span className="text-red-500">*</span>
+                                    <Tooltip label="Pozitia D.3 din talon" />
+                                </span>
+                                <input className="contract-input-field" type="text" name="Tipul mijlocului de transport" required />
                             </label>
 
-                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Număr de identificare / Serie de șasiu <span className="text-red-500">*</span></span>
-                                <input className="contract-input-field" type="text" name="Nr identificare al mijlocului de transport" />
+                            <label className="flex flex-col text-sm font-medium text-gray-700">
+                                <span className="flex items-center">
+                                    Număr de identificare / Serie de șasiu
+                                    <span className="text-red-500">*</span>
+                                    <Tooltip label="Pozitia E din talon" />
+                                </span>
+                                <input className="contract-input-field" type="text" name="Nr identificare al mijlocului de transport" required />
                             </label>
 
-                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Serie motor (punctul PS) <span className="text-red-500">*</span></span>
-                                <input className="contract-input-field" type="text" name="Seria motorului mijlocului de transport" />
+                            <label className="flex flex-col text-sm font-medium text-gray-700">
+                                <span className="flex items-center">
+                                    Serie motor
+                                    <span className="text-red-500">*</span>
+                                    <Tooltip label="Pozitia 10 din cartea autovehiculului" />
+                                </span>
+                                <input className="contract-input-field" type="text" name="Seria motorului mijlocului de transport" required />
                             </label>
 
-                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Capacitate cilindrică (cm³ - punctul P1) <span className="text-red-500">*</span></span>
-                                <input className="contract-input-field" type="number" name="Capacitatea cilindrica a motorului mijlocului de transport" />
+                            <label className="flex flex-col text-sm font-medium text-gray-700">
+                                <span className="flex items-center">
+                                    Capacitate cilindrică cm³
+                                    <span className="text-red-500">*</span>
+                                    <Tooltip label="Pozitia P.1 din talonul autovehiculului" />
+                                </span>
+                                <input className="contract-input-field" type="number" name="Capacitatea cilindrica a motorului mijlocului de transport" required />
                             </label>
 
-                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Greutate maximă admisă (pentru remorci/semiremorci)</span>
-                                <input className="contract-input-field" type="number" name="Greutatea maxima admisa a remorcii/semiremorcii" />
+                            <label className="flex flex-col text-sm font-medium text-gray-700">
+                                <span className="flex items-center">
+                                    Greutate maximă admisă (pentru remorci/semiremorci)
+                                    <span className="text-red-500">*</span>
+                                    <Tooltip label="Pozitia F.1 din talonul autovehiculului" />
+                                </span>
+                                <input className="contract-input-field" type="number" name="Greutatea maxima admisa a remorcii/semiremorcii" required />
                             </label>
 
-                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Număr de înmatriculare (punctul A) <span className="text-red-500">*</span></span>
-                                <input className="contract-input-field" type="text" name="Nr de inmatriculare/inregistrare al mijlocului de transport" />
+                            <label className="flex flex-col text-sm font-medium text-gray-700">
+                                <span className="flex items-center">
+                                    Număr de înmatriculare
+                                    <span className="text-red-500">*</span>
+                                    <Tooltip label="Pozitia A din talonul autovehiculului" />
+                                </span>
+                                <input className="contract-input-field" type="text" name="Nr de inmatriculare/inregistrare al mijlocului de transport" required />
                             </label>
                         </div>
 
@@ -397,16 +433,31 @@ export default function ContractPage() {
                                 <input className="contract-input-field" type="number" name="Data expirarii ITP (format: zz.ll.aaaa)" />
                             </label>
 
-                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Seria și numărul CIV</span>
-                                <input className="contract-input-field" type="number" name="Seria nr. CIV" />
+                            <label className="flex flex-col text-sm font-medium text-gray-700">
+                                <span className="flex items-center">
+                                    Seria și numărul CIV
+                                    <span className="text-red-500">*</span>
+                                    <Tooltip label="Pozitia X / Y  din talonul autovehiculului sau pe prima pagina a CIV" />
+                                </span>
+                                <input className="contract-input-field" type="number" name="Seria nr. CIV" required />
                             </label>
 
-                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>An fabricație <span className="text-red-500">*</span></span>
-                                <input className="contract-input-field" type="number" name="An de fabricatie" />
+                            <label className="flex flex-col text-sm font-medium text-gray-700">
+                                <span className="flex items-center">
+                                    An fabricație
+                                    <span className="text-red-500">*</span>
+                                    <Tooltip label="Pozitia 5 din cartea autovehiculului imediat dupa numărul de omologare" />
+                                </span>
+                                <input className="contract-input-field" type="number" name="An de fabricatie" required />
                             </label>
 
-                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Norma euro</span>
-                                <input className="contract-input-field" type="number" name="Norma euro" />
+                            <label className="flex flex-col text-sm font-medium text-gray-700">
+                                <span className="flex items-center">
+                                    Norma euro
+                                    <span className="text-red-500">*</span>
+                                    <Tooltip label="Pozitia 5 din cartea autovehiculului la sfârșitul numărului de omologare" />
+                                </span>
+                                <input className="contract-input-field" type="number" name="Norma euro" required />
                             </label>
 
                             <label className="flex flex-col text-sm font-medium text-gray-700"><span>Data dobândirii autovehiculului</span>
@@ -421,25 +472,25 @@ export default function ContractPage() {
                 </fieldset>
 
                 <fieldset>
-                    <legend className="font-bold mb-4">4. Preț și detalii contract</legend>
+                    <legend className="font-bold mb-6">4. Preț și detalii contract</legend>
 
                     <div className="flex flex-col gap-4 md:flex-row">
                         <div className="flex flex-col gap-4 md:basis-1/2">
-                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Locul încheierii contractului <span className="text-red-500">*</span></span>
+                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Locul încheierii contractului</span>
                                 <input className="contract-input-field" type="text" name="Locul incheierii" />
                             </label>
 
                             <label className="flex flex-col text-sm font-medium text-gray-700"><span>Prețul (în litere) <span className="text-red-500">*</span></span>
-                                <input className="contract-input-field" type="text" name="Pret (litere)" />
+                                <input className="contract-input-field" type="text" name="Pret (litere)" required />
                             </label>
                         </div>
 
                         <div className="flex flex-col gap-4 md:basis-1/2">
                             <label className="flex flex-col text-sm font-medium text-gray-700"><span>Prețul (în cifre) <span className="text-red-500">*</span></span>
-                                <input className="contract-input-field" type="number" name="Pret (cifre)" />
+                                <input className="contract-input-field" type="number" name="Pret (cifre)" required />
                             </label>
 
-                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Data încheierii contractului <span className="text-red-500">*</span></span>
+                            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Data încheierii contractului</span>
                                 <input className="contract-input-field" type="text" name="Data incheierii" />
                             </label>
 
