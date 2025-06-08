@@ -51,9 +51,12 @@
   .btn-processing {
     @apply text-white bg-primary opacity-70 px-8 py-4 cursor-not-allowed flex w-fit h-fit rounded-md text-nowrap
   }
+  .btn-active {
+    @apply bg-transparent px-8 py-4 text-custom border border-custom rounded-md hover:border-accent hover:text-accent
+  }
 
   .btn.active {
-    @apply text-accent
+    @apply text-accent border-accent
   }
 
   .contract-input-field {
