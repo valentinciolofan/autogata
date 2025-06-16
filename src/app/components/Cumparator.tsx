@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Button from "./Button";
 
 export interface Cumparator {
@@ -13,6 +14,16 @@ const Cumparator = ({
     onNextStep,
     onPreviousStep
 }: Cumparator) => {
+
+    useEffect(() => {
+        const localStoredFields = localStorage.getItem("buyer");
+
+        if (localStoredFields) {
+            console.log(localStoredFields);
+        }
+    }, [])
+
+
 
     return (
         <fieldset className="flex flex-col gap-6">

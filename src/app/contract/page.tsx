@@ -10,8 +10,9 @@ import FormChangeStepButtons from "../components/FormStepsControl";
 export default function ContractPage() {
     const [contractData, setContractData] = useState({});
     const [btnVariant, setBtnVariant] = useState<ButtonVariant>("primary");
-    const [personType, setPersonType] = useState("persoanaFizica");
+    const [personType, setPersonType] = useState("individual");
     const [formStep, setFormStep] = useState(1);
+    const formSteps = 4;
 
     const handlePersonType = (selectedPerson: string) => {
         console.log(selectedPerson);
@@ -79,18 +80,46 @@ export default function ContractPage() {
 
             <h1 className="text-md font-semibold uppercase mb-16 text-center md:text-xl lg:text-2xl xl:text-3xl">Contract de vânzare-cumpărare auto</h1>
 
+            {/* multi step se poate adauga si impreuna cu butoanele de juridic */}
+
+            <div className="flex justify-between items-center w-full relative max-w-xl mx-auto">
+                {Array.from({ length: formSteps }).map((_, index) => (
+                    <div key={index} className="relative flex-1 flex justify-center items-center">
+                        {/* Line to the next step */}
+                        {index < formSteps - 1 && (
+                            <span
+                                className={`absolute top-1/2 left-1/2 h-0.5 w-full z-0 translate-y-[-50%] transition-colors duration-500
+            ${formStep > index + 1 ? "bg-blue-500" : "bg-gray-300"}`}
+                            />
+                        )}
+
+                        {/* Step Circle */}
+                        <div
+                            className={`z-10 w-6 h-6 rounded-full flex items-center justify-center border-2 transition-all duration-500
+          ${formStep >= index + 1
+                                    ? "bg-blue-500 border-blue-500 text-white"
+                                    : "bg-white border-gray-300 text-gray-400"}`}
+                        >
+                            <div className="w-2 h-2 rounded-full bg-white transition-all duration-300" />
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+
+
             <div className={`${formStep > 2 ? "invisible" : "flex"} flex gap-4 justify-center mb-6 *:cursor-pointer`}>
                 <Button
                     label={"Persoana fizică"}
-                    className={`${personType === "persoanaFizica" ? "btn active" : ""}`}
+                    className={`${personType === "individual" ? "btn active" : ""}`}
                     variant={"active"}
-                    onClick={() => handlePersonType("persoanaFizica")}
+                    onClick={() => handlePersonType("individual")}
                 />
                 <Button
                     label={"Persoana juridică"}
-                    className={`${personType === "persoanaJuridica" ? "btn active" : ""}`}
+                    className={`${personType === "legalEntity" ? "btn active" : ""}`}
                     variant={"active"}
-                    onClick={() => handlePersonType("persoanaJuridica")}
+                    onClick={() => handlePersonType("legalEntity")}
                 />
             </div>
 
@@ -103,4 +132,4 @@ export default function ContractPage() {
 
         </main>
     );
-};
+}; ``

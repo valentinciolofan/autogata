@@ -1,12 +1,15 @@
 import Vanzator from "./Vanzator";
 import Cumparator from "./Cumparator";
+
 import ObiectContract from "./ObiectContract";
 import DetaliiContract from "./DetaliiContract";
+
 import FormChangeStepButtons from "./FormStepsControl";
 import { useState, useRef, ReactNode } from "react";
 
 interface StepProps {
     step: number;
+    stepName: string;
     component: ReactNode;
 }
 
@@ -17,11 +20,18 @@ const Form = ({
     handlePersonType,
 
 }) => {
-    const [invalidFields, setInvalidFields] = useState([]);
+    const [invalidFields, setInvalidFields] = useState<string[]>([]);
     const formRef = useRef<HTMLFormElement>(null);
+
+    const saveStepData = (currentStepData: string) => {
+        console.log(currentStepData);
+        localStorage.setItem(formSteps[formStep].stepName, JSON.stringify(currentStepData));
+    }
+
     const formSteps: StepProps[] = [
         {
             step: 1,
+            stepName: "seller",
             component: (
                 <Vanzator
                     invalidFields={invalidFields}
@@ -32,6 +42,7 @@ const Form = ({
         },
         {
             step: 2,
+            stepName: "buyer",
             component: (
                 <Cumparator
                     persoanaJuridica={handlePersonType}
@@ -41,53 +52,91 @@ const Form = ({
         },
         {
             step: 3,
+            stepName: "contract-subject",
             component: (
                 <ObiectContract />
             )
         },
         {
             step: 4,
+            stepName: "contract-details",
             component: (
                 <DetaliiContract />
             )
         }
     ]
 
-    const checkFieldValidity = (element) => {
-        const label = element.parentElement.firstChild.firstChild;
-        const tag = element.tagName?.toLowerCase() === "input";
-        const type = element?.getAttribute("type")?.toLowerCase() === "text" || "number";
-        const name = element?.getAttribute("name");
-        const value = element?.value;
-        const minLength = element?.getAttribute("minLength");
-        const maxLength = element?.getAttribute("maxLength");
-        const patternStr = element?.getAttribute("pattern");
-        const regex = new RegExp(`${patternStr}`);
+    const formValidation = (): boolean => {
+        const form = formRef.current as HTMLFormElement;
+        const notValidFields = [] as string[];
+        const validFields = [] as string[];
 
-        if (!regex.test(value) && (value.length < minLength || value.length > maxLength)) {
-            setInvalidFields(prevInvalidFields => 
-                prevInvalidFields.includes(name) ? prevInvalidFields : [...prevInvalidFields, name]
+        for (const element of form) {
 
-            );
+            const isInput = element instanceof HTMLInputElement;
+            const valueOfInput = isInput ? element.value : "";
+            const isLegalEntityField: boolean = !!element.closest('[data-section="legal-entity"]');
+            const isRequired: boolean = element.hasAttribute("required");
+            const fieldName = element.hasAttribute("name") ? element.getAttribute("name") : null;
+            const minLength = element.hasAttribute("minLength") ? element.getAttribute("minLength") : null;
+            const maxLength = element.hasAttribute("maxLength") ? element.getAttribute("maxLength") : null;
+            const patternStr = element.hasAttribute("pattern") ? element.getAttribute("pattern") : false;
+            const regex = new RegExp(patternStr);
+
+            const invalidField = isInput &&
+                (valueOfInput.length < parseInt(minLength) ||
+                    valueOfInput.length > parseInt(maxLength) &&
+                    !regex.test(valueOfInput)
+                );
+
+
+            const individualPerson = isInput &&
+                !isLegalEntityField &&
+                fieldName &&
+                !notValidFields.includes(fieldName) &&
+                invalidField;
+
+
+            const legalEntity = isInput &&
+                personType === "legalEntity" &&
+                !notValidFields.includes(fieldName) &&
+                isLegalEntityField &&
+                fieldName &&
+                invalidField;
+
+            if (!isRequired && valueOfInput === "") {
+                continue;
+            }
+
+            if (individualPerson) {
+                notValidFields.push(fieldName);
+            } else if (legalEntity) {
+                notValidFields.push(fieldName);
+            } else {
+                validFields.push({
+                    fieldName: fieldName,
+                    value: valueOfInput,
+                })
+            }
+
         }
-        return invalidFields;
+        
+        setInvalidFields(notValidFields);
+
+        if (notValidFields.length === 0) {
+            saveStepData(validFields);
+        }
+
+        return notValidFields.length === 0;
     }
 
+    const isFieldValid = () => {
+
+    };
+
     const nextFormStep = () => {
-        const form = formRef.current as HTMLFormElement;
-
-        for (const el of form) {
-            const isRequired = el.hasAttribute("required");
-
-            if (isRequired) {
-               const x =  checkFieldValidity(el)
-                console.log(x);
-            }
-        }
-
-       
-
-        if (!invalidFields.length && formStep >= 1 && formStep <= 4) {
+        const isFormValid = formValidation();
+        if (isFormValid && formStep >= 1 && formStep <= 4) {
             setFormStep(formStep + 1);
         }
     }
@@ -114,5 +163,4 @@ const Form = ({
         </form>
     )
 }
-
 export default Form;
