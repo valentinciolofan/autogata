@@ -13,7 +13,7 @@ const FormChangeStepButtons = ({
 }: FormChangeStepButtonsProps) => {
 
     return (
-        <div className="flex justify-between">
+        <div className={`${formStep > 4 ? "hidden" : "flex"} justify-between`}>
             {formStep !== 1 && (
                 <Button
                     label={"Înapoi"}
@@ -23,7 +23,7 @@ const FormChangeStepButtons = ({
             )}
 
             <Button
-                label={"Continuă"}
+                label={`${formStep === 4 ? "Generează contract" : "Continuă"}`}
                 onClick={onNextStep}
                 className={`${formStep !== 1 ? "ml-auto" : "mx-auto"}`}
             />

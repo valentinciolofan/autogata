@@ -7,6 +7,11 @@ import DetaliiContract from "./DetaliiContract";
 import FormChangeStepButtons from "./FormStepsControl";
 import { useState, useRef, ReactNode } from "react";
 
+import ContractSuccess from "./ContractSuccess";
+import ContractError from "./ContractError";
+
+import ProgressBar from "./ProgressBar";
+
 interface StepProps {
     step: number;
     stepName: string;
@@ -16,17 +21,60 @@ interface StepProps {
 const Form = ({
     formStep,
     setFormStep,
+    setBtnVariant,
     personType,
     handlePersonType,
-
 }) => {
+    const [contractData, setContractData] = useState<{
+        seller?: Record<string, any>;
+        buyer?: Record<string, any>;
+        contractSubject?: Record<string, any>;
+        contractDetails?: Record<string, any>;
+    }>({});
+    const [contractStatus, setContractStatus] = useState<"success" | "error" | "generating">("generating");
+
+
     const [invalidFields, setInvalidFields] = useState<string[]>([]);
     const formRef = useRef<HTMLFormElement>(null);
 
-    const saveStepData = (currentStepData: string) => {
-        console.log(currentStepData);
-        localStorage.setItem(formSteps[formStep].stepName, JSON.stringify(currentStepData));
+    const submitContractData = async (data: object) => {
+        try {
+            console.log(data, 'this is the data');
+
+            setContractStatus("generating");
+
+            const response = await fetch('http://localhost:3001/api/contract', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+
+            if (!response.ok) {
+                throw new Error(`Server responded with status ${response.status}`);
+            }
+
+            const blob = await response.blob();
+
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'contract-auto.pdf';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(url);
+
+            setContractStatus("success");
+
+            return blob;
+        } catch (err) {
+            console.log("Error: ", err);
+            setContractStatus("error");
+        }
     }
+
 
     const formSteps: StepProps[] = [
         {
@@ -52,24 +100,57 @@ const Form = ({
         },
         {
             step: 3,
-            stepName: "contract-subject",
+            stepName: "contractSubject",
             component: (
                 <ObiectContract />
             )
         },
         {
             step: 4,
-            stepName: "contract-details",
+            stepName: "contractDetails",
             component: (
                 <DetaliiContract />
             )
-        }
+        },
+        {
+            step: 5,
+            stepName: "contractSubmit",
+            component: (
+                contractStatus === "success" ? (
+                    <ContractSuccess />
+                ) : contractStatus === "error" ? (
+                    <ContractError />
+                ) : contractStatus === "generating" ? (
+                    <ProgressBar />
+                ) : null
+            )
+        },
     ]
 
-    const formValidation = (): boolean => {
+    const saveStepData = (currentStepData: Record<string, any>) => {
+        const stepKey = formSteps[formStep - 1].stepName;
+
+        const updatedContractData = {
+            ...contractData,
+            [stepKey]: {
+                ...contractData[stepKey],
+                ...currentStepData,
+            },
+        };
+
+        setContractData(updatedContractData);
+        localStorage.setItem(stepKey, JSON.stringify(updatedContractData[stepKey]));
+        console.log("Saved data for", stepKey, currentStepData);
+
+        return updatedContractData; // 🔁 return for usage elsewhere
+    };
+
+
+
+    const formValidation = (): object | string[] => {
         const form = formRef.current as HTMLFormElement;
         const notValidFields = [] as string[];
-        const validFields = [] as string[];
+        const validFields = {} as object;
 
         for (const element of form) {
 
@@ -112,22 +193,18 @@ const Form = ({
                 notValidFields.push(fieldName);
             } else if (legalEntity) {
                 notValidFields.push(fieldName);
-            } else {
-                validFields.push({
-                    fieldName: fieldName,
-                    value: valueOfInput,
-                })
+            } else if (isInput && !invalidField) {
+                validFields[fieldName] = valueOfInput;
             }
-
         }
-        
+
         setInvalidFields(notValidFields);
 
         if (notValidFields.length === 0) {
-            saveStepData(validFields);
+            return validFields;
+        } else {
+            return invalidFields;
         }
-
-        return notValidFields.length === 0;
     }
 
     const isFieldValid = () => {
@@ -136,6 +213,13 @@ const Form = ({
 
     const nextFormStep = () => {
         const isFormValid = formValidation();
+        const updatedData = saveStepData(isFormValid);
+
+        if (formStep === 4) {
+            submitContractData(updatedData);
+            setFormStep(formStep + 1);
+        }
+
         if (isFormValid && formStep >= 1 && formStep <= 4) {
             setFormStep(formStep + 1);
         }

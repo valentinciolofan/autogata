@@ -77,3 +77,24 @@
     border-style: solid;
     border-color: #777777 transparent transparent transparent;
   }
+
+@keyframes move-stripes {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 40px 0;
+  }
+}
+
+.animate-stripes {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 0, 0.6),
+    rgba(255, 255, 0, 0.6) 10px,
+    rgba(255, 255, 0, 0.3) 10px,
+    rgba(255, 255, 0, 0.3) 20px
+  );
+  background-size: 40px 40px;
+  animation: move-stripes 1s linear infinite;
+}

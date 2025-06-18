@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 
-export type ButtonVariant = "primary" | "success" | "danger" | "processing";
+export type ButtonVariant = "primary" | "success" | "danger" | "processing" | "custom" | "active";
 
 interface ButtonProps {
     type?: "button" | "submit" | "reset",
