@@ -2,7 +2,7 @@ import Button from "./Button";
 import Tooltip from "./Tooltip";
 import { Cumparator } from "./Cumparator";
 
-const ObiectContract = ({ onNextStep, onPreviousStep } : Cumparator ) => {
+const ObiectContract = ({ invalidFields }: Cumparator) => {
     return (
         <fieldset>
             <legend className="font-bold mb-6">3. Obiectul contractului</legend>
@@ -15,7 +15,12 @@ const ObiectContract = ({ onNextStep, onPreviousStep } : Cumparator ) => {
                             <span className="text-red-500">*</span>
                             <Tooltip label="Pozitia D.1 din talon" />
                         </span>
-                        <input className="contract-input-field" type="text" name="Marca mijlocului de transport" required />
+                        <input
+                            name="vehicleBrand"
+                            type="text"
+                            required
+                            className={`contract-input-field ${invalidFields?.includes("vehicleBrand") ? "border-2 !border-danger" : ""}`}
+                        />
                     </label>
 
                     <label className="flex flex-col text-sm font-medium text-gray-700">
@@ -24,7 +29,12 @@ const ObiectContract = ({ onNextStep, onPreviousStep } : Cumparator ) => {
                             <span className="text-red-500">*</span>
                             <Tooltip label="Pozitia D.3 din talon" />
                         </span>
-                        <input className="contract-input-field" type="text" name="Tipul mijlocului de transport" required />
+                        <input
+                            name="vehicleModel"
+                            type="text"
+                            required
+                            className={`contract-input-field ${invalidFields?.includes("vehicleModel") ? "border-2 !border-danger" : ""}`}
+                        />
                     </label>
 
                     <label className="flex flex-col text-sm font-medium text-gray-700">
@@ -33,7 +43,12 @@ const ObiectContract = ({ onNextStep, onPreviousStep } : Cumparator ) => {
                             <span className="text-red-500">*</span>
                             <Tooltip label="Pozitia E din talon" />
                         </span>
-                        <input className="contract-input-field" type="text" name="Nr identificare al mijlocului de transport" required />
+                        <input
+                            name="vehicleChassisNumber"
+                            type="text"
+                            required
+                            className={`contract-input-field ${invalidFields?.includes("vehicleChassisNumber") ? "border-2 !border-danger" : ""}`}
+                        />
                     </label>
 
                     <label className="flex flex-col text-sm font-medium text-gray-700">
@@ -42,7 +57,12 @@ const ObiectContract = ({ onNextStep, onPreviousStep } : Cumparator ) => {
                             <span className="text-red-500">*</span>
                             <Tooltip label="Pozitia 10 din cartea autovehiculului" />
                         </span>
-                        <input className="contract-input-field" type="text" name="Seria motorului mijlocului de transport" required />
+                        <input
+                            name="vehicleEngineSeries"
+                            type="text"
+                            required
+                            className={`contract-input-field ${invalidFields?.includes("vehicleEngineSeries") ? "border-2 !border-danger" : ""}`}
+                        />
                     </label>
 
                     <label className="flex flex-col text-sm font-medium text-gray-700">
@@ -51,7 +71,12 @@ const ObiectContract = ({ onNextStep, onPreviousStep } : Cumparator ) => {
                             <span className="text-red-500">*</span>
                             <Tooltip label="Pozitia P.1 din talonul autovehiculului" />
                         </span>
-                        <input className="contract-input-field" type="number" name="Capacitatea cilindrica a motorului mijlocului de transport" required />
+                        <input
+                            name="vehicleCubicCapacity"
+                            type="number"
+                            required
+                            className={`contract-input-field ${invalidFields?.includes("vehicleCubicCapacity") ? "border-2 !border-danger" : ""}`}
+                        />
                     </label>
 
                     <label className="flex flex-col text-sm font-medium text-gray-700">
@@ -60,7 +85,12 @@ const ObiectContract = ({ onNextStep, onPreviousStep } : Cumparator ) => {
                             <span className="text-red-500">*</span>
                             <Tooltip label="Pozitia F.1 din talonul autovehiculului" />
                         </span>
-                        <input className="contract-input-field" type="number" name="Greutatea maxima admisa a remorcii/semiremorcii" required />
+                        <input
+                            name="vehicleMaxWeight"
+                            type="number"
+                            required
+                            className={`contract-input-field ${invalidFields?.includes("vehicleMaxWeight") ? "border-2 !border-danger" : ""}`}
+                        />
                     </label>
 
                     <label className="flex flex-col text-sm font-medium text-gray-700">
@@ -69,13 +99,23 @@ const ObiectContract = ({ onNextStep, onPreviousStep } : Cumparator ) => {
                             <span className="text-red-500">*</span>
                             <Tooltip label="Pozitia A din talonul autovehiculului" />
                         </span>
-                        <input className="contract-input-field" type="text" name="Nr de inmatriculare/inregistrare al mijlocului de transport" required />
+                        <input
+                            name="vehicleRegistrationNumber"
+                            type="text"
+                            required
+                            className={`contract-input-field ${invalidFields?.includes("vehicleRegistrationNumber") ? "border-2 !border-danger" : ""}`}
+                        />
                     </label>
                 </div>
 
                 <div className="flex flex-col gap-4">
-                    <label className="flex flex-col text-sm font-medium text-gray-700"><span>Data expirării ITP</span>
-                        <input className="contract-input-field" type="number" name="Data expirarii ITP (format: zz.ll.aaaa)" />
+                    <label className="flex flex-col text-sm font-medium text-gray-700">
+                        <span>Data expirării ITP</span>
+                        <input
+                            name="vehicleItpExpiry"
+                            type="number"
+                            className={`contract-input-field ${invalidFields?.includes("vehicleItpExpiry") ? "border-2 !border-danger" : ""}`}
+                        />
                     </label>
 
                     <label className="flex flex-col text-sm font-medium text-gray-700">
@@ -84,7 +124,12 @@ const ObiectContract = ({ onNextStep, onPreviousStep } : Cumparator ) => {
                             <span className="text-red-500">*</span>
                             <Tooltip label="Pozitia X / Y  din talonul autovehiculului sau pe prima pagina a CIV" />
                         </span>
-                        <input className="contract-input-field" type="number" name="Seria nr. CIV" required />
+                        <input
+                            name="vehicleCivSeries"
+                            type="number"
+                            required
+                            className={`contract-input-field ${invalidFields?.includes("vehicleCivSeries") ? "border-2 !border-danger" : ""}`}
+                        />
                     </label>
 
                     <label className="flex flex-col text-sm font-medium text-gray-700">
@@ -93,7 +138,12 @@ const ObiectContract = ({ onNextStep, onPreviousStep } : Cumparator ) => {
                             <span className="text-red-500">*</span>
                             <Tooltip label="Pozitia 5 din cartea autovehiculului imediat dupa numărul de omologare" />
                         </span>
-                        <input className="contract-input-field" type="number" name="An de fabricatie" required />
+                        <input
+                            name="vehicleYear"
+                            type="number"
+                            required
+                            className={`contract-input-field ${invalidFields?.includes("vehicleYear") ? "border-2 !border-danger" : ""}`}
+                        />
                     </label>
 
                     <label className="flex flex-col text-sm font-medium text-gray-700">
@@ -102,15 +152,30 @@ const ObiectContract = ({ onNextStep, onPreviousStep } : Cumparator ) => {
                             <span className="text-red-500">*</span>
                             <Tooltip label="Pozitia 5 din cartea autovehiculului la sfârșitul numărului de omologare" />
                         </span>
-                        <input className="contract-input-field" type="number" name="Norma euro" required />
+                        <input
+                            name="vehicleEuroNorm"
+                            type="number"
+                            required
+                            className={`contract-input-field ${invalidFields?.includes("vehicleEuroNorm") ? "border-2 !border-danger" : ""}`}
+                        />
                     </label>
 
-                    <label className="flex flex-col text-sm font-medium text-gray-700"><span>Data dobândirii autovehiculului</span>
-                        <input className="contract-input-field" type="number" name="Data dobândirii (format: zz.ll.aaaa)" />
+                    <label className="flex flex-col text-sm font-medium text-gray-700">
+                        <span>Data dobândirii autovehiculului</span>
+                        <input
+                            name="vehicleAcquisitionDate"
+                            type="number"
+                            className={`contract-input-field ${invalidFields?.includes("vehicleAcquisitionDate") ? "border-2 !border-danger" : ""}`}
+                        />
                     </label>
 
-                    <label className="flex flex-col text-sm font-medium text-gray-700"><span>Actul dobândirii</span>
-                        <input className="contract-input-field" type="text" name="Actul dobandirii" />
+                    <label className="flex flex-col text-sm font-medium text-gray-700">
+                        <span>Actul dobândirii</span>
+                        <input
+                            name="acquisitionDocument"
+                            type="text"
+                            className={`contract-input-field ${invalidFields?.includes("acquisitionDocument") ? "border-2 !border-danger" : ""}`}
+                        />
                     </label>
                 </div>
             </div>

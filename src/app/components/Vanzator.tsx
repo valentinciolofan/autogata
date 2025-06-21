@@ -28,157 +28,440 @@ const Vanzator = ({
             <legend className="font-bold mb-6">1. Persoana care înstrăinează (vânzător)</legend>
 
             <label className="flex flex-col text-sm font-medium text-gray-700 relative">
-                <span>Nume / Prenume <span className="text-red-500">*</span></span>
+                <span>Nume și prenume <span className="text-red-500">*</span></span>
                 <input
-                    className={`contract-input-field ${invalidFields?.includes("Nume/denumire vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Nume/denumire vanzator" minLength={3} maxLength={50} pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-']+$" required />
+                    name="sellerName"
+                    type="text"
+                    minLength={3}
+                    maxLength={50}
+                    pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-']+$"
+                    required
+                    className={`contract-input-field ${invalidFields?.includes("sellerName") ? "border-2 !border-danger" : ""}`}
+                />
             </label>
 
             <label className="flex flex-col text-sm font-medium text-gray-700">
                 <span>Țara</span>
-                <input className={`contract-input-field ${invalidFields?.includes("Tara vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Tara vanzator" minLength={3} maxLength={40} pattern="^[A-Za-z\s\-]+$" />
+                <input
+                    name="sellerCountry"
+                    type="text"
+                    minLength={3}
+                    maxLength={40}
+                    pattern="^[A-Za-z\s\-]+$"
+                    className={`contract-input-field ${invalidFields?.includes("sellerCountry") ? "border-2 !border-danger" : ""}`}
+                />
             </label>
 
             <label className="flex flex-col text-sm font-medium text-gray-700">
                 <span>Județ <span className="text-red-500">*</span></span>
-                <input className={`contract-input-field ${invalidFields?.includes("Judet vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Judet vanzator" minLength={3} maxLength={30} pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-]+$" required />
+                <input
+                    name="sellerCounty"
+                    type="text"
+                    minLength={3}
+                    maxLength={30}
+                    pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-]+$"
+                    required
+                    className={`contract-input-field ${invalidFields?.includes("sellerCounty") ? "border-2 !border-danger" : ""}`}
+                />
             </label>
 
             <label className="flex flex-col text-sm font-medium text-gray-700">
                 <span>Cod poștal</span>
-                <input className={`contract-input-field ${invalidFields?.includes("CP vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="CP vanzator" minLength={6} maxLength={6} pattern="^\d+$" />
+                <input
+                    name="sellerPostalCode"
+                    type="text"
+                    minLength={6}
+                    maxLength={6}
+                    pattern="^\d+$"
+                    className={`contract-input-field ${invalidFields?.includes("sellerPostalCode") ? "border-2 !border-danger" : ""}`}
+                />
             </label>
 
             <label className="flex flex-col text-sm font-medium text-gray-700">
                 <span>Municipiu / oraș / comună <span className="text-red-500">*</span></span>
-                <input className={`contract-input-field ${invalidFields?.includes("Municipiu/oras/comuna vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Municipiu/oras/comuna vanzator" minLength={3} maxLength={50} pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-']+$" required />
+                <input
+                    name="sellerCity"
+                    type="text"
+                    minLength={3}
+                    maxLength={50}
+                    pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-']+$"
+                    required
+                    className={`contract-input-field ${invalidFields?.includes("sellerCity") ? "border-2 !border-danger" : ""}`}
+                />
             </label>
 
             <label className="flex flex-col text-sm font-medium text-gray-700">
                 <span>Sat / sector <span className="text-red-500">*</span></span>
-                <input className={`contract-input-field ${invalidFields?.includes("Sat/sector vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Sat/sector vanzator" minLength={3} maxLength={50} pattern="^[A-Za-zĂăÂâÎîȘșȚț0-9\s\-']+$" required />
+                <input
+                    name="sellerDistrict"
+                    type="text"
+                    minLength={3}
+                    maxLength={50}
+                    pattern="^[A-Za-zĂăÂâÎîȘșȚț0-9\s\-']+$"
+                    required
+                    className={`contract-input-field ${invalidFields?.includes("sellerDistrict") ? "border-2 !border-danger" : ""}`}
+                />
             </label>
 
             <label className="flex flex-col text-sm font-medium text-gray-700">
                 <span>Strada <span className="text-red-500">*</span></span>
-                <input className={`contract-input-field ${invalidFields?.includes("Str vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Str vanzator" minLength={2} maxLength={60} pattern="^[A-Za-zĂăÂâÎîȘșȚț0-9\s.,\-]+$" required />
+                <input
+                    name="sellerStreet"
+                    type="text"
+                    minLength={2}
+                    maxLength={60}
+                    pattern="^[A-Za-zĂăÂâÎîȘșȚț0-9\s.,\-]+$"
+                    required
+                    className={`contract-input-field ${invalidFields?.includes("sellerStreet") ? "border-2 !border-danger" : ""}`}
+                />
             </label>
 
             <label className="flex flex-col text-sm font-medium text-gray-700">
                 <span>Număr</span>
-                <input className={`contract-input-field ${invalidFields?.includes("Nr vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Nr vanzator" minLength={1} maxLength={10} pattern="^[0-9]+$" />
+                <input
+                    name="sellerStreetNumber"
+                    type="text"
+                    minLength={1}
+                    maxLength={10}
+                    pattern="^[0-9]+$"
+                    className={`contract-input-field ${invalidFields?.includes("sellerStreetNumber") ? "border-2 !border-danger" : ""}`}
+                />
             </label>
 
             <label className="flex flex-col text-sm font-medium text-gray-700">
                 <span>Bloc</span>
-                <input className={`contract-input-field ${invalidFields?.includes("Bl vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Bl vanzator" minLength={1} maxLength={5} pattern="^[A-Za-z0-9]+$" />
+                <input
+                    name="sellerBlock"
+                    type="text"
+                    minLength={1}
+                    maxLength={5}
+                    pattern="^[A-Za-z0-9]+$"
+                    className={`contract-input-field ${invalidFields?.includes("sellerBlock") ? "border-2 !border-danger" : ""}`}
+                />
             </label>
 
             <label className="flex flex-col text-sm font-medium text-gray-700">
                 <span>Scara</span>
-                <input className={`contract-input-field ${invalidFields?.includes("Sc vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Sc vanzator" minLength={1} maxLength={3} pattern="^[A-Za-z0-9]+$" />
+                <input
+                    name="sellerStaircase"
+                    type="text"
+                    minLength={1}
+                    maxLength={3}
+                    pattern="^[A-Za-z0-9]+$"
+                    className={`contract-input-field ${invalidFields?.includes("sellerStaircase") ? "border-2 !border-danger" : ""}`}
+                />
             </label>
 
             <label className="flex flex-col text-sm font-medium text-gray-700">
                 <span>Etaj</span>
-                <input className={`contract-input-field ${invalidFields?.includes("Et vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Et vanzator" minLength={1} maxLength={2} pattern="^[0-9]+$" />
+                <input
+                    name="sellerFloor"
+                    type="text"
+                    minLength={1}
+                    maxLength={2}
+                    pattern="^[0-9]+$"
+                    className={`contract-input-field ${invalidFields?.includes("sellerFloor") ? "border-2 !border-danger" : ""}`}
+                />
             </label>
 
             <label className="flex flex-col text-sm font-medium text-gray-700">
                 <span>Apartament</span>
-                <input className={`contract-input-field ${invalidFields?.includes("Ap vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Ap vanzator" minLength={1} maxLength={4} pattern="^[0-9]+$" />
+                <input
+                    name="sellerApartment"
+                    type="text"
+                    minLength={1}
+                    maxLength={4}
+                    pattern="^[0-9]+$"
+                    className={`contract-input-field ${invalidFields?.includes("sellerApartment") ? "border-2 !border-danger" : ""}`}
+                />
             </label>
 
             <label className="flex flex-col text-sm font-medium text-gray-700">
                 <span>Serie act identitate <span className="text-red-500">*</span></span>
-                <input className={`contract-input-field ${invalidFields?.includes("Serie CI vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Serie CI vanzator" minLength={2} maxLength={3} pattern="^[A-Z]+$" required />
+                <input
+                    name="sellerIdSeries"
+                    type="text"
+                    minLength={2}
+                    maxLength={3}
+                    pattern="^[A-Z]+$"
+                    required
+                    className={`contract-input-field ${invalidFields?.includes("sellerIdSeries") ? "border-2 !border-danger" : ""}`}
+                />
             </label>
 
             <label className="flex flex-col text-sm font-medium text-gray-700">
                 <span>Număr act de identitate <span className="text-red-500">*</span></span>
-                <input className={`contract-input-field ${invalidFields?.includes("Nr CI vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Nr CI vanzator" minLength={6} maxLength={8} pattern="^\d+$" required />
+                <input
+                    name="sellerIdNumber"
+                    type="text"
+                    minLength={6}
+                    maxLength={8}
+                    pattern="^\d+$"
+                    required
+                    className={`contract-input-field ${invalidFields?.includes("sellerIdNumber") ? "border-2 !border-danger" : ""}`}
+                />
+            </label>
+
+            <label className="flex flex-col text-sm font-medium text-gray-700">
+                <span>CNP / CIF <span className="text-red-500">*</span></span>
+                <input
+                    name="sellerCnpOrCif"
+                    type="text"
+                    minLength={6}
+                    maxLength={8}
+                    pattern="^\d+$"
+                    required
+                    className={`contract-input-field ${invalidFields?.includes("sellerCnpOrCif") ? "border-2 !border-danger" : ""}`}
+                />
             </label>
 
             <label className="flex flex-col text-sm font-medium text-gray-700">
                 <span>Telefon / Fax</span>
-                <input className={`contract-input-field ${invalidFields?.includes("Tel/Fax vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Tel/Fax vanzator" minLength={10} maxLength={10} pattern="^\d+$" />
+                <input
+                    name="sellerPhone"
+                    type="text"
+                    minLength={10}
+                    maxLength={10}
+                    pattern="^\d+$"
+                    className={`contract-input-field ${invalidFields?.includes("sellerPhone") ? "border-2 !border-danger" : ""}`}
+                />
             </label>
 
             <label className="flex flex-col text-sm font-medium text-gray-700">
                 <span>Email</span>
-                <input className={`contract-input-field ${invalidFields?.includes("E-mail vanzator") ? "border-2 !border-danger" : ""}`} type="email" name="E-mail vanzator" minLength={5} maxLength={50} pattern="^[\w.-]+@[\w.-]+\.\w{2,}$" />
+                <input
+                    name="sellerEmail"
+                    type="email"
+                    minLength={5}
+                    maxLength={50}
+                    pattern="^[\w.-]+@[\w.-]+\.\w{2,}$"
+                    className={`contract-input-field ${invalidFields?.includes("sellerEmail") ? "border-2 !border-danger" : ""}`}
+                />
             </label>
 
             <div data-section="legal-entity" className={`${personType === "legalEntity" ? "flex" : "hidden"} flex-col gap-4`}>
-                <label className="flex flex-col text-sm font-medium text-gray-700"><span>Țara fiscală</span>
-                    <input className={`contract-input-field ${invalidFields?.includes("Tara fiscala vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Tara fiscala vanzator" minLength={3} maxLength={40} pattern="^[A-Za-z\s\-]{3,40}$" />
+                <label className="flex flex-col text-sm font-medium text-gray-700">
+                    <span>Țara fiscală</span>
+                    <input
+                        name="sellerFiscalCountry"
+                        pattern="^[A-Za-z\s\-]{3,40}$"
+                        className={`contract-input-field ${invalidFields?.includes("sellerFiscalCountry") ? "border-2 !border-danger" : ""}`}
+                        type="text"
+                        minLength={3}
+                        maxLength={40}
+                    />
                 </label>
 
-                <label className="flex flex-col text-sm font-medium text-gray-700"><span>Județ fiscal</span>
-                    <input className={`contract-input-field ${invalidFields?.includes("Judet fiscal vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Judet fiscal vanzator" minLength={3} maxLength={30} pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-]{3,30}$" required />
+                <label className="flex flex-col text-sm font-medium text-gray-700">
+                    <span>Județ fiscal</span>
+                    <input
+                        name="sellerFiscalCounty"
+                        pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-]{3,30}$"
+                        required
+                        className={`contract-input-field ${invalidFields?.includes("sellerFiscalCounty") ? "border-2 !border-danger" : ""}`}
+                        type="text"
+                        minLength={3}
+                        maxLength={30}
+                    />
                 </label>
 
-                <label className="flex flex-col text-sm font-medium text-gray-700"><span>Cod poștal fiscal</span>
-                    <input className={`contract-input-field ${invalidFields?.includes("CP fiscal vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="CP fiscal vanzator" minLength={6} maxLength={6} pattern="^\d{6}$" />
+                <label className="flex flex-col text-sm font-medium text-gray-700">
+                    <span>Cod poștal fiscal</span>
+                    <input
+                        name="sellerFiscalPostalCode"
+                        pattern="^\d{6}$"
+                        className={`contract-input-field ${invalidFields?.includes("sellerFiscalPostalCode") ? "border-2 !border-danger" : ""}`}
+                        type="text"
+                        minLength={6}
+                        maxLength={6}
+                    />
                 </label>
 
-                <label className="flex flex-col text-sm font-medium text-gray-700"><span>Municipiu / oraș / comună fiscal(ă)</span>
-                    <input className={`contract-input-field ${invalidFields?.includes("Municipiu/oras/comuna fiscal vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Municipiu/oras/comuna fiscal vanzator" minLength={3} maxLength={50} pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-']{3,50}$" required />
+                <label className="flex flex-col text-sm font-medium text-gray-700">
+                    <span>Municipiu / oraș / comună fiscal(ă)</span>
+                    <input
+                        name="sellerFiscalCity"
+                        pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-']{3,50}$"
+                        required
+                        className={`contract-input-field ${invalidFields?.includes("sellerFiscalCity") ? "border-2 !border-danger" : ""}`}
+                        type="text"
+                        minLength={3}
+                        maxLength={50}
+                    />
                 </label>
 
-                <label className="flex flex-col text-sm font-medium text-gray-700"><span>Sat / sector fiscal</span>
-                    <input className={`contract-input-field ${invalidFields?.includes("Sat/sector fiscal vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Sat/sector fiscal vanzator" minLength={3} maxLength={50} pattern="^[A-Za-zĂăÂâÎîȘșȚț0-9\s\-']{3,50}$" required />
+                <label className="flex flex-col text-sm font-medium text-gray-700">
+                    <span>Sat / sector fiscal</span>
+                    <input
+                        name="sellerFiscalDistrict"
+                        pattern="^[A-Za-zĂăÂâÎîȘșȚț0-9\s\-']{3,50}$"
+                        required
+                        className={`contract-input-field ${invalidFields?.includes("sellerFiscalDistrict") ? "border-2 !border-danger" : ""}`}
+                        type="text"
+                        minLength={3}
+                        maxLength={50}
+                    />
                 </label>
 
-                <label className="flex flex-col text-sm font-medium text-gray-700"><span>Strada fiscală</span>
-                    <input className={`contract-input-field ${invalidFields?.includes("Str fiscala vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Str fiscala vanzator" minLength={2} maxLength={60} pattern="^[A-Za-zĂăÂâÎîȘșȚț0-9\s\.,\-]{2,60}$" required />
+                <label className="flex flex-col text-sm font-medium text-gray-700">
+                    <span>Strada fiscală</span>
+                    <input
+                        name="sellerFiscalStreet"
+                        pattern="^[A-Za-zĂăÂâÎîȘșȚț0-9\s\.,\-]{2,60}$"
+                        required
+                        className={`contract-input-field ${invalidFields?.includes("sellerFiscalStreet") ? "border-2 !border-danger" : ""}`}
+                        type="text"
+                        minLength={2}
+                        maxLength={60}
+                    />
                 </label>
 
-                <label className="flex flex-col text-sm font-medium text-gray-700"><span>Număr fiscal</span>
-                    <input className={`contract-input-field ${invalidFields?.includes("Nr fiscal vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Nr fiscal vanzator" minLength={1} maxLength={10} pattern="^[0-9]{1,10}$" />
+                <label className="flex flex-col text-sm font-medium text-gray-700">
+                    <span>Număr fiscal</span>
+                    <input
+                        name="sellerFiscalStreetNumber"
+                        pattern="^[0-9]{1,10}$"
+                        className={`contract-input-field ${invalidFields?.includes("sellerFiscalStreetNumber") ? "border-2 !border-danger" : ""}`}
+                        type="text"
+                        minLength={1}
+                        maxLength={10}
+                    />
                 </label>
 
-                <label className="flex flex-col text-sm font-medium text-gray-700"><span>Bloc fiscal</span>
-                    <input className={`contract-input-field ${invalidFields?.includes("Bl fiscal vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Bl fiscal vanzator" minLength={1} maxLength={5} pattern="^[A-Za-z0-9]{1,5}$" />
+                <label className="flex flex-col text-sm font-medium text-gray-700">
+                    <span>Bloc fiscal</span>
+                    <input
+                        name="sellerFiscalBlock"
+                        pattern="^[A-Za-z0-9]{1,5}$"
+                        className={`contract-input-field ${invalidFields?.includes("sellerFiscalBlock") ? "border-2 !border-danger" : ""}`}
+                        type="text"
+                        minLength={1}
+                        maxLength={5}
+                    />
                 </label>
 
-                <label className="flex flex-col text-sm font-medium text-gray-700"><span>Scara fiscal</span>
-                    <input className={`contract-input-field ${invalidFields?.includes("Sc fiscal vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Sc fiscal vanzator" minLength={1} maxLength={3} pattern="^[A-Za-z0-9]{1,3}$" />
+                <label className="flex flex-col text-sm font-medium text-gray-700">
+                    <span>Scara fiscal</span>
+                    <input
+                        name="sellerFiscalStaircase"
+                        pattern="^[A-Za-z0-9]{1,3}$"
+                        className={`contract-input-field ${invalidFields?.includes("sellerFiscalStaircase") ? "border-2 !border-danger" : ""}`}
+                        type="text"
+                        minLength={1}
+                        maxLength={3}
+                    />
                 </label>
 
-                <label className="flex flex-col text-sm font-medium text-gray-700"><span>Etaj fiscal</span>
-                    <input className={`contract-input-field ${invalidFields?.includes("Et fiscal vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Et fiscal vanzator" minLength={1} maxLength={2} pattern="^[0-9]{1,2}$" />
+                <label className="flex flex-col text-sm font-medium text-gray-700">
+                    <span>Etaj fiscal</span>
+                    <input
+                        name="sellerFiscalFloor"
+                        pattern="^[0-9]{1,2}$"
+                        className={`contract-input-field ${invalidFields?.includes("sellerFiscalFloor") ? "border-2 !border-danger" : ""}`}
+                        type="text"
+                        minLength={1}
+                        maxLength={2}
+                    />
                 </label>
 
-                <label className="flex flex-col text-sm font-medium text-gray-700"><span>Apartament fiscal</span>
-                    <input className={`contract-input-field ${invalidFields?.includes("Ap fiscal vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Ap fiscal vanzator" minLength={1} maxLength={4} pattern="^[0-9]{1,4}$" />
+                <label className="flex flex-col text-sm font-medium text-gray-700">
+                    <span>Apartament fiscal</span>
+                    <input
+                        name="sellerFiscalApartment"
+                        pattern="^[0-9]{1,4}$"
+                        className={`contract-input-field ${invalidFields?.includes("sellerFiscalApartment") ? "border-2 !border-danger" : ""}`}
+                        type="text"
+                        minLength={1}
+                        maxLength={4}
+                    />
                 </label>
 
-                <label className="flex flex-col text-sm font-medium text-gray-700"><span>Nume / Prenume reprezentant legal</span>
-                    <input className={`contract-input-field ${invalidFields?.includes("Reprezentant vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Reprezentant vanzator" minLength={3} maxLength={50} pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-']{3,50}$" required />
+                <label className="flex flex-col text-sm font-medium text-gray-700">
+                    <span>Nume / Prenume reprezentant legal</span>
+                    <input
+                        name="sellerLegalRepName"
+                        pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-']{3,50}$"
+                        required
+                        className={`contract-input-field ${invalidFields?.includes("sellerLegalRepName") ? "border-2 !border-danger" : ""}`}
+                        type="text"
+                        minLength={3}
+                        maxLength={50}
+                    />
                 </label>
 
-                <label className="flex flex-col text-sm font-medium text-gray-700"><span>Serie act identitate reprezentant</span>
-                    <input className={`contract-input-field ${invalidFields?.includes("Serie CI reprezentant vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Serie CI reprezentant vanzator" minLength={2} maxLength={3} pattern="^[A-Z]{2,3}$" required />
+                <label className="flex flex-col text-sm font-medium text-gray-700">
+                    <span>Serie act identitate reprezentant</span>
+                    <input
+                        name="sellerLegalRepIdSeries"
+                        pattern="^[A-Z]{2,3}$"
+                        required
+                        className={`contract-input-field ${invalidFields?.includes("sellerLegalRepIdSeries") ? "border-2 !border-danger" : ""}`}
+                        type="text"
+                        minLength={2}
+                        maxLength={3}
+                    />
                 </label>
 
-                <label className="flex flex-col text-sm font-medium text-gray-700"><span>Număr act de identitate reprezentant</span>
-                    <input className={`contract-input-field ${invalidFields?.includes("Nr CI reprezentant vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Nr CI reprezentant vanzator" minLength={6} maxLength={8} pattern="^\d{6,8}$" required />
+                <label className="flex flex-col text-sm font-medium text-gray-700">
+                    <span>Număr act de identitate reprezentant</span>
+                    <input
+                        name="sellerLegalRepIdNumber"
+                        pattern="^\d{6,8}$"
+                        required
+                        className={`contract-input-field ${invalidFields?.includes("sellerLegalRepIdNumber") ? "border-2 !border-danger" : ""}`}
+                        type="text"
+                        minLength={6}
+                        maxLength={8}
+                    />
                 </label>
 
-                <label className="flex flex-col text-sm font-medium text-gray-700"><span>CNP/CIF reprezentant</span>
-                    <input className={`contract-input-field ${invalidFields?.includes("CNP reprezentant vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="CNP reprezentant vanzator" minLength={9} maxLength={13} pattern="^\d{9,13}$" required />
+                <label className="flex flex-col text-sm font-medium text-gray-700">
+                    <span>CNP reprezentant</span>
+                    <input
+                        name="sellerLegalRepCnp"
+                        pattern="^\d{9,13}$"
+                        required
+                        className={`contract-input-field ${invalidFields?.includes("sellerLegalRepCnp") ? "border-2 !border-danger" : ""}`}
+                        type="text"
+                        minLength={9}
+                        maxLength={13}
+                    />
                 </label>
 
-                <label className="flex flex-col text-sm font-medium text-gray-700"><span>Telefon / Fax reprezentant</span>
-                    <input className={`contract-input-field ${invalidFields?.includes("Tel/Fax reprezentant vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Tel/Fax reprezentant vanzator" minLength={10} maxLength={10} pattern="^\d{10}$" />
+                <label className="flex flex-col text-sm font-medium text-gray-700">
+                    <span>Telefon / Fax reprezentant</span>
+                    <input
+                        name="sellerLegalRepPhone"
+                        pattern="^\d{10}$"
+                        className={`contract-input-field ${invalidFields?.includes("sellerLegalRepPhone") ? "border-2 !border-danger" : ""}`}
+                        type="text"
+                        minLength={10}
+                        maxLength={10}
+                    />
                 </label>
 
-                <label className="flex flex-col text-sm font-medium text-gray-700"><span>Email reprezentant</span>
-                    <input className={`contract-input-field ${invalidFields?.includes("E-mail reprezentant vanzator") ? "border-2 !border-danger" : ""}`} type="email" name="E-mail reprezentant vanzator" minLength={5} maxLength={50} pattern="^[\\w.-]+@[\\w.-]+\\.\\w{2,}$" />
+                <label className="flex flex-col text-sm font-medium text-gray-700">
+                    <span>Email reprezentant</span>
+                    <input
+                        name="sellerLegalRepEmail"
+                        pattern="^[\w.-]+@[\w.-]+\.\w{2,}$"
+                        className={`contract-input-field ${invalidFields?.includes("sellerLegalRepEmail") ? "border-2 !border-danger" : ""}`}
+                        type="email"
+                        minLength={5}
+                        maxLength={50}
+                    />
                 </label>
 
-                <label className="flex flex-col text-sm font-medium text-gray-700"><span>Calitate reprezentant</span>
-                    <input className={`contract-input-field ${invalidFields?.includes("Calitate reprezentant vanzator") ? "border-2 !border-danger" : ""}`} type="text" name="Calitate reprezentant vanzator" minLength={3} maxLength={50} pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-']{3,50}$" />
+                <label className="flex flex-col text-sm font-medium text-gray-700">
+                    <span>Calitate reprezentant</span>
+                    <input
+                        name="sellerLegalRepTitle"
+                        pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-']{3,50}$"
+                        className={`contract-input-field ${invalidFields?.includes("sellerLegalRepTitle") ? "border-2 !border-danger" : ""}`}
+                        type="text"
+                        minLength={3}
+                        maxLength={50}
+                    />
                 </label>
             </div>
         </fieldset>

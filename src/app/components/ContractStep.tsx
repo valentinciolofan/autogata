@@ -93,6 +93,7 @@ const Form = ({
             stepName: "buyer",
             component: (
                 <Cumparator
+                    invalidFields={invalidFields}
                     persoanaJuridica={handlePersonType}
                     personType={personType}
                 />
@@ -102,14 +103,18 @@ const Form = ({
             step: 3,
             stepName: "contractSubject",
             component: (
-                <ObiectContract />
+                <ObiectContract
+                    invalidFields={invalidFields}
+                />
             )
         },
         {
             step: 4,
             stepName: "contractDetails",
             component: (
-                <DetaliiContract />
+                <DetaliiContract
+                    invalidFields={invalidFields}
+                />
             )
         },
         {

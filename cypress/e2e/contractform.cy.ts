@@ -1,53 +1,78 @@
-describe("Detalii Contract Step", () => {
+// cypress/integration/contract.spec.js
+
+describe("Contract Flow", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/contract");
 
-    // Step 1 - Vânzător
-    cy.get('[name="Nume/denumire vanzator"]').type("Ion Popescu");
-    cy.get('[name="Judet vanzator"]').type("Cluj");
-    cy.get('[name="Municipiu/oras/comuna vanzator"]').type("Cluj-Napoca");
-    cy.get('[name="Sat/sector vanzator"]').type("Centru");
-    cy.get('[name="Str vanzator"]').type("Str. Libertății");
-    cy.get('[name="Serie CI vanzator"]').type("AB");
-    cy.get('[name="Nr CI vanzator"]').type("123456");
+    // Step 1 – Vanzator
+    cy.get('[name="sellerName"]').type("Ion Popescu");
+    cy.get('[name="sellerCountry"]').type("Romania");
+    cy.get('[name="sellerCounty"]').type("Cluj");
+    cy.get('[name="sellerPostalCode"]').type("400000");
+    cy.get('[name="sellerCity"]').type("Cluj-Napoca");
+    cy.get('[name="sellerDistrict"]').type("Centru");
+    cy.get('[name="sellerStreet"]').type("Str. Libertatii");
+    cy.get('[name="sellerStreetNumber"]').type("10");
+    cy.get('[name="sellerBlock"]').type("A");
+    cy.get('[name="sellerStaircase"]').type("1");
+    cy.get('[name="sellerFloor"]').type("2");
+    cy.get('[name="sellerApartment"]').type("5");
+    cy.get('[name="sellerIdSeries"]').type("AB");
+    cy.get('[name="sellerIdNumber"]').type("123456");
+    cy.get('[name="sellerCnpOrCif"]').type("1960101123456");
+    cy.get('[name="sellerPhone"]').type("0712345678");
+    cy.get('[name="sellerEmail"]').type("ion.popescu@example.com");
     cy.contains("Continuă").click();
 
-    // Step 2 - Cumpărător
-    cy.get('[name="Nume/denumire cumparator"]').type("Maria Ionescu");
-    cy.get('[name="Judet cumparator"]').type("București");
-    cy.get('[name="Municipiu/oras/comuna cumparator"]').type("Sector 3");
-    cy.get('[name="Sat/sector cumparator"]').type("Titan");
-    cy.get('[name="Str cumparator"]').type("Bd. Basarabiei");
-    cy.get('[name="Serie CI cumparator"]').type("BZ");
-    cy.get('[name="Nr CI cumparator"]').type("987654");
+    // Step 2 – Cumparator
+    cy.get('[name="buyerName"]').type("Maria Ionescu");
+    cy.get('[name="buyerCountry"]').type("Romania");
+    cy.get('[name="buyerCounty"]').type("Bucuresti");
+    cy.get('[name="buyerPostalCode"]').type("030000");
+    cy.get('[name="buyerCity"]').type("Bucuresti");
+    cy.get('[name="buyerDistrict"]').type("Sector 3");
+    cy.get('[name="buyerStreet"]').type("Bd. Basarabiei");
+    cy.get('[name="buyerStreetNumber"]').type("45");
+    cy.get('[name="buyerBlock"]').type("B");
+    cy.get('[name="buyerStaircase"]').type("2");
+    cy.get('[name="buyerFloor"]').type("4");
+    cy.get('[name="buyerApartment"]').type("12");
+    cy.get('[name="buyerIdSeries"]').type("BZ");
+    cy.get('[name="buyerIdNumber"]').type("987654");
+    cy.get('[name="buyerCnpOrCif"]').type("2850505123456");
+    cy.get('[name="buyerPhone"]').type("0723456789");
+    cy.get('[name="buyerEmail"]').type("maria.ionescu@example.com");
     cy.contains("Continuă").click();
 
-    // Step 3 - Obiect contract
-    cy.get('[name="Marca mijlocului de transport"]').type("Dacia");
-    cy.get('[name="Tipul mijlocului de transport"]').type("Logan");
-    cy.get('[name="Nr identificare al mijlocului de transport"]').type("VF1BB1L0H00000000");
-    cy.get('[name="Seria motorului mijlocului de transport"]').type("K7M123456");
-    cy.get('[name="Capacitatea cilindrica a motorului mijlocului de transport"]').type("1390");
-    cy.get('[name="Greutatea maxima admisa a remorcii/semiremorcii"]').type("1500");
-    cy.get('[name="Nr de inmatriculare/inregistrare al mijlocului de transport"]').type("B123XYZ");
-    cy.get('[name="Seria nr. CIV"]').type("456789");
-    cy.get('[name="An de fabricatie"]').type("2018");
-    cy.get('[name="Norma euro"]').type("6");
+    // Step 3 – Obiectul contractului
+    cy.get('[name="vehicleBrand"]').type("Dacia");
+    cy.get('[name="vehicleModel"]').type("Logan");
+    cy.get('[name="vehicleChassisNumber"]').type("VF1BB1L0H00000000");
+    cy.get('[name="vehicleEngineSeries"]').type("K7M123456");
+    cy.get('[name="vehicleCubicCapacity"]').type("1390");
+    cy.get('[name="vehicleMaxWeight"]').type("1500");
+    cy.get('[name="vehicleRegistrationNumber"]').type("B123XYZ");
+    // optional ITP expiry:
+    // cy.get('[name="vehicleItpExpiry"]').type("2025-12-31");
+    cy.get('[name="vehicleCivSeries"]').type("456789");
+    cy.get('[name="vehicleYear"]').type("2018");
+    cy.get('[name="vehicleEuroNorm"]').type("6");
+    cy.get('[name="vehicleAcquisitionDate"]').type("2023-06-15");
+    cy.get('[name="acquisitionDocument"]').type("Factura 123/2023");
     cy.contains("Continuă").click();
   });
 
-  it("completes DetaliiContract step", () => {
-    cy.contains("4. Preț și detalii contract").should("exist");
+  it("completes Detalii Contract step", () => {
+    // verify we're on step 4
+    // cy.contains("4. Preț și detalii contract").should("exist");
 
-    cy.get('[name="Locul incheierii"]').type("București");
-    cy.get('[name="Pret (litere)"]').type("cinci mii lei");
-    cy.get('[name="Pret (cifre)"]').type("5000");
-    cy.get('[name="Data incheierii"]').type("01.07.2025");
-    cy.get('[name="Anexe NU"]').type("Nu");
+    cy.get('[name="priceDigits"]').type("5000");
+    cy.get('[name="priceLetters"]').type("cinci mii lei");
+    // cy.get('[name="anexeYes"]').type("Nu");
+    cy.get('[name="contractDate"]').type("01.07.2025");
+    cy.get('[name="contractPlace"]').type("Bucuresti");
 
+    // submit if you have a "Trimite" button
     // cy.contains("Trimite").click();
   });
 });
-
-
-

@@ -1,31 +1,57 @@
 import Button from "./Button";
 import { Cumparator } from "./Cumparator";
 
-const DetaliiContract = ({ onNextStep, onPreviousStep }: Cumparator) => {
+const DetaliiContract = ({ invalidFields }: Cumparator) => {
     return (
         <fieldset className="flex flex-col gap-6">
             <legend className="font-bold mb-6">4. Preț și detalii contract</legend>
 
-            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Locul încheierii contractului</span>
-                <input className="contract-input-field" type="text" name="Locul incheierii" />
+            <label className="flex flex-col text-sm font-medium text-gray-700">
+                <span>Prețul (în cifre) <span className="text-red-500">*</span></span>
+                <input
+                    name="priceDigits"
+                    type="number"
+                    required
+                    className={`contract-input-field ${invalidFields?.includes("priceDigits") ? "border-2 !border-danger" : ""}`}
+                />
             </label>
 
-            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Prețul (în litere) <span className="text-red-500">*</span></span>
-                <input className="contract-input-field" type="text" name="Pret (litere)" required />
+            <label className="flex flex-col text-sm font-medium text-gray-700">
+                <span>Prețul (în litere) <span className="text-red-500">*</span></span>
+                <input
+                    name="priceLetters"
+                    type="text"
+                    required
+                    className={`contract-input-field ${invalidFields?.includes("priceLetters") ? "border-2 !border-danger" : ""}`}
+                />
             </label>
 
-            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Prețul (în cifre) <span className="text-red-500">*</span></span>
-                <input className="contract-input-field" type="number" name="Pret (cifre)" required />
+            <label className="flex flex-col text-sm font-medium text-gray-700">
+                <span>Anexe la contract (Da/Nu)</span>
+                <input
+                    name="anexeYes"
+                    type="text"
+                    className={`contract-input-field ${invalidFields?.includes("anexeYes") ? "border-2 !border-danger" : ""}`}
+                />
             </label>
 
-            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Data încheierii contractului</span>
-                <input className="contract-input-field" type="text" name="Data incheierii" />
+            <label className="flex flex-col text-sm font-medium text-gray-700">
+                <span>Data încheierii contractului</span>
+                <input
+                    name="contractDate"
+                    type="text"
+                    className={`contract-input-field ${invalidFields?.includes("contractDate") ? "border-2 !border-danger" : ""}`}
+                />
             </label>
 
-            <label className="flex flex-col text-sm font-medium text-gray-700"><span>Anexe la contract (Da/Nu)</span>
-                <input className="contract-input-field" type="text" name="Anexe NU" />
+            <label className="flex flex-col text-sm font-medium text-gray-700">
+                <span>Locul încheierii contractului</span>
+                <input
+                    name="contractPlace"
+                    type="text"
+                    className={`contract-input-field ${invalidFields?.includes("contractPlace") ? "border-2 !border-danger" : ""}`}
+                />
             </label>
-
         </fieldset>
     );
 };
