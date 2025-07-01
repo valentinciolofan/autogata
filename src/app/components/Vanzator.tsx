@@ -239,7 +239,7 @@ const Vanzator = ({
                 />
             </label>
 
-            <div data-section="legal-entity" className={`${personType === "legalEntity" ? "flex" : "hidden"} flex-col gap-4`}>
+            <fieldset data-section="legal-entity" className={`${personType === "legalEntity" ? "flex" : "hidden"} flex-col gap-4`}>
                 <label className="flex flex-col text-sm font-medium text-gray-700">
                     <span>Țara fiscală</span>
                     <input
@@ -463,7 +463,7 @@ const Vanzator = ({
                         maxLength={50}
                     />
                 </label>
-            </div>
+            </fieldset>
         </fieldset>
     );
 };

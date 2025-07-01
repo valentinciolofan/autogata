@@ -11,12 +11,18 @@ import ContractSuccess from "./ContractSuccess";
 import ContractError from "./ContractError";
 
 import ProgressBar from "./ProgressBar";
+import { fileURLToPath } from "url";
 
 interface StepProps {
     step: number;
     stepName: string;
     component: ReactNode;
 }
+type FormValidationSummary = {
+    validFields: Record<string, string>;
+    invalidFields: Record<string, string>;
+    isValid: boolean;
+};
 
 const Form = ({
     formStep,
@@ -31,10 +37,17 @@ const Form = ({
         contractSubject?: Record<string, any>;
         contractDetails?: Record<string, any>;
     }>({});
+
     const [contractStatus, setContractStatus] = useState<"success" | "error" | "generating">("generating");
+    const [isRepresented, setIsRepresented] = useState<true | false>(false);
 
+    const [validation, setValidation] = useState<FormValidationSummary>({
+        validFields: {},
+        invalidFields: {},
+        isValid: false,
+    });
+    const [hasAnotherHome, setHasAnotherHome] = useState<true | false>(false);
 
-    const [invalidFields, setInvalidFields] = useState<string[]>([]);
     const formRef = useRef<HTMLFormElement>(null);
 
     const submitContractData = async (data: object) => {
@@ -82,7 +95,7 @@ const Form = ({
             stepName: "seller",
             component: (
                 <Vanzator
-                    invalidFields={invalidFields}
+                    invalidFields={[]}
                     persoanaJuridica={handlePersonType}
                     personType={personType}
                 />
@@ -93,7 +106,7 @@ const Form = ({
             stepName: "buyer",
             component: (
                 <Cumparator
-                    invalidFields={invalidFields}
+                    invalidFields={[]}
                     persoanaJuridica={handlePersonType}
                     personType={personType}
                 />
@@ -104,7 +117,7 @@ const Form = ({
             stepName: "contractSubject",
             component: (
                 <ObiectContract
-                    invalidFields={invalidFields}
+                    invalidFields={[]}
                 />
             )
         },
@@ -113,7 +126,7 @@ const Form = ({
             stepName: "contractDetails",
             component: (
                 <DetaliiContract
-                    invalidFields={invalidFields}
+                    invalidFields={[]}
                 />
             )
         },
@@ -132,105 +145,110 @@ const Form = ({
         },
     ]
 
-    const saveStepData = (currentStepData: Record<string, any>) => {
+    const formFields = () => {
+        const form = formRef.current as HTMLFormElement;
+        const formElements = Array.from(form.elements).filter(element => element instanceof HTMLInputElement);
+
+        return formElements
+    }
+
+    const formValidation = () => {
+        const validFields: Record<string, string> = {};
+        const invalidFields: Record<string, string> = {};
+
+        for (const field of formFields()) {
+            if (!field.name) continue;
+
+            const trimmedValue = field.value.trim()
+
+            if (trimmedValue === "" && !field.required) continue
+
+            const isValid = field.checkValidity();
+
+            isValid ?
+                validFields[field.name] = field.value :
+                invalidFields[field.name] = field.value;
+        }
+        console.log(validFields, 'valid');
+        console.log(invalidFields, 'invalid');
+
+        setValidation({
+            validFields,
+            invalidFields,
+            isValid: Object.keys(invalidFields).length === 0,
+        });
+
+        return {
+            validFields,
+            invalidFields,
+            isValid: Object.keys(invalidFields).length === 0
+        }
+    }
+
+    const fieldValidation = (input: HTMLInputElement) => {
+        const value = input.value.trim();
+        const { name, required, minLength, maxLength, pattern } = input;
+
+
+        if (minLength > 0 && value.length < minLength) {
+            return false;
+        }
+
+        if (maxLength > 0 && value.length > maxLength) {
+            return false;
+        }
+
+        if (pattern) {
+            const regex = new RegExp(`^(?:${pattern})$`);
+
+            if (!regex.test(value)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+
+
+    const saveStepData = (validFields: Record<string, any>, invalidFields: Record<string, any>) => {
         const stepKey = formSteps[formStep - 1].stepName;
 
         const updatedContractData = {
             ...contractData,
             [stepKey]: {
                 ...contractData[stepKey],
-                ...currentStepData,
+                ...validFields,
+                ...invalidFields
             },
         };
 
         setContractData(updatedContractData);
         localStorage.setItem(stepKey, JSON.stringify(updatedContractData[stepKey]));
-        console.log("Saved data for", stepKey, currentStepData);
+        console.log("Saved data for", stepKey, invalidFields, validFields);
 
-        return updatedContractData; // 🔁 return for usage elsewhere
-    };
-
-
-
-    const formValidation = (): object | string[] => {
-        const form = formRef.current as HTMLFormElement;
-        const notValidFields = [] as string[];
-        const validFields = {} as object;
-
-        for (const element of form) {
-
-            const isInput = element instanceof HTMLInputElement;
-            const valueOfInput = isInput ? element.value : "";
-            const isLegalEntityField: boolean = !!element.closest('[data-section="legal-entity"]');
-            const isRequired: boolean = element.hasAttribute("required");
-            const fieldName = element.hasAttribute("name") ? element.getAttribute("name") : null;
-            const minLength = element.hasAttribute("minLength") ? element.getAttribute("minLength") : null;
-            const maxLength = element.hasAttribute("maxLength") ? element.getAttribute("maxLength") : null;
-            const patternStr = element.hasAttribute("pattern") ? element.getAttribute("pattern") : false;
-            const regex = new RegExp(patternStr);
-
-            const invalidField = isInput &&
-                (valueOfInput.length < parseInt(minLength) ||
-                    valueOfInput.length > parseInt(maxLength) &&
-                    !regex.test(valueOfInput)
-                );
-
-
-            const individualPerson = isInput &&
-                !isLegalEntityField &&
-                fieldName &&
-                !notValidFields.includes(fieldName) &&
-                invalidField;
-
-
-            const legalEntity = isInput &&
-                personType === "legalEntity" &&
-                !notValidFields.includes(fieldName) &&
-                isLegalEntityField &&
-                fieldName &&
-                invalidField;
-
-            if (!isRequired && valueOfInput === "") {
-                continue;
-            }
-
-            if (individualPerson) {
-                notValidFields.push(fieldName);
-            } else if (legalEntity) {
-                notValidFields.push(fieldName);
-            } else if (isInput && !invalidField) {
-                validFields[fieldName] = valueOfInput;
-            }
-        }
-
-        setInvalidFields(notValidFields);
-
-        if (notValidFields.length === 0) {
-            return validFields;
-        } else {
-            return invalidFields;
-        }
-    }
-
-    const isFieldValid = () => {
-
+        return updatedContractData;
     };
 
     const nextFormStep = () => {
-        const isFormValid = formValidation();
-        const updatedData = saveStepData(isFormValid);
+        const formSummary = formValidation();
+        const updatedData = saveStepData(formSummary.validFields, formSummary.invalidFields);
 
-        if (formStep === 4) {
+        if (formSummary.isValid && formStep === 4) {
             submitContractData(updatedData);
             setFormStep(formStep + 1);
         }
 
-        if (isFormValid && formStep >= 1 && formStep <= 4) {
+        if (formSummary.isValid && formStep >= 1 && formStep <= 4) {
             setFormStep(formStep + 1);
         }
     }
 
     const previousFormStep = () => {
+        const formSummary = formValidation();
+
+        saveStepData(formSummary.validFields, formSummary.invalidFields);
+
         if (formStep >= 2 && formStep <= 4) {
             setFormStep(formStep - 1);
         }
