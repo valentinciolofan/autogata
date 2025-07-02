@@ -1,16 +1,11 @@
 import Button from "./Button"
-
-interface FormChangeStepButtonsProps {
-    formStep: number;
-    onPreviousStep: () => void;
-    onNextStep: () => void;
-}
+import { ContractFormProps } from "../types";
 
 const FormChangeStepButtons = ({
     formStep,
     onPreviousStep,
     onNextStep
-}: FormChangeStepButtonsProps) => {
+}: ContractFormProps) => {
 
     return (
         <div className={`${formStep > 4 ? "hidden" : "flex"} justify-between`}>

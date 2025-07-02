@@ -7,7 +7,7 @@ import Button, { ButtonVariant } from "@/app/components/Button";
 import Form from "@/app/components/ContractStep";
 
 import React, { useState } from 'react';
-import FormChangeStepButtons from "../components/FormStepsControl";
+import { ContractFormProps } from "../types";
 
 export default function ContractPage() {
     const [btnVariant, setBtnVariant] = useState<ButtonVariant>("primary");

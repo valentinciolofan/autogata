@@ -13,16 +13,7 @@ import ContractError from "./ContractError";
 import ProgressBar from "./ProgressBar";
 import { fileURLToPath } from "url";
 
-interface StepProps {
-    step: number;
-    stepName: string;
-    component: ReactNode;
-}
-type FormValidationSummary = {
-    validFields: Record<string, string>;
-    invalidFields: Record<string, string>;
-    isValid: boolean;
-};
+import { ContractFormProps, FormValidationSummary, StepProps } from "../types"
 
 const Form = ({
     formStep,
@@ -30,7 +21,8 @@ const Form = ({
     setBtnVariant,
     personType,
     handlePersonType,
-}) => {
+}: ContractFormProps) => {
+
     const [contractData, setContractData] = useState<{
         seller?: Record<string, any>;
         buyer?: Record<string, any>;
@@ -46,6 +38,7 @@ const Form = ({
         invalidFields: {},
         isValid: false,
     });
+
     const [hasAnotherHome, setHasAnotherHome] = useState<true | false>(false);
 
     const formRef = useRef<HTMLFormElement>(null);
@@ -95,7 +88,8 @@ const Form = ({
             stepName: "seller",
             component: (
                 <Vanzator
-                    invalidFields={[]}
+                    formStep={formStep}
+                    invalidFields={validation.invalidFields}
                     persoanaJuridica={handlePersonType}
                     personType={personType}
                 />
@@ -106,7 +100,8 @@ const Form = ({
             stepName: "buyer",
             component: (
                 <Cumparator
-                    invalidFields={[]}
+                    formStep={formStep}
+                    invalidFields={validation.invalidFields}
                     persoanaJuridica={handlePersonType}
                     personType={personType}
                 />
@@ -117,7 +112,7 @@ const Form = ({
             stepName: "contractSubject",
             component: (
                 <ObiectContract
-                    invalidFields={[]}
+                    invalidFields={validation.invalidFields}
                 />
             )
         },
@@ -126,7 +121,7 @@ const Form = ({
             stepName: "contractDetails",
             component: (
                 <DetaliiContract
-                    invalidFields={[]}
+                    invalidFields={validation.invalidFields}
                 />
             )
         },
@@ -169,6 +164,7 @@ const Form = ({
                 validFields[field.name] = field.value :
                 invalidFields[field.name] = field.value;
         }
+
         console.log(validFields, 'valid');
         console.log(invalidFields, 'invalid');
 
@@ -208,8 +204,6 @@ const Form = ({
 
         return true;
     }
-
-
 
     const saveStepData = (validFields: Record<string, any>, invalidFields: Record<string, any>) => {
         const stepKey = formSteps[formStep - 1].stepName;
