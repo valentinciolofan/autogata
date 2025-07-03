@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { ButtonVariant } from "../types"
 
-export type ButtonVariant = "primary" | "success" | "danger" | "processing" | "custom" | "active";
 
 interface ButtonProps {
     type?: "button" | "submit" | "reset",

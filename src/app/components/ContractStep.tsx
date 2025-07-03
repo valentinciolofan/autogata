@@ -158,7 +158,7 @@ const Form = ({
 
             if (trimmedValue === "" && !field.required) continue
 
-            const isValid = field.checkValidity();
+            const isValid = fieldValidation(field);
 
             isValid ?
                 validFields[field.name] = field.value :
@@ -187,17 +187,24 @@ const Form = ({
 
 
         if (minLength > 0 && value.length < minLength) {
+            console.log(name, "nu indeplineste minima lungime")
             return false;
         }
 
         if (maxLength > 0 && value.length > maxLength) {
+            console.log(name, "nu indeplineste maxima lungime")
+
             return false;
         }
 
         if (pattern) {
-            const regex = new RegExp(`^(?:${pattern})$`);
+            const regex = new RegExp(pattern);
+
+            console.log(name, pattern, regex.test(value), "pattern ok")
 
             if (!regex.test(value)) {
+                console.log(name, pattern, regex.test(value), "nu indeplineste pattern")
+
                 return false;
             }
         }
@@ -219,7 +226,10 @@ const Form = ({
 
         setContractData(updatedContractData);
         localStorage.setItem(stepKey, JSON.stringify(updatedContractData[stepKey]));
-        console.log("Saved data for", stepKey, invalidFields, validFields);
+        console.log("Saved data for", stepKey);
+        console.log(invalidFields, "SAVED INVALID");
+        console.log(validFields, "SAVED VALID");
+
 
         return updatedContractData;
     };
@@ -233,6 +243,7 @@ const Form = ({
             setFormStep(formStep + 1);
         }
 
+        console.log(formSummary, "form Summary!!!")
         if (formSummary.isValid && formStep >= 1 && formStep <= 4) {
             setFormStep(formStep + 1);
         }

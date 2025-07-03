@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { ContractFormProps } from "../types";
 
-const AdditionalFieldsSellerComponent = () => {
+const AdditionalFieldsSeller = ({ personType, invalidFields }: ContractFormProps) => {
     const [hasAnotherHomeSelected, setHasAnotherHomeSelected] = useState<boolean>(false);
     const [isRepresented, setIsRepresented] = useState<boolean>(false);
 
@@ -13,7 +14,7 @@ const AdditionalFieldsSellerComponent = () => {
                     <input
                         name="sellerFiscalCountry"
                         pattern="^[A-Za-z\s\-]{3,40}$"
-                        className={`contract-input-field ${invalidFields?.includes("sellerFiscalCountry") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.["sellerFiscalCountry"] ? "border-2 !border-danger" : ""}`}
                         type="text"
                         minLength={3}
                         maxLength={40}
@@ -26,7 +27,7 @@ const AdditionalFieldsSellerComponent = () => {
                         name="sellerFiscalCounty"
                         pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-]{3,30}$"
                         required
-                        className={`contract-input-field ${invalidFields?.includes("sellerFiscalCounty") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.["sellerFiscalCounty"] ? "border-2 !border-danger" : ""}`}
                         type="text"
                         minLength={3}
                         maxLength={30}
@@ -38,7 +39,7 @@ const AdditionalFieldsSellerComponent = () => {
                     <input
                         name="sellerFiscalPostalCode"
                         pattern="^\d{6}$"
-                        className={`contract-input-field ${invalidFields?.includes("sellerFiscalPostalCode") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.["sellerFiscalPostalCode"] ? "border-2 !border-danger" : ""}`}
                         type="text"
                         minLength={6}
                         maxLength={6}
@@ -51,7 +52,7 @@ const AdditionalFieldsSellerComponent = () => {
                         name="sellerFiscalCity"
                         pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-']{3,50}$"
                         required
-                        className={`contract-input-field ${invalidFields?.includes("sellerFiscalCity") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.["sellerFiscalCity"] ? "border-2 !border-danger" : ""}`}
                         type="text"
                         minLength={3}
                         maxLength={50}
@@ -64,7 +65,7 @@ const AdditionalFieldsSellerComponent = () => {
                         name="sellerFiscalDistrict"
                         pattern="^[A-Za-zĂăÂâÎîȘșȚț0-9\s\-']{3,50}$"
                         required
-                        className={`contract-input-field ${invalidFields?.includes("sellerFiscalDistrict") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.["sellerFiscalDistrict"] ? "border-2 !border-danger" : ""}`}
                         type="text"
                         minLength={3}
                         maxLength={50}
@@ -77,7 +78,7 @@ const AdditionalFieldsSellerComponent = () => {
                         name="sellerFiscalStreet"
                         pattern="^[A-Za-zĂăÂâÎîȘșȚț0-9\s\.,\-]{2,60}$"
                         required
-                        className={`contract-input-field ${invalidFields?.includes("sellerFiscalStreet") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.["sellerFiscalStreet"] ? "border-2 !border-danger" : ""}`}
                         type="text"
                         minLength={2}
                         maxLength={60}
@@ -89,7 +90,7 @@ const AdditionalFieldsSellerComponent = () => {
                     <input
                         name="sellerFiscalStreetNumber"
                         pattern="^[0-9]{1,10}$"
-                        className={`contract-input-field ${invalidFields?.includes("sellerFiscalStreetNumber") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.["sellerFiscalStreetNumber"] ? "border-2 !border-danger" : ""}`}
                         type="text"
                         minLength={1}
                         maxLength={10}
@@ -101,7 +102,7 @@ const AdditionalFieldsSellerComponent = () => {
                     <input
                         name="sellerFiscalBlock"
                         pattern="^[A-Za-z0-9]{1,5}$"
-                        className={`contract-input-field ${invalidFields?.includes("sellerFiscalBlock") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.["sellerFiscalBlock"] ? "border-2 !border-danger" : ""}`}
                         type="text"
                         minLength={1}
                         maxLength={5}
@@ -113,7 +114,7 @@ const AdditionalFieldsSellerComponent = () => {
                     <input
                         name="sellerFiscalStaircase"
                         pattern="^[A-Za-z0-9]{1,3}$"
-                        className={`contract-input-field ${invalidFields?.includes("sellerFiscalStaircase") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.["sellerFiscalStaircase"] ? "border-2 !border-danger" : ""}`}
                         type="text"
                         minLength={1}
                         maxLength={3}
@@ -125,7 +126,7 @@ const AdditionalFieldsSellerComponent = () => {
                     <input
                         name="sellerFiscalFloor"
                         pattern="^[0-9]{1,2}$"
-                        className={`contract-input-field ${invalidFields?.includes("sellerFiscalFloor") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.["sellerFiscalFloor"] ? "border-2 !border-danger" : ""}`}
                         type="text"
                         minLength={1}
                         maxLength={2}
@@ -137,7 +138,7 @@ const AdditionalFieldsSellerComponent = () => {
                     <input
                         name="sellerFiscalApartment"
                         pattern="^[0-9]{1,4}$"
-                        className={`contract-input-field ${invalidFields?.includes("sellerFiscalApartment") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.["sellerFiscalApartment"] ? "border-2 !border-danger" : ""}`}
                         type="text"
                         minLength={1}
                         maxLength={4}
@@ -152,7 +153,7 @@ const AdditionalFieldsSellerComponent = () => {
                         name="sellerLegalRepName"
                         pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-']{3,50}$"
                         required
-                        className={`contract-input-field ${invalidFields?.includes("sellerLegalRepName") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.["sellerLegalRepName"] ? "border-2 !border-danger" : ""}`}
                         type="text"
                         minLength={3}
                         maxLength={50}
@@ -165,7 +166,7 @@ const AdditionalFieldsSellerComponent = () => {
                         name="sellerLegalRepIdSeries"
                         pattern="^[A-Z]{2,3}$"
                         required
-                        className={`contract-input-field ${invalidFields?.includes("sellerLegalRepIdSeries") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.["sellerLegalRepIdSeries"] ? "border-2 !border-danger" : ""}`}
                         type="text"
                         minLength={2}
                         maxLength={3}
@@ -178,7 +179,7 @@ const AdditionalFieldsSellerComponent = () => {
                         name="sellerLegalRepIdNumber"
                         pattern="^\d{6,8}$"
                         required
-                        className={`contract-input-field ${invalidFields?.includes("sellerLegalRepIdNumber") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.["sellerLegalRepIdNumber"] ? "border-2 !border-danger" : ""}`}
                         type="text"
                         minLength={6}
                         maxLength={8}
@@ -191,7 +192,7 @@ const AdditionalFieldsSellerComponent = () => {
                         name="sellerLegalRepCnp"
                         pattern="^\d{9,13}$"
                         required
-                        className={`contract-input-field ${invalidFields?.includes("sellerLegalRepCnp") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.["sellerLegalRepCnp"] ? "border-2 !border-danger" : ""}`}
                         type="text"
                         minLength={9}
                         maxLength={13}
@@ -203,7 +204,7 @@ const AdditionalFieldsSellerComponent = () => {
                     <input
                         name="sellerLegalRepPhone"
                         pattern="^\d{10}$"
-                        className={`contract-input-field ${invalidFields?.includes("sellerLegalRepPhone") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.["sellerLegalRepPhone"] ? "border-2 !border-danger" : ""}`}
                         type="text"
                         minLength={10}
                         maxLength={10}
@@ -215,7 +216,7 @@ const AdditionalFieldsSellerComponent = () => {
                     <input
                         name="sellerLegalRepEmail"
                         pattern="^[\w.-]+@[\w.-]+\.\w{2,}$"
-                        className={`contract-input-field ${invalidFields?.includes("sellerLegalRepEmail") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.["sellerLegalRepEmail"] ? "border-2 !border-danger" : ""}`}
                         type="email"
                         minLength={5}
                         maxLength={50}
@@ -227,7 +228,7 @@ const AdditionalFieldsSellerComponent = () => {
                     <input
                         name="sellerLegalRepTitle"
                         pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-']{3,50}$"
-                        className={`contract-input-field ${invalidFields?.includes("sellerLegalRepTitle") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.["sellerLegalRepTitle"] ? "border-2 !border-danger" : ""}`}
                         type="text"
                         minLength={3}
                         maxLength={50}

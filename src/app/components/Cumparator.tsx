@@ -31,9 +31,9 @@ const Cumparator = ({
                     type="text"
                     minLength={3}
                     maxLength={50}
-                    pattern="^[A-Za-zĂăÂâÎîȘșȚț\\s\-']+$"
+                    pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-']+$"
                     required
-                    className={`contract-input-field ${invalidFields?.includes("buyerName") ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["buyerName"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -44,8 +44,8 @@ const Cumparator = ({
                     type="text"
                     minLength={3}
                     maxLength={40}
-                    pattern="^[A-Za-z\\s\-]+$"
-                    className={`contract-input-field ${invalidFields?.includes("buyerCountry") ? "border-2 !border-danger" : ""}`}
+                    pattern="^[A-Za-z\s\-]+$"
+                    className={`contract-input-field ${invalidFields?.["buyerCountry"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -56,9 +56,9 @@ const Cumparator = ({
                     type="text"
                     minLength={3}
                     maxLength={30}
-                    pattern="^[A-Za-zĂăÂâÎîȘșȚț\\s\-]+$"
+                    pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-]+$"
                     required
-                    className={`contract-input-field ${invalidFields?.includes("buyerCounty") ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["buyerCounty"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -69,8 +69,8 @@ const Cumparator = ({
                     type="text"
                     minLength={6}
                     maxLength={6}
-                    pattern="^\\d+$"
-                    className={`contract-input-field ${invalidFields?.includes("buyerPostalCode") ? "border-2 !border-danger" : ""}`}
+                    pattern="^\d+$"
+                    className={`contract-input-field ${invalidFields?.["buyerPostalCode"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -81,9 +81,9 @@ const Cumparator = ({
                     type="text"
                     minLength={3}
                     maxLength={50}
-                    pattern="^[A-Za-zĂăÂâÎîȘșȚț\\s\-']+$"
+                    pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-']+$"
                     required
-                    className={`contract-input-field ${invalidFields?.includes("buyerCity") ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["buyerCity"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -94,9 +94,9 @@ const Cumparator = ({
                     type="text"
                     minLength={3}
                     maxLength={50}
-                    pattern="^[A-Za-zĂăÂâÎîȘșȚț0-9\\s\-']+$"
+                    pattern="^[A-Za-zĂăÂâÎîȘșȚț0-9\s\-']+$"
                     required
-                    className={`contract-input-field ${invalidFields?.includes("buyerDistrict") ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["buyerDistrict"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -107,9 +107,9 @@ const Cumparator = ({
                     type="text"
                     minLength={2}
                     maxLength={60}
-                    pattern="^[A-Za-zĂăÂâÎîȘșȚț0-9\\s\.,\-]+$"
+                    pattern="^[A-Za-zĂăÂâÎîȘșȚț0-9\s\.,\-]+$"
                     required
-                    className={`contract-input-field ${invalidFields?.includes("buyerStreet") ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["buyerStreet"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -121,7 +121,7 @@ const Cumparator = ({
                     minLength={1}
                     maxLength={10}
                     pattern="^[0-9]+$"
-                    className={`contract-input-field ${invalidFields?.includes("buyerStreetNumber") ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["buyerStreetNumber"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -133,7 +133,7 @@ const Cumparator = ({
                     minLength={1}
                     maxLength={5}
                     pattern="^[A-Za-z0-9]+$"
-                    className={`contract-input-field ${invalidFields?.includes("buyerBlock") ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["buyerBlock"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -145,7 +145,7 @@ const Cumparator = ({
                     minLength={1}
                     maxLength={3}
                     pattern="^[A-Za-z0-9]+$"
-                    className={`contract-input-field ${invalidFields?.includes("buyerStaircase") ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["buyerStaircase"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -157,7 +157,7 @@ const Cumparator = ({
                     minLength={1}
                     maxLength={2}
                     pattern="^[0-9]+$"
-                    className={`contract-input-field ${invalidFields?.includes("buyerFloor") ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["buyerFloor"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -169,7 +169,7 @@ const Cumparator = ({
                     minLength={1}
                     maxLength={4}
                     pattern="^[0-9]+$"
-                    className={`contract-input-field ${invalidFields?.includes("buyerApartment") ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["buyerApartment"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -182,7 +182,7 @@ const Cumparator = ({
                     maxLength={3}
                     pattern="^[A-Z]+$"
                     required
-                    className={`contract-input-field ${invalidFields?.includes("buyerIdSeries") ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["buyerIdSeries"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -193,9 +193,9 @@ const Cumparator = ({
                     type="text"
                     minLength={6}
                     maxLength={8}
-                    pattern="^\\d+$"
+                    pattern="^\d+$"
                     required
-                    className={`contract-input-field ${invalidFields?.includes("buyerIdNumber") ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["buyerIdNumber"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -206,9 +206,9 @@ const Cumparator = ({
                     type="text"
                     minLength={6}
                     maxLength={13}
-                    pattern="^\\d{6,13}$"
+                    pattern="^\d+$"
                     required
-                    className={`contract-input-field ${invalidFields?.includes("buyerCnpOrCif") ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["buyerCnpOrCif"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -219,8 +219,8 @@ const Cumparator = ({
                     type="text"
                     minLength={10}
                     maxLength={10}
-                    pattern="^\\d+$"
-                    className={`contract-input-field ${invalidFields?.includes("buyerPhone") ? "border-2 !border-danger" : ""}`}
+                    pattern="^\d+$"
+                    className={`contract-input-field ${invalidFields?.["buyerPhone"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -231,8 +231,8 @@ const Cumparator = ({
                     type="email"
                     minLength={5}
                     maxLength={50}
-                    pattern="^[\\w.-]+@[\\w.-]+\\.\\w{2,}$"
-                    className={`contract-input-field ${invalidFields?.includes("buyerEmail") ? "border-2 !border-danger" : ""}`}
+                    pattern="^[\w.-]+@[\w.-]+\.\w{2,}$"
+                    className={`contract-input-field ${invalidFields?.["buyerEmail"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
         </fieldset>

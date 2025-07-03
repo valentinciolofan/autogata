@@ -9,13 +9,13 @@ const Vanzator = ({
     onNextStep
 }: ContractFormProps) => {
 
-    useEffect(() => {
-        const localStoredFields = localStorage.getItem("seller");
+    // useEffect(() => {
+    //     const localStoredFields = localStorage.getItem("seller");
 
-        if (localStoredFields) {
-            console.log(localStoredFields);
-        }
-    }, [])
+    //     if (localStoredFields) {
+    //         console.log(localStoredFields);
+    //     }
+    // }, [])
 
 
     return (
@@ -31,7 +31,7 @@ const Vanzator = ({
                     maxLength={50}
                     pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-']+$"
                     required
-                    className={`contract-input-field ${invalidFields["sellerName"] ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["sellerName"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -43,7 +43,7 @@ const Vanzator = ({
                     minLength={3}
                     maxLength={40}
                     pattern="^[A-Za-z\s\-]+$"
-                    className={`contract-input-field ${invalidFields["sellerCountry"] ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["sellerCountry"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -56,7 +56,7 @@ const Vanzator = ({
                     maxLength={30}
                     pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-]+$"
                     required
-                    className={`contract-input-field ${invalidFields["sellerCounty"] ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["sellerCounty"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -68,7 +68,7 @@ const Vanzator = ({
                     minLength={6}
                     maxLength={6}
                     pattern="^\d+$"
-                    className={`contract-input-field ${invalidFields["sellerPostalCode"] ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["sellerPostalCode"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -81,7 +81,7 @@ const Vanzator = ({
                     maxLength={50}
                     pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-']+$"
                     required
-                    className={`contract-input-field ${invalidFields["sellerCity"] ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["sellerCity"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -94,7 +94,7 @@ const Vanzator = ({
                     maxLength={50}
                     pattern="^[A-Za-zĂăÂâÎîȘșȚț0-9\s\-']+$"
                     required
-                    className={`contract-input-field ${invalidFields["sellerDistrict"] ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["sellerDistrict"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -107,7 +107,7 @@ const Vanzator = ({
                     maxLength={60}
                     pattern="^[A-Za-zĂăÂâÎîȘșȚț0-9\s.,\-]+$"
                     required
-                    className={`contract-input-field ${invalidFields["sellerStreet"] ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["sellerStreet"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -119,7 +119,7 @@ const Vanzator = ({
                     minLength={1}
                     maxLength={10}
                     pattern="^[0-9]+$"
-                    className={`contract-input-field ${invalidFields["sellerStreetNumber"] ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["sellerStreetNumber"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -131,7 +131,7 @@ const Vanzator = ({
                     minLength={1}
                     maxLength={5}
                     pattern="^[A-Za-z0-9]+$"
-                    className={`contract-input-field ${invalidFields["sellerBlock"] ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["sellerBlock"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -143,7 +143,7 @@ const Vanzator = ({
                     minLength={1}
                     maxLength={3}
                     pattern="^[A-Za-z0-9]+$"
-                    className={`contract-input-field ${invalidFields["sellerStaircase"] ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["sellerStaircase"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -155,7 +155,7 @@ const Vanzator = ({
                     minLength={1}
                     maxLength={2}
                     pattern="^[0-9]+$"
-                    className={`contract-input-field ${invalidFields["sellerFloor"] ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["sellerFloor"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -167,7 +167,7 @@ const Vanzator = ({
                     minLength={1}
                     maxLength={4}
                     pattern="^[0-9]+$"
-                    className={`contract-input-field ${invalidFields["sellerApartment"] ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["sellerApartment"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -180,7 +180,7 @@ const Vanzator = ({
                     maxLength={3}
                     pattern="^[A-Z]+$"
                     required
-                    className={`contract-input-field ${invalidFields["sellerIdSeries"] ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["sellerIdSeries"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -193,7 +193,7 @@ const Vanzator = ({
                     maxLength={8}
                     pattern="^\d+$"
                     required
-                    className={`contract-input-field ${invalidFields["sellerIdNumber"] ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["sellerIdNumber"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -206,7 +206,7 @@ const Vanzator = ({
                     maxLength={8}
                     pattern="^\d+$"
                     required
-                    className={`contract-input-field ${invalidFields["sellerCnpOrCif"] ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["sellerCnpOrCif"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -218,7 +218,7 @@ const Vanzator = ({
                     minLength={10}
                     maxLength={10}
                     pattern="^\d+$"
-                    className={`contract-input-field ${invalidFields["sellerPhone"] ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["sellerPhone"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -230,7 +230,7 @@ const Vanzator = ({
                     minLength={5}
                     maxLength={50}
                     pattern="^[\w.-]+@[\w.-]+\.\w{2,}$"
-                    className={`contract-input-field ${invalidFields["sellerEmail"] ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.["sellerEmail"] ? "border-2 !border-danger" : ""}`}
                 />
             </label>
         </fieldset>
