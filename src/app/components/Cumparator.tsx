@@ -15,24 +15,33 @@ const Cumparator = ({
 
     const [hasAnotherHomeSelected, setHasAnotherHomeSelected] = useState<boolean>(false);
     const [isRepresented, setIsRepresented] = useState<boolean>(false);
+    const [storedFields, setStoredFields] = useState<Record<string, any>>({});
 
     useEffect(() => {
-        const localStoredFields = localStorage.getItem("buyer");
+        const raw = localStorage.getItem("buyer");
+        if (!raw) return;
 
-        if (localStoredFields) {
-            console.log(localStoredFields);
+        let parsed: unknown;
+        parsed = JSON.parse(raw);
+
+        if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+            setStoredFields(parsed as Record<string, any>);
         }
-    }, [])
+    }, []);
 
 
 
     return (
         <>
             <fieldset className="flex flex-col gap-6">
-                <legend className="font-bold mb-6">2. Persoana care dobândește (cumpărător)</legend>
+                <legend className="font-bold mb-6">
+                    2. Persoana care dobândește (cumpărător)
+                </legend>
 
                 <label className="flex flex-col text-sm font-medium text-gray-700">
-                    <span>Nume și prenume <span className="text-red-500">*</span></span>
+                    <span>
+                        Nume și prenume <span className="text-red-500">*</span>
+                    </span>
                     <input
                         name="buyerName"
                         type="text"
@@ -40,7 +49,11 @@ const Cumparator = ({
                         maxLength={50}
                         pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-']+$"
                         required
-                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerName") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerName")
+                            ? "border-2 !border-danger"
+                            : ""
+                            }`}
+                        defaultValue={storedFields?.["buyerName"] ?? ""}
                     />
                 </label>
 
@@ -52,12 +65,18 @@ const Cumparator = ({
                         minLength={3}
                         maxLength={40}
                         pattern="^[A-Za-z\s\-]+$"
-                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerCountry") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerCountry")
+                            ? "border-2 !border-danger"
+                            : ""
+                            }`}
+                        defaultValue={storedFields?.["buyerCountry"] ?? ""}
                     />
                 </label>
 
                 <label className="flex flex-col text-sm font-medium text-gray-700">
-                    <span>Județ <span className="text-red-500">*</span></span>
+                    <span>
+                        Județ <span className="text-red-500">*</span>
+                    </span>
                     <input
                         name="buyerCounty"
                         type="text"
@@ -65,7 +84,11 @@ const Cumparator = ({
                         maxLength={30}
                         pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-]+$"
                         required
-                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerCounty") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerCounty")
+                            ? "border-2 !border-danger"
+                            : ""
+                            }`}
+                        defaultValue={storedFields?.["buyerCounty"] ?? ""}
                     />
                 </label>
 
@@ -77,12 +100,18 @@ const Cumparator = ({
                         minLength={6}
                         maxLength={6}
                         pattern="^\d+$"
-                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerPostalCode") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerPostalCode")
+                            ? "border-2 !border-danger"
+                            : ""
+                            }`}
+                        defaultValue={storedFields?.["buyerPostalCode"] ?? ""}
                     />
                 </label>
 
                 <label className="flex flex-col text-sm font-medium text-gray-700">
-                    <span>Municipiu / oraș / comună <span className="text-red-500">*</span></span>
+                    <span>
+                        Municipiu / oraș / comună <span className="text-red-500">*</span>
+                    </span>
                     <input
                         name="buyerCity"
                         type="text"
@@ -90,12 +119,18 @@ const Cumparator = ({
                         maxLength={50}
                         pattern="^[A-Za-zĂăÂâÎîȘșȚț\s\-']+$"
                         required
-                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerCity") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerCity")
+                            ? "border-2 !border-danger"
+                            : ""
+                            }`}
+                        defaultValue={storedFields?.["buyerCity"] ?? ""}
                     />
                 </label>
 
                 <label className="flex flex-col text-sm font-medium text-gray-700">
-                    <span>Sat / sector <span className="text-red-500">*</span></span>
+                    <span>
+                        Sat / sector <span className="text-red-500">*</span>
+                    </span>
                     <input
                         name="buyerDistrict"
                         type="text"
@@ -103,12 +138,18 @@ const Cumparator = ({
                         maxLength={50}
                         pattern="^[A-Za-zĂăÂâÎîȘșȚț0-9\s\-']+$"
                         required
-                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerDistrict") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerDistrict")
+                            ? "border-2 !border-danger"
+                            : ""
+                            }`}
+                        defaultValue={storedFields?.["buyerDistrict"] ?? ""}
                     />
                 </label>
 
                 <label className="flex flex-col text-sm font-medium text-gray-700">
-                    <span>Strada <span className="text-red-500">*</span></span>
+                    <span>
+                        Strada <span className="text-red-500">*</span>
+                    </span>
                     <input
                         name="buyerStreet"
                         type="text"
@@ -116,7 +157,11 @@ const Cumparator = ({
                         maxLength={60}
                         pattern="^[A-Za-zĂăÂâÎîȘșȚț0-9\s\.,\-]+$"
                         required
-                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerStreet") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerStreet")
+                            ? "border-2 !border-danger"
+                            : ""
+                            }`}
+                        defaultValue={storedFields?.["buyerStreet"] ?? ""}
                     />
                 </label>
 
@@ -128,7 +173,11 @@ const Cumparator = ({
                         minLength={1}
                         maxLength={10}
                         pattern="^[0-9]+$"
-                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerStreetNumber") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerStreetNumber")
+                            ? "border-2 !border-danger"
+                            : ""
+                            }`}
+                        defaultValue={storedFields?.["buyerStreetNumber"] ?? ""}
                     />
                 </label>
 
@@ -140,7 +189,11 @@ const Cumparator = ({
                         minLength={1}
                         maxLength={5}
                         pattern="^[A-Za-z0-9]+$"
-                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerBlock") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerBlock")
+                            ? "border-2 !border-danger"
+                            : ""
+                            }`}
+                        defaultValue={storedFields?.["buyerBlock"] ?? ""}
                     />
                 </label>
 
@@ -152,7 +205,11 @@ const Cumparator = ({
                         minLength={1}
                         maxLength={3}
                         pattern="^[A-Za-z0-9]+$"
-                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerStaircase") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerStaircase")
+                            ? "border-2 !border-danger"
+                            : ""
+                            }`}
+                        defaultValue={storedFields?.["buyerStaircase"] ?? ""}
                     />
                 </label>
 
@@ -164,7 +221,11 @@ const Cumparator = ({
                         minLength={1}
                         maxLength={2}
                         pattern="^[0-9]+$"
-                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerFloor") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerFloor")
+                            ? "border-2 !border-danger"
+                            : ""
+                            }`}
+                        defaultValue={storedFields?.["buyerFloor"] ?? ""}
                     />
                 </label>
 
@@ -176,12 +237,18 @@ const Cumparator = ({
                         minLength={1}
                         maxLength={4}
                         pattern="^[0-9]+$"
-                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerApartment") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerApartment")
+                            ? "border-2 !border-danger"
+                            : ""
+                            }`}
+                        defaultValue={storedFields?.["buyerApartment"] ?? ""}
                     />
                 </label>
 
                 <label className="flex flex-col text-sm font-medium text-gray-700">
-                    <span>Serie act identitate <span className="text-red-500">*</span></span>
+                    <span>
+                        Serie act identitate <span className="text-red-500">*</span>
+                    </span>
                     <input
                         name="buyerIdSeries"
                         type="text"
@@ -189,12 +256,18 @@ const Cumparator = ({
                         maxLength={3}
                         pattern="^[A-Z]+$"
                         required
-                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerIdSeries") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerIdSeries")
+                            ? "border-2 !border-danger"
+                            : ""
+                            }`}
+                        defaultValue={storedFields?.["buyerIdSeries"] ?? ""}
                     />
                 </label>
 
                 <label className="flex flex-col text-sm font-medium text-gray-700">
-                    <span>Număr act de identitate <span className="text-red-500">*</span></span>
+                    <span>
+                        Număr act de identitate <span className="text-red-500">*</span>
+                    </span>
                     <input
                         name="buyerIdNumber"
                         type="text"
@@ -202,12 +275,18 @@ const Cumparator = ({
                         maxLength={8}
                         pattern="^\d+$"
                         required
-                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerIdNumber") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerIdNumber")
+                            ? "border-2 !border-danger"
+                            : ""
+                            }`}
+                        defaultValue={storedFields?.["buyerIdNumber"] ?? ""}
                     />
                 </label>
 
                 <label className="flex flex-col text-sm font-medium text-gray-700">
-                    <span>CNP / CIF <span className="text-red-500">*</span></span>
+                    <span>
+                        CNP / CIF <span className="text-red-500">*</span>
+                    </span>
                     <input
                         name="buyerCnpOrCif"
                         type="text"
@@ -215,7 +294,11 @@ const Cumparator = ({
                         maxLength={13}
                         pattern="^\d+$"
                         required
-                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerCnpOrCif") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerCnpOrCif")
+                            ? "border-2 !border-danger"
+                            : ""
+                            }`}
+                        defaultValue={storedFields?.["buyerCnpOrCif"] ?? ""}
                     />
                 </label>
 
@@ -227,7 +310,11 @@ const Cumparator = ({
                         minLength={10}
                         maxLength={10}
                         pattern="^\d+$"
-                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerPhone") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerPhone")
+                            ? "border-2 !border-danger"
+                            : ""
+                            }`}
+                        defaultValue={storedFields?.["buyerPhone"] ?? ""}
                     />
                 </label>
 
@@ -239,12 +326,17 @@ const Cumparator = ({
                         minLength={5}
                         maxLength={50}
                         pattern="^[\w.-]+@[\w.-]+\.\w{2,}$"
-                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerEmail") ? "border-2 !border-danger" : ""}`}
+                        className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerEmail")
+                            ? "border-2 !border-danger"
+                            : ""
+                            }`}
+                        defaultValue={storedFields?.["buyerEmail"] ?? ""}
                     />
                 </label>
             </fieldset>
 
             <AdditionalFieldsBuyer
+                storedFields={storedFields}
                 invalidFields={invalidFields}
                 hasAnotherHome={hasAnotherHomeSelected}
                 isRepresented={isRepresented} />

@@ -88,7 +88,7 @@ describe("Contract Flow", () => {
     cy.get('[name="vehicleCivSeries"]').type("456789");
     cy.get('[name="vehicleYear"]').type("2018");
     cy.get('[name="vehicleEuroNorm"]').type("6");
-    cy.get('[name="vehicleAcquisitionDate"]').type("2023-06-15");
+    // cy.get('[name="vehicleAcquisitionDate"]').type("2023-06-15");
     cy.get('[name="acquisitionDocument"]').type("Factura 123/2023");
     cy.contains("Continuă").click();
   });
@@ -100,7 +100,6 @@ describe("Contract Flow", () => {
     cy.get('[name="priceDigits"]').type("5000");
     cy.get('[name="priceLetters"]').type("cinci mii lei");
     // cy.get('[name="anexeYes"]').type("Nu");
-    cy.get('[name="contractDate"]').type("01.07.2025");
     cy.get('[name="contractPlace"]').type("Bucuresti");
 
     // submit if you have a "Trimite" button

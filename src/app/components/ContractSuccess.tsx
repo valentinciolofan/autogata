@@ -1,13 +1,33 @@
 import Button from "./Button";
 
 const ContractSuccess = () => {
-    const handleDownload = () => {
-        // const pdfUrl = "/contracte/contract-final.pdf"; // Înlocuiește cu path-ul real
-        // const link = document.createElement("a");
-        // link.href = pdfUrl;
-        // link.download = "contract-final.pdf";
-        // link.click();
+    // const handleDownload = () => {
+    //     // const pdfUrl = "/contracte/contract-final.pdf"; // Înlocuiește cu path-ul real
+    //     // const link = document.createElement("a");
+    //     // link.href = pdfUrl;
+    //     // link.download = "contract-final.pdf";
+    //     // link.click();
+    // };
+
+    const loadStoredData = <T = any>(key: string): T | null => {
+        const raw = localStorage.getItem(key);
+        if (!raw) return null;
+
+        try {
+            return JSON.parse(raw) as T;
+        } catch (err) {
+            console.error(`Failed to parse localStorage.${key}:`, err);
+            return null;
+        }
     };
+
+    const clearStoredData = (): void => {
+        ["seller", "buyer", "contractSubject", "contractDetails"].forEach((key) =>
+            localStorage.removeItem(key)
+        );
+    };
+
+    clearStoredData();
 
     return (
         <div className="flex flex-col items-center justify-center gap-6 py-12 text-center">

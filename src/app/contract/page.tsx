@@ -12,7 +12,7 @@ import { ContractFormProps, ButtonVariant } from "../types";
 export default function ContractPage() {
     const [btnVariant, setBtnVariant] = useState<ButtonVariant>("primary");
     const [personType, setPersonType] = useState("individual");
-    const [formStep, setFormStep] = useState(4);
+    const [formStep, setFormStep] = useState(1);
     const formSteps = 4;
 
     const handlePersonType = (selectedPerson: string) => {
@@ -28,8 +28,6 @@ export default function ContractPage() {
         <main className="shadow-lg rounded-lg bg-white border border-custom px-5 py-10 xl-max-w-8/10 lg:p-20">
 
             <h1 className={`${formStep > 4 ? "hidden" : "block"} text-md font-semibold uppercase mb-16 text-center md:text-xl lg:text-2xl xl:text-3xl`}>Contract de vânzare-cumpărare auto</h1>
-
-            {/* multi step se poate adauga si impreuna cu butoanele de juridic */}
 
             <div className={`${formStep > 4 ? "hidden" : "flex"} justify-between mb-16 items-center w-full relative max-w-xl mx-auto`}>
                 {Array.from({ length: formSteps }).map((_, index) => (

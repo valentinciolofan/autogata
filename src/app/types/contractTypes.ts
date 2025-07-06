@@ -1,8 +1,8 @@
 import { ReactNode, SetStateAction, Dispatch } from 'react';
 import { ButtonVariant } from './ButtonTypes';
 
-
 export interface ContractFormProps {
+    validation?: FormValidationSummary;
     invalidFields?: Record<string, string>;
     persoanaJuridica?: (personType: string) => void;
     personType?: string;
@@ -14,6 +14,7 @@ export interface ContractFormProps {
     handlePersonType?: (selectedPerson: string) => void;
     hasAnotherHome?: boolean;
     isRepresented?: boolean;
+    storedFields?: Record<string, any>;
 }
 
 export type FormValidationSummary = {

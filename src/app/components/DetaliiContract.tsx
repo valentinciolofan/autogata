@@ -1,28 +1,55 @@
+import { useState, useEffect } from "react";
 import Button from "./Button";
 import { ContractFormProps } from "../types";
 
 const DetaliiContract = ({ invalidFields }: ContractFormProps) => {
+    const [storedFields, setStoredFields] = useState<Record<string, any>>({});
+
+    useEffect(() => {
+        const raw = localStorage.getItem("contractDetails");
+        if (!raw) return;
+
+        let parsed: unknown;
+        parsed = JSON.parse(raw);
+
+        if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+            setStoredFields(parsed as Record<string, any>);
+        }
+    }, []);
+
     return (
         <fieldset className="flex flex-col gap-6">
             <legend className="font-bold mb-6">4. Preț și detalii contract</legend>
 
             <label className="flex flex-col text-sm font-medium text-gray-700">
-                <span>Prețul (în cifre) <span className="text-red-500">*</span></span>
+                <span>
+                    Prețul (în cifre) <span className="text-red-500">*</span>
+                </span>
                 <input
                     name="priceDigits"
                     type="number"
                     required
-                    className={`contract-input-field ${invalidFields?.hasOwnProperty("priceDigits") ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("priceDigits")
+                            ? "border-2 !border-danger"
+                            : ""
+                        }`}
+                    defaultValue={storedFields?.["priceDigits"] ?? ""}
                 />
             </label>
 
             <label className="flex flex-col text-sm font-medium text-gray-700">
-                <span>Prețul (în litere) <span className="text-red-500">*</span></span>
+                <span>
+                    Prețul (în litere) <span className="text-red-500">*</span>
+                </span>
                 <input
                     name="priceLetters"
                     type="text"
                     required
-                    className={`contract-input-field ${invalidFields?.hasOwnProperty("priceLetters") ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("priceLetters")
+                            ? "border-2 !border-danger"
+                            : ""
+                        }`}
+                    defaultValue={storedFields?.["priceLetters"] ?? ""}
                 />
             </label>
 
@@ -31,7 +58,11 @@ const DetaliiContract = ({ invalidFields }: ContractFormProps) => {
                 <input
                     name="anexeYes"
                     type="text"
-                    className={`contract-input-field ${invalidFields?.hasOwnProperty("anexeYes") ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("anexeYes")
+                            ? "border-2 !border-danger"
+                            : ""
+                        }`}
+                    defaultValue={storedFields?.["anexeYes"] ?? ""}
                 />
             </label>
 
@@ -39,8 +70,12 @@ const DetaliiContract = ({ invalidFields }: ContractFormProps) => {
                 <span>Data încheierii contractului</span>
                 <input
                     name="contractDate"
-                    type="text"
-                    className={`contract-input-field ${invalidFields?.hasOwnProperty("contractDate") ? "border-2 !border-danger" : ""}`}
+                    type="date"
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("contractDate")
+                            ? "border-2 !border-danger"
+                            : ""
+                        }`}
+                    defaultValue={storedFields?.["contractDate"] ?? new Date().toISOString().slice(0, 10)}
                 />
             </label>
 
@@ -49,7 +84,11 @@ const DetaliiContract = ({ invalidFields }: ContractFormProps) => {
                 <input
                     name="contractPlace"
                     type="text"
-                    className={`contract-input-field ${invalidFields?.hasOwnProperty("contractPlace") ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("contractPlace")
+                            ? "border-2 !border-danger"
+                            : ""
+                        }`}
+                    defaultValue={storedFields?.["contractPlace"] ?? ""}
                 />
             </label>
         </fieldset>

@@ -5,7 +5,7 @@ import ObiectContract from "./ObiectContract";
 import DetaliiContract from "./DetaliiContract";
 
 import FormChangeStepButtons from "./FormStepsControl";
-import { useState, useRef, ReactNode } from "react";
+import { useState, useRef, ReactNode, useEffect } from "react";
 
 import ContractSuccess from "./ContractSuccess";
 import ContractError from "./ContractError";
@@ -89,6 +89,7 @@ const Form = ({
             component: (
                 <Vanzator
                     formStep={formStep}
+                    validation={validation}
                     invalidFields={validation.invalidFields}
                     persoanaJuridica={handlePersonType}
                     personType={personType}
