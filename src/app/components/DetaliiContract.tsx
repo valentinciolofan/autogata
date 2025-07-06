@@ -1,7 +1,7 @@
 import Button from "./Button";
-import { Cumparator } from "./Cumparator";
+import { ContractFormProps } from "../types";
 
-const DetaliiContract = ({ invalidFields }: Cumparator) => {
+const DetaliiContract = ({ invalidFields }: ContractFormProps) => {
     return (
         <fieldset className="flex flex-col gap-6">
             <legend className="font-bold mb-6">4. Preț și detalii contract</legend>
@@ -12,7 +12,7 @@ const DetaliiContract = ({ invalidFields }: Cumparator) => {
                     name="priceDigits"
                     type="number"
                     required
-                    className={`contract-input-field ${invalidFields?.includes("priceDigits") ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("priceDigits") ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -22,7 +22,7 @@ const DetaliiContract = ({ invalidFields }: Cumparator) => {
                     name="priceLetters"
                     type="text"
                     required
-                    className={`contract-input-field ${invalidFields?.includes("priceLetters") ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("priceLetters") ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -31,7 +31,7 @@ const DetaliiContract = ({ invalidFields }: Cumparator) => {
                 <input
                     name="anexeYes"
                     type="text"
-                    className={`contract-input-field ${invalidFields?.includes("anexeYes") ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("anexeYes") ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -40,7 +40,7 @@ const DetaliiContract = ({ invalidFields }: Cumparator) => {
                 <input
                     name="contractDate"
                     type="text"
-                    className={`contract-input-field ${invalidFields?.includes("contractDate") ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("contractDate") ? "border-2 !border-danger" : ""}`}
                 />
             </label>
 
@@ -49,7 +49,7 @@ const DetaliiContract = ({ invalidFields }: Cumparator) => {
                 <input
                     name="contractPlace"
                     type="text"
-                    className={`contract-input-field ${invalidFields?.includes("contractPlace") ? "border-2 !border-danger" : ""}`}
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("contractPlace") ? "border-2 !border-danger" : ""}`}
                 />
             </label>
         </fieldset>

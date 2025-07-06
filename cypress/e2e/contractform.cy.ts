@@ -22,6 +22,37 @@ describe("Contract Flow", () => {
     cy.get('[name="sellerCnpOrCif"]').type("1960101123456");
     cy.get('[name="sellerPhone"]').type("0712345678");
     cy.get('[name="sellerEmail"]').type("ion.popescu@example.com");
+
+    // … your beforeEach() up through filling sellerEmail …
+
+    // BEFORE toggling, extra fields shouldn’t exist:
+    cy.get('[name="sellerLegalRepName"]').should('not.exist')
+    cy.get('[name="sellerLegalRepIdSeries"]').should('not.exist')
+    cy.get('[name="sellerFiscalCountry"]').should('not.exist')
+ cy.contains("Aveți alt domiciliu?").click();
+    cy.get('[name="sellerLegalRepName"]')
+      .should("be.visible")
+      .type("Ion Legal")
+    cy.get('[name="sellerLegalRepIdSeries"]')
+      .type("AB")
+    cy.get('[name="sellerLegalRepIdNumber"]')
+      .type("123456")
+    cy.get('[name="sellerLegalRepCnp"]')
+      .type("1960101123456")
+
+    // 2️⃣ Tick “Sunteți reprezentat de altcineva?” and fill its required fields
+    cy.contains("Sunteți reprezentat de altcineva?").click();
+    cy.get('[name="sellerFiscalCounty"]')
+      .should("be.visible")
+      .type("Cluj")
+    cy.get('[name="sellerFiscalCity"]')
+      .type("Cluj-Napoca")
+    cy.get('[name="sellerFiscalDistrict"]')
+      .type("Centru")
+    cy.get('[name="sellerFiscalStreet"]')
+      .type("Str. Libertatii")
+
+    // 3️⃣ Finally click to proceed
     cy.contains("Continuă").click();
 
     // Step 2 – Cumparator

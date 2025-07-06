@@ -1,8 +1,8 @@
 import Button from "./Button";
 import Tooltip from "./Tooltip";
-import { Cumparator } from "./Cumparator";
+import { ContractFormProps } from "../types";
 
-const ObiectContract = ({ invalidFields }: Cumparator) => {
+const ObiectContract = ({ invalidFields }: ContractFormProps) => {
     return (
         <fieldset>
             <legend className="font-bold mb-6">3. Obiectul contractului</legend>
@@ -19,7 +19,7 @@ const ObiectContract = ({ invalidFields }: Cumparator) => {
                             name="vehicleBrand"
                             type="text"
                             required
-                            className={`contract-input-field ${invalidFields?.includes("vehicleBrand") ? "border-2 !border-danger" : ""}`}
+                            className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleBrand") ? "border-2 !border-danger" : ""}`}
                         />
                     </label>
 
@@ -33,7 +33,7 @@ const ObiectContract = ({ invalidFields }: Cumparator) => {
                             name="vehicleModel"
                             type="text"
                             required
-                            className={`contract-input-field ${invalidFields?.includes("vehicleModel") ? "border-2 !border-danger" : ""}`}
+                            className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleModel") ? "border-2 !border-danger" : ""}`}
                         />
                     </label>
 
@@ -47,7 +47,7 @@ const ObiectContract = ({ invalidFields }: Cumparator) => {
                             name="vehicleChassisNumber"
                             type="text"
                             required
-                            className={`contract-input-field ${invalidFields?.includes("vehicleChassisNumber") ? "border-2 !border-danger" : ""}`}
+                            className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleChassisNumber") ? "border-2 !border-danger" : ""}`}
                         />
                     </label>
 
@@ -61,7 +61,7 @@ const ObiectContract = ({ invalidFields }: Cumparator) => {
                             name="vehicleEngineSeries"
                             type="text"
                             required
-                            className={`contract-input-field ${invalidFields?.includes("vehicleEngineSeries") ? "border-2 !border-danger" : ""}`}
+                            className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleEngineSeries") ? "border-2 !border-danger" : ""}`}
                         />
                     </label>
 
@@ -75,7 +75,7 @@ const ObiectContract = ({ invalidFields }: Cumparator) => {
                             name="vehicleCubicCapacity"
                             type="number"
                             required
-                            className={`contract-input-field ${invalidFields?.includes("vehicleCubicCapacity") ? "border-2 !border-danger" : ""}`}
+                            className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleCubicCapacity") ? "border-2 !border-danger" : ""}`}
                         />
                     </label>
 
@@ -89,7 +89,7 @@ const ObiectContract = ({ invalidFields }: Cumparator) => {
                             name="vehicleMaxWeight"
                             type="number"
                             required
-                            className={`contract-input-field ${invalidFields?.includes("vehicleMaxWeight") ? "border-2 !border-danger" : ""}`}
+                            className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleMaxWeight") ? "border-2 !border-danger" : ""}`}
                         />
                     </label>
 
@@ -103,7 +103,7 @@ const ObiectContract = ({ invalidFields }: Cumparator) => {
                             name="vehicleRegistrationNumber"
                             type="text"
                             required
-                            className={`contract-input-field ${invalidFields?.includes("vehicleRegistrationNumber") ? "border-2 !border-danger" : ""}`}
+                            className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleRegistrationNumber") ? "border-2 !border-danger" : ""}`}
                         />
                     </label>
                 </div>
@@ -114,7 +114,7 @@ const ObiectContract = ({ invalidFields }: Cumparator) => {
                         <input
                             name="vehicleItpExpiry"
                             type="number"
-                            className={`contract-input-field ${invalidFields?.includes("vehicleItpExpiry") ? "border-2 !border-danger" : ""}`}
+                            className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleItpExpiry") ? "border-2 !border-danger" : ""}`}
                         />
                     </label>
 
@@ -128,7 +128,7 @@ const ObiectContract = ({ invalidFields }: Cumparator) => {
                             name="vehicleCivSeries"
                             type="number"
                             required
-                            className={`contract-input-field ${invalidFields?.includes("vehicleCivSeries") ? "border-2 !border-danger" : ""}`}
+                            className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleCivSeries") ? "border-2 !border-danger" : ""}`}
                         />
                     </label>
 
@@ -142,7 +142,7 @@ const ObiectContract = ({ invalidFields }: Cumparator) => {
                             name="vehicleYear"
                             type="number"
                             required
-                            className={`contract-input-field ${invalidFields?.includes("vehicleYear") ? "border-2 !border-danger" : ""}`}
+                            className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleYear") ? "border-2 !border-danger" : ""}`}
                         />
                     </label>
 
@@ -156,7 +156,7 @@ const ObiectContract = ({ invalidFields }: Cumparator) => {
                             name="vehicleEuroNorm"
                             type="number"
                             required
-                            className={`contract-input-field ${invalidFields?.includes("vehicleEuroNorm") ? "border-2 !border-danger" : ""}`}
+                            className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleEuroNorm") ? "border-2 !border-danger" : ""}`}
                         />
                     </label>
 
@@ -165,7 +165,7 @@ const ObiectContract = ({ invalidFields }: Cumparator) => {
                         <input
                             name="vehicleAcquisitionDate"
                             type="number"
-                            className={`contract-input-field ${invalidFields?.includes("vehicleAcquisitionDate") ? "border-2 !border-danger" : ""}`}
+                            className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleAcquisitionDate") ? "border-2 !border-danger" : ""}`}
                         />
                     </label>
 
@@ -174,7 +174,7 @@ const ObiectContract = ({ invalidFields }: Cumparator) => {
                         <input
                             name="acquisitionDocument"
                             type="text"
-                            className={`contract-input-field ${invalidFields?.includes("acquisitionDocument") ? "border-2 !border-danger" : ""}`}
+                            className={`contract-input-field ${invalidFields?.hasOwnProperty("acquisitionDocument") ? "border-2 !border-danger" : ""}`}
                         />
                     </label>
                 </div>

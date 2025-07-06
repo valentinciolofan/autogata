@@ -12,7 +12,7 @@ import { ContractFormProps, ButtonVariant } from "../types";
 export default function ContractPage() {
     const [btnVariant, setBtnVariant] = useState<ButtonVariant>("primary");
     const [personType, setPersonType] = useState("individual");
-    const [formStep, setFormStep] = useState(1);
+    const [formStep, setFormStep] = useState(4);
     const formSteps = 4;
 
     const handlePersonType = (selectedPerson: string) => {
@@ -31,7 +31,7 @@ export default function ContractPage() {
 
             {/* multi step se poate adauga si impreuna cu butoanele de juridic */}
 
-            <div className={`${formStep > 4 ? "hidden" : "flex"} justify-between items-center w-full relative max-w-xl mx-auto`}>
+            <div className={`${formStep > 4 ? "hidden" : "flex"} justify-between mb-16 items-center w-full relative max-w-xl mx-auto`}>
                 {Array.from({ length: formSteps }).map((_, index) => (
                     <div key={index} className="relative flex-1 flex justify-center items-center">
                         {/* Line to the next step */}
@@ -53,21 +53,6 @@ export default function ContractPage() {
                         </div>
                     </div>
                 ))}
-            </div>
-
-            <div className={`${formStep > 2 ? "invisible" : "flex"} flex gap-4 justify-center mb-6 *:cursor-pointer`}>
-                <Button
-                    label={"Persoana fizică"}
-                    className={`${personType === "individual" ? "btn active" : ""}`}
-                    variant={"active"}
-                    onClick={() => handlePersonType("individual")}
-                />
-                <Button
-                    label={"Persoana juridică"}
-                    className={`${personType === "legalEntity" ? "btn active" : ""}`}
-                    variant={"active"}
-                    onClick={() => handlePersonType("legalEntity")}
-                />
             </div>
 
             <Form

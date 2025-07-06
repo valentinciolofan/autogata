@@ -185,6 +185,9 @@ const Form = ({
         const value = input.value.trim();
         const { name, required, minLength, maxLength, pattern } = input;
 
+        if (required && value === "") {
+            return false;
+        }
 
         if (minLength > 0 && value.length < minLength) {
             console.log(name, "nu indeplineste minima lungime")

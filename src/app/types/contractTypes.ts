@@ -6,12 +6,14 @@ export interface ContractFormProps {
     invalidFields?: Record<string, string>;
     persoanaJuridica?: (personType: string) => void;
     personType?: string;
-    formStep: number;
+    formStep?: number;
     onNextStep?: () => void;
     onPreviousStep?: () => void;
     setFormStep?: Dispatch<SetStateAction<number>>;
     setBtnVariant?: Dispatch<SetStateAction<ButtonVariant>>;
     handlePersonType?: (selectedPerson: string) => void;
+    hasAnotherHome?: boolean;
+    isRepresented?: boolean;
 }
 
 export type FormValidationSummary = {
