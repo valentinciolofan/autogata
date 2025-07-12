@@ -10,9 +10,7 @@ const ContractSuccess = ({ downloadLink }: ContractSuccessProps) => {
   const [downloadError, setDownloadError] = useState<string | null>(null);
 
   const handleDownload = () => {
-    console.log("Attempting download with link:", downloadLink);
     if (!downloadLink || downloadLink === "#") {
-      console.error("Invalid link:", downloadLink);
       setDownloadError("Invalid link downloaded");
       return;
     }
@@ -26,14 +24,12 @@ const ContractSuccess = ({ downloadLink }: ContractSuccessProps) => {
       a.click();
       document.body.removeChild(a);
 
-      console.log("Download triggered successfully for:", downloadLink);
       setIsDownloaded(true);
       setDownloadError(null);
 
       setTimeout(() => {
         try {
           URL.revokeObjectURL(downloadLink);
-          console.log("Revoked blob URL:", downloadLink);
         } catch (err) {
           console.error("Failed to revoke blob URL:", err);
         }

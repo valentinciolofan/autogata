@@ -71,12 +71,19 @@
   .tooltip .tooltiptext::after {
     content: " ";
     position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
+    top: -9%;
+    left: 9%;
     border-width: 5px;
     border-style: solid;
-    border-color: #777777 transparent transparent transparent;
+    border-color: transparent transparent #777777 transparent;
+  }
+
+  @media screen {
+    .tooltip .tooltiptext::after {
+      top: 100%;
+      left: 10px;
+      border-color: #777777 transparent transparent transparent;
+    }
   }
 
   @keyframes move-stripes {

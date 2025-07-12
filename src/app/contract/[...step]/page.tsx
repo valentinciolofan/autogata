@@ -11,8 +11,7 @@ import { ContractFormProps, ButtonVariant } from "../../types";
 
 export default function ContractPage() {
   const [btnVariant, setBtnVariant] = useState<ButtonVariant>("primary");
-  const [personType, setPersonType] = useState("individual");
-  const [formStep, setFormStep] = useState<number>(1);
+  const [formStep, setFormStep] = useState<number>(3);
   const formSteps = 4;
 
   return (
@@ -48,8 +47,7 @@ export default function ContractPage() {
         formStep={formStep}
         setFormStep={setFormStep}
         setBtnVariant={setBtnVariant}
-        personType={personType}
       />
-    </main >
+    </main>
   );
 }; ``

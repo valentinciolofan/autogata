@@ -80,7 +80,7 @@ const ObiectContract = ({ invalidFields }: ContractFormProps) => {
             <label className="flex flex-col text-sm font-medium text-gray-700">
                 <span className="flex items-center">
                     Serie motor <span className="text-red-500">*</span>
-                    <Tooltip label="Pozitia 10 din carte" />
+                    <Tooltip label="Pozitia 10 din cartea autovehicului" />
                 </span>
                 <input
                     name="vehicleEngineSeries"
@@ -136,7 +136,7 @@ const ObiectContract = ({ invalidFields }: ContractFormProps) => {
                 />
             </label>
 
-            <label className="flex flex-col text-sm font-medium text-gray-700">
+            <label className="relative flex flex-col text-sm font-medium text-gray-700">
                 <span className="flex items-center">
                     Număr de înmatriculare <span className="text-red-500">*</span>
                     <Tooltip label="Pozitia A din talonul autovehiculului" />

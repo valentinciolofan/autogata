@@ -8,8 +8,17 @@ const Tooltip = ({ label }: TooltipProps) => {
     const [open, setOpen] = useState(false);
     const ref = useRef<HTMLSpanElement>(null);
 
+
+    const handleTooltipOnMobile = () => {
+        const isMobileScreen = window.matchMedia(("max-media: 768px")).matches;
+
+        if (isMobileScreen) {
+            setOpen((v) => !v)
+        }
+    }
+
     useEffect(() => {
-        const handleClick = (e: MouseEvent) => {
+        const handleOutside = (e: PointerEvent) => {
             if (
                 open &&
                 ref.current &&
@@ -18,17 +27,20 @@ const Tooltip = ({ label }: TooltipProps) => {
                 setOpen(false);
             }
         };
-        document.addEventListener("click", handleClick);
-        return () => document.removeEventListener("click", handleClick);
+
+        window.addEventListener("pointerdown", handleOutside, true);
+        return () => {
+            window.removeEventListener("pointerdown", handleOutside, true);
+        };
     }, [open]);
 
     return (
-        <span ref={ref} className="relative group ml-1 cursor-pointer tooltip">
+        <span ref={ref} className="relative group ml-1 tooltip">
             <button
                 type="button"
                 aria-label={label}
-                onClick={() => setOpen((v) => !v)}
-                className="p-1 text-gray-500 hover:text-gray-700 focus:outline-none"
+                onClick={handleTooltipOnMobile}
+                className="p-1 text-gray-500 cursor-pointer  hover:text-gray-700 focus:outline-none"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -40,20 +52,24 @@ const Tooltip = ({ label }: TooltipProps) => {
                 </svg>
             </button>
 
-            <div className={`
+            <span className={`
+          tooltiptext
           absolute z-10 
           bg-secondary text-white text-xs p-2 rounded-md shadow-lg
-          whitespace-nowrap
-          top-[-140%]
-          ${open ? "block" : "hidden"}           /* mobile / click */
-          group-hover:block sm:group-hover:block /* desktop / hover */
-          left-[-200%] sm:left-1/2 sm:-translate-x-1/2  /* responsive positioning */
-          max-w-[80vw] sm:max-w-xs
-          whitespace-normal sm:whitespace-nowrap
+          top-[100%]
+          ${open ? "block" : "hidden"}           
+          sm:group-hover:block 
+          max-w-[80vw]
+          h-fit
+          shadow-lg
+          rounded-md
+          md:max-w-fit
+          md:text-nowrap
+          md:whitespace-none
+          md:top-[-110%]
         `}>
                 {label}
-
-            </div>
+            </span>
         </span>
     );
 };
