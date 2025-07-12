@@ -9,8 +9,6 @@ const Cumparator = ({
     formStep,
     setFormStep,
     invalidFields,
-    persoanaJuridica,
-    personType,
     onNextStep,
     onPreviousStep
 }: ContractFormProps) => {
@@ -256,7 +254,7 @@ const Cumparator = ({
                         type="text"
                         minLength={2}
                         maxLength={3}
-                        pattern="^[A-Z]+$"
+                        pattern="^[A-Za-z]+$"
                         required
                         className={`contract-input-field ${invalidFields?.hasOwnProperty("buyerIdSeries")
                             ? "border-2 !border-danger"

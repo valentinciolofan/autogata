@@ -29,9 +29,12 @@ const DetaliiContract = ({ invalidFields }: ContractFormProps) => {
                     name="priceDigits"
                     type="number"
                     required
-                    className={`contract-input-field ${invalidFields?.hasOwnProperty("priceDigits")
-                            ? "border-2 !border-danger"
-                            : ""
+                    pattern="[0-9]{1,7}"
+                    minLength={1}
+                    maxLength={7}
+                    min={100}
+                    max={9999999}
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("priceDigits") ? "border-2 !border-danger" : ""
                         }`}
                     defaultValue={storedFields?.["priceDigits"] ?? ""}
                 />
@@ -45,9 +48,10 @@ const DetaliiContract = ({ invalidFields }: ContractFormProps) => {
                     name="priceLetters"
                     type="text"
                     required
-                    className={`contract-input-field ${invalidFields?.hasOwnProperty("priceLetters")
-                            ? "border-2 !border-danger"
-                            : ""
+                    pattern="[A-Za-zăâîșț\s-]{3,100}"
+                    minLength={3}
+                    maxLength={100}
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("priceLetters") ? "border-2 !border-danger" : ""
                         }`}
                     defaultValue={storedFields?.["priceLetters"] ?? ""}
                 />
@@ -58,9 +62,10 @@ const DetaliiContract = ({ invalidFields }: ContractFormProps) => {
                 <input
                     name="anexeYes"
                     type="text"
-                    className={`contract-input-field ${invalidFields?.hasOwnProperty("anexeYes")
-                            ? "border-2 !border-danger"
-                            : ""
+                    pattern="^(Da|Nu|da|nu|DA|NU)$"
+                    minLength={2}
+                    maxLength={2}
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("anexeYes") ? "border-2 !border-danger" : ""
                         }`}
                     defaultValue={storedFields?.["anexeYes"] ?? ""}
                 />
@@ -71,9 +76,9 @@ const DetaliiContract = ({ invalidFields }: ContractFormProps) => {
                 <input
                     name="contractDate"
                     type="date"
-                    className={`contract-input-field ${invalidFields?.hasOwnProperty("contractDate")
-                            ? "border-2 !border-danger"
-                            : ""
+                    min="2025-07-12"
+                    max="2030-12-31"
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("contractDate") ? "border-2 !border-danger" : ""
                         }`}
                     defaultValue={storedFields?.["contractDate"] ?? new Date().toISOString().slice(0, 10)}
                 />
@@ -84,9 +89,10 @@ const DetaliiContract = ({ invalidFields }: ContractFormProps) => {
                 <input
                     name="contractPlace"
                     type="text"
-                    className={`contract-input-field ${invalidFields?.hasOwnProperty("contractPlace")
-                            ? "border-2 !border-danger"
-                            : ""
+                    pattern="[A-Za-zăâîșț\s-]{3,50}"
+                    minLength={3}
+                    maxLength={50}
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("contractPlace") ? "border-2 !border-danger" : ""
                         }`}
                     defaultValue={storedFields?.["contractPlace"] ?? ""}
                 />

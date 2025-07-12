@@ -4,8 +4,6 @@ import { ButtonVariant } from './ButtonTypes';
 export interface ContractFormProps {
     validation?: FormValidationSummary;
     invalidFields?: Record<string, string>;
-    persoanaJuridica?: (personType: string) => void;
-    personType?: string;
     formStep: number;
     onNextStep?: () => void;
     onPreviousStep?: () => void;

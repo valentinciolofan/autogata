@@ -12,7 +12,6 @@ const Vanzator = ({
     setFormStep,
     validation,
     invalidFields,
-    persoanaJuridica,
     personType,
     onNextStep
 }: ContractFormProps) => {
@@ -259,7 +258,7 @@ const Vanzator = ({
                         type="text"
                         minLength={2}
                         maxLength={3}
-                        pattern="^[A-Z]+$"
+                        pattern="^[A-Za-z]+$"
                         required
                         className={`contract-input-field ${invalidFields?.hasOwnProperty("sellerIdSeries")
                             ? "border-2 !border-danger"
@@ -296,7 +295,7 @@ const Vanzator = ({
                         name="sellerCnpOrCif"
                         type="text"
                         minLength={6}
-                        maxLength={8}
+                        maxLength={13}
                         pattern="^\d+$"
                         required
                         className={`contract-input-field ${invalidFields?.hasOwnProperty("sellerCnpOrCif")

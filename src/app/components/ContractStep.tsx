@@ -21,8 +21,6 @@ const Form = ({
     formStep,
     setFormStep,
     setBtnVariant,
-    personType,
-    handlePersonType,
 }: ContractFormProps) => {
 
     const [contractData, setContractData] = useState<ContractData>({});
@@ -37,6 +35,8 @@ const Form = ({
     });
 
     const [hasAnotherHome, setHasAnotherHome] = useState<true | false>(false);
+
+    const [contractDownloadLink, setContractDownloadLink] = useState<string>("#");
 
     const formRef = useRef<HTMLFormElement>(null);
 
@@ -59,16 +59,9 @@ const Form = ({
             }
 
             const blob = await response.blob();
-
             const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'contract-auto.pdf';
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-            window.URL.revokeObjectURL(url);
-
+            console.log(url, 'download link');
+            setContractDownloadLink(url); 
             setContractStatus("success");
 
             return blob;
@@ -88,8 +81,6 @@ const Form = ({
                     setFormStep={setFormStep}
                     validation={validation}
                     invalidFields={validation.invalidFields}
-                    persoanaJuridica={handlePersonType}
-                    personType={personType}
                 />
             )
         },
@@ -101,8 +92,6 @@ const Form = ({
                     formStep={formStep}
                     setFormStep={setFormStep}
                     invalidFields={validation.invalidFields}
-                    persoanaJuridica={handlePersonType}
-                    personType={personType}
                 />
             )
         },
@@ -133,7 +122,7 @@ const Form = ({
             stepName: "contractSubmit",
             component: (
                 contractStatus === "success" ? (
-                    <ContractSuccess />
+                    <ContractSuccess downloadLink={contractDownloadLink} />
                 ) : contractStatus === "error" ? (
                     <ContractError />
                 ) : contractStatus === "generating" ? (
@@ -220,7 +209,7 @@ const Form = ({
 
     const saveStepData = (validFields: Record<string, any>, invalidFields: Record<string, any>) => {
         const stepKey = formSteps[formStep - 1].stepName;
-        
+
         if (stepKey === "contractSubmit") {
             console.warn("Skipping data save for contractSubmit step");
             return contractData;

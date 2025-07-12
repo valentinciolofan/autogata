@@ -31,9 +31,10 @@ const ObiectContract = ({ invalidFields }: ContractFormProps) => {
                     name="vehicleBrand"
                     type="text"
                     required
-                    className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleBrand")
-                            ? "border-2 !border-danger"
-                            : ""
+                    pattern="[A-Za-z\s-]{2,50}"
+                    minLength={2}
+                    maxLength={50}
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleBrand") ? "border-2 !border-danger" : ""
                         }`}
                     defaultValue={storedFields?.["vehicleBrand"] ?? ""}
                 />
@@ -48,9 +49,10 @@ const ObiectContract = ({ invalidFields }: ContractFormProps) => {
                     name="vehicleModel"
                     type="text"
                     required
-                    className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleModel")
-                            ? "border-2 !border-danger"
-                            : ""
+                    pattern="[A-Za-z0-9\s-]{2,50}"
+                    minLength={2}
+                    maxLength={50}
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleModel") ? "border-2 !border-danger" : ""
                         }`}
                     defaultValue={storedFields?.["vehicleModel"] ?? ""}
                 />
@@ -66,9 +68,10 @@ const ObiectContract = ({ invalidFields }: ContractFormProps) => {
                     name="vehicleChassisNumber"
                     type="text"
                     required
-                    className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleChassisNumber")
-                            ? "border-2 !border-danger"
-                            : ""
+                    pattern="[A-HJ-NPR-Z0-9a-hj-npr-z]{17}"
+                    minLength={17}
+                    maxLength={17}
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleChassisNumber") ? "border-2 !border-danger" : ""
                         }`}
                     defaultValue={storedFields?.["vehicleChassisNumber"] ?? ""}
                 />
@@ -83,9 +86,10 @@ const ObiectContract = ({ invalidFields }: ContractFormProps) => {
                     name="vehicleEngineSeries"
                     type="text"
                     required
-                    className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleEngineSeries")
-                            ? "border-2 !border-danger"
-                            : ""
+                    pattern="[A-Za-z0-9\s-]{5,20}"
+                    minLength={5}
+                    maxLength={20}
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleEngineSeries") ? "border-2 !border-danger" : ""
                         }`}
                     defaultValue={storedFields?.["vehicleEngineSeries"] ?? ""}
                 />
@@ -100,9 +104,12 @@ const ObiectContract = ({ invalidFields }: ContractFormProps) => {
                     name="vehicleCubicCapacity"
                     type="number"
                     required
-                    className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleCubicCapacity")
-                            ? "border-2 !border-danger"
-                            : ""
+                    pattern="[0-9]{3,4}"
+                    minLength={3}
+                    maxLength={4}
+                    min={500}
+                    max={9999}
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleCubicCapacity") ? "border-2 !border-danger" : ""
                         }`}
                     defaultValue={storedFields?.["vehicleCubicCapacity"] ?? ""}
                 />
@@ -118,9 +125,12 @@ const ObiectContract = ({ invalidFields }: ContractFormProps) => {
                     name="vehicleMaxWeight"
                     type="number"
                     required
-                    className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleMaxWeight")
-                            ? "border-2 !border-danger"
-                            : ""
+                    pattern="[0-9]{3,4}"
+                    minLength={3}
+                    maxLength={4}
+                    min={500}
+                    max={9999}
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleMaxWeight") ? "border-2 !border-danger" : ""
                         }`}
                     defaultValue={storedFields?.["vehicleMaxWeight"] ?? ""}
                 />
@@ -135,9 +145,10 @@ const ObiectContract = ({ invalidFields }: ContractFormProps) => {
                     name="vehicleRegistrationNumber"
                     type="text"
                     required
-                    className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleRegistrationNumber")
-                            ? "border-2 !border-danger"
-                            : ""
+                    pattern="[A-Za-z]{1,2}\s?[0-9]{2,3}\s?[A-Za-z]{0,3}"
+                    minLength={3}
+                    maxLength={10}
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleRegistrationNumber") ? "border-2 !border-danger" : ""
                         }`}
                     defaultValue={storedFields?.["vehicleRegistrationNumber"] ?? ""}
                 />
@@ -148,9 +159,9 @@ const ObiectContract = ({ invalidFields }: ContractFormProps) => {
                 <input
                     name="vehicleItpExpiry"
                     type="date"
-                    className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleItpExpiry")
-                            ? "border-2 !border-danger"
-                            : ""
+                    min="2025-07-12"
+                    max="2030-12-31"
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleItpExpiry") ? "border-2 !border-danger" : ""
                         }`}
                     defaultValue={storedFields?.["vehicleItpExpiry"] ?? ""}
                 />
@@ -159,15 +170,16 @@ const ObiectContract = ({ invalidFields }: ContractFormProps) => {
             <label className="flex flex-col text-sm font-medium text-gray-700">
                 <span className="flex items-center">
                     Seria și numărul CIV <span className="text-red-500">*</span>
-                    <Tooltip label="Pozitia X / Y  din talonul autovehiculului sau pe prima pagina a CIV" />
+                    <Tooltip label="Pozitia X / Y din talonul autovehiculului sau pe prima pagina a CIV" />
                 </span>
                 <input
                     name="vehicleCivSeries"
-                    type="number"
+                    type="text"
                     required
-                    className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleCivSeries")
-                            ? "border-2 !border-danger"
-                            : ""
+                    pattern="[A-Za-z]{2}[0-9]{6}"
+                    minLength={8}
+                    maxLength={8}
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleCivSeries") ? "border-2 !border-danger" : ""
                         }`}
                     defaultValue={storedFields?.["vehicleCivSeries"] ?? ""}
                 />
@@ -182,9 +194,12 @@ const ObiectContract = ({ invalidFields }: ContractFormProps) => {
                     name="vehicleYear"
                     type="number"
                     required
-                    className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleYear")
-                            ? "border-2 !border-danger"
-                            : ""
+                    pattern="[0-9]{4}"
+                    minLength={4}
+                    maxLength={4}
+                    min={1900}
+                    max={2025}
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleYear") ? "border-2 !border-danger" : ""
                         }`}
                     defaultValue={storedFields?.["vehicleYear"] ?? ""}
                 />
@@ -197,11 +212,12 @@ const ObiectContract = ({ invalidFields }: ContractFormProps) => {
                 </span>
                 <input
                     name="vehicleEuroNorm"
-                    type="number"
+                    type="text"
                     required
-                    className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleEuroNorm")
-                            ? "border-2 !border-danger"
-                            : ""
+                    pattern="[1-6](d|D)?"
+                    minLength={1}
+                    maxLength={2}
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleEuroNorm") ? "border-2 !border-danger" : ""
                         }`}
                     defaultValue={storedFields?.["vehicleEuroNorm"] ?? ""}
                 />
@@ -212,9 +228,9 @@ const ObiectContract = ({ invalidFields }: ContractFormProps) => {
                 <input
                     name="vehicleAcquisitionDate"
                     type="date"
-                    className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleAcquisitionDate")
-                            ? "border-2 !border-danger"
-                            : ""
+                    min="1900-01-01"
+                    max="2025-07-12"
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("vehicleAcquisitionDate") ? "border-2 !border-danger" : ""
                         }`}
                     defaultValue={storedFields?.["vehicleAcquisitionDate"] ?? ""}
                 />
@@ -225,9 +241,10 @@ const ObiectContract = ({ invalidFields }: ContractFormProps) => {
                 <input
                     name="acquisitionDocument"
                     type="text"
-                    className={`contract-input-field ${invalidFields?.hasOwnProperty("acquisitionDocument")
-                            ? "border-2 !border-danger"
-                            : ""
+                    pattern="[A-Za-z0-9\s-]{3,50}"
+                    minLength={3}
+                    maxLength={50}
+                    className={`contract-input-field ${invalidFields?.hasOwnProperty("acquisitionDocument") ? "border-2 !border-danger" : ""
                         }`}
                     defaultValue={storedFields?.["acquisitionDocument"] ?? ""}
                 />

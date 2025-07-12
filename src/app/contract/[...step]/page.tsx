@@ -12,17 +12,8 @@ import { ContractFormProps, ButtonVariant } from "../../types";
 export default function ContractPage() {
   const [btnVariant, setBtnVariant] = useState<ButtonVariant>("primary");
   const [personType, setPersonType] = useState("individual");
-  const [formStep, setFormStep] = useState<number>(3);
+  const [formStep, setFormStep] = useState<number>(1);
   const formSteps = 4;
-
-  const handlePersonType = (selectedPerson: string) => {
-    console.log(selectedPerson);
-    if (selectedPerson === "persoanaJurdica") {
-      setPersonType(selectedPerson);
-    } else {
-      setPersonType(selectedPerson);
-    }
-  }
 
   return (
     <main className="shadow-lg rounded-lg bg-white border border-custom px-5 py-10 xl-max-w-8/10 lg:p-20">
@@ -43,7 +34,7 @@ export default function ContractPage() {
             {/* Step Circle */}
             <div
               className={`z-10 w-6 h-6 rounded-full flex items-center justify-center border-2 transition-all duration-500
-          ${formStep >= index + 1
+          ${formStep >= index + 2
                   ? "bg-blue-500 border-blue-500 text-white"
                   : "bg-white border-gray-300 text-gray-400"}`}
             >
@@ -58,7 +49,6 @@ export default function ContractPage() {
         setFormStep={setFormStep}
         setBtnVariant={setBtnVariant}
         personType={personType}
-        handlePersonType={handlePersonType}
       />
     </main >
   );
