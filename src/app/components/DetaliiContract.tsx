@@ -18,7 +18,7 @@ const DetaliiContract = ({ invalidFields }: ContractFormProps) => {
     }, []);
 
     return (
-        <fieldset className="flex flex-col gap-6">
+        <fieldset className="flex flex-col gap-6 w-full">
             <legend className="font-bold mb-6">4. Preț și detalii contract</legend>
 
             <label className="flex flex-col text-sm font-medium text-gray-700">

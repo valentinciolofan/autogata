@@ -2,6 +2,8 @@ import { useState } from "react";
 import { ContractFormProps } from "../types";
 
 const AdditionalFieldsSeller = ({
+    formStep,
+    setFormStep,
     invalidFields,
     hasAnotherHome,
     isRepresented,

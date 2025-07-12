@@ -51,6 +51,7 @@
   .btn-processing {
     @apply text-white bg-primary opacity-70 px-8 py-4 cursor-not-allowed flex w-fit h-fit rounded-md text-nowrap
   }
+
   .btn-active {
     @apply bg-transparent px-8 py-4 text-custom border border-custom rounded-md hover:border-accent hover:text-accent
   }
@@ -71,30 +72,27 @@
     content: " ";
     position: absolute;
     top: 100%;
-    left: 10%;
+    left: 50%;
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
     border-color: #777777 transparent transparent transparent;
   }
 
-@keyframes move-stripes {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 40px 0;
-  }
-}
+  @keyframes move-stripes {
+    0% {
+      background-position: 0 0;
+    }
 
-.animate-stripes {
-  background-image: repeating-linear-gradient(
-    45deg,
-    rgba(255, 255, 0, 0.6),
-    rgba(255, 255, 0, 0.6) 10px,
-    rgba(255, 255, 0, 0.3) 10px,
-    rgba(255, 255, 0, 0.3) 20px
-  );
-  background-size: 40px 40px;
-  animation: move-stripes 1s linear infinite;
-}
+    100% {
+      background-position: 40px 0;
+    }
+  }
+
+  .animate-stripes {
+    background-image: repeating-linear-gradient(45deg,
+        var(--color-accent) 0 10px,
+        var(--color-primary) 10px 20px);
+    background-size: 40px 40px;
+    animation: move-stripes 1s linear infinite;
+  }

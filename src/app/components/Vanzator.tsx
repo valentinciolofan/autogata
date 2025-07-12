@@ -8,6 +8,8 @@ import CustomCheckbox from "./CustomCheckbox";
 import { json } from "stream/consumers";
 
 const Vanzator = ({
+    formStep,
+    setFormStep,
     validation,
     invalidFields,
     persoanaJuridica,
@@ -339,6 +341,8 @@ const Vanzator = ({
             </fieldset>
 
             <AdditionalFieldsSeller
+                formStep={formStep}
+                setFormStep={setFormStep}
                 storedFields={storedFields}
                 invalidFields={invalidFields}
                 hasAnotherHome={hasAnotherHomeSelected}

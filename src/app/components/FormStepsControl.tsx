@@ -8,7 +8,7 @@ const FormChangeStepButtons = ({
 }: ContractFormProps) => {
 
     return (
-        <div className={`${formStep > 4 ? "hidden" : "flex"} justify-between`}>
+        <div className={`${formStep && formStep > 4 ? "hidden" : "flex"} justify-between`}>
             {formStep !== 1 && (
                 <Button
                     label={"Înapoi"}

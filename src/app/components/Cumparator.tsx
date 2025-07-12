@@ -6,6 +6,8 @@ import AdditionalFieldsBuyer from "./AdditionalFieldsBuyer"
 import CustomCheckbox from "./CustomCheckbox";
 
 const Cumparator = ({
+    formStep,
+    setFormStep,
     invalidFields,
     persoanaJuridica,
     personType,
@@ -336,6 +338,8 @@ const Cumparator = ({
             </fieldset>
 
             <AdditionalFieldsBuyer
+                formStep={formStep}
+                setFormStep={setFormStep}
                 storedFields={storedFields}
                 invalidFields={invalidFields}
                 hasAnotherHome={hasAnotherHomeSelected}

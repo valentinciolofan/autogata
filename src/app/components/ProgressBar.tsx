@@ -19,7 +19,7 @@ const ProgressBar = () => {
     }, []);
 
     return (
-        <div className="w-full h-2.5 bg-red-500 rounded-full overflow-hidden">
+        <div className="w-full h-2.5 bg-secondary rounded-full overflow-hidden">
             <div
                 className="h-2.5 rounded-full animate-stripes transition-all duration-300 ease-in-out"
                 style={{ width: `${percentage}%` }}

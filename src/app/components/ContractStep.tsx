@@ -13,7 +13,9 @@ import ContractError from "./ContractError";
 import ProgressBar from "./ProgressBar";
 import { fileURLToPath } from "url";
 
-import { ContractFormProps, FormValidationSummary, StepProps } from "../types"
+import { ContractFormProps, FormValidationSummary, StepProps, ContractData } from "../types"
+import { useRouter, useParams, usePathname } from "next/navigation";
+
 
 const Form = ({
     formStep,
@@ -23,12 +25,7 @@ const Form = ({
     handlePersonType,
 }: ContractFormProps) => {
 
-    const [contractData, setContractData] = useState<{
-        seller?: Record<string, any>;
-        buyer?: Record<string, any>;
-        contractSubject?: Record<string, any>;
-        contractDetails?: Record<string, any>;
-    }>({});
+    const [contractData, setContractData] = useState<ContractData>({});
 
     const [contractStatus, setContractStatus] = useState<"success" | "error" | "generating">("generating");
     const [isRepresented, setIsRepresented] = useState<true | false>(false);
@@ -81,7 +78,6 @@ const Form = ({
         }
     }
 
-
     const formSteps: StepProps[] = [
         {
             step: 1,
@@ -89,6 +85,7 @@ const Form = ({
             component: (
                 <Vanzator
                     formStep={formStep}
+                    setFormStep={setFormStep}
                     validation={validation}
                     invalidFields={validation.invalidFields}
                     persoanaJuridica={handlePersonType}
@@ -102,6 +99,7 @@ const Form = ({
             component: (
                 <Cumparator
                     formStep={formStep}
+                    setFormStep={setFormStep}
                     invalidFields={validation.invalidFields}
                     persoanaJuridica={handlePersonType}
                     personType={personType}
@@ -113,6 +111,8 @@ const Form = ({
             stepName: "contractSubject",
             component: (
                 <ObiectContract
+                    formStep={formStep}
+                    setFormStep={setFormStep}
                     invalidFields={validation.invalidFields}
                 />
             )
@@ -122,6 +122,8 @@ const Form = ({
             stepName: "contractDetails",
             component: (
                 <DetaliiContract
+                    formStep={formStep}
+                    setFormStep={setFormStep}
                     invalidFields={validation.invalidFields}
                 />
             )
@@ -218,13 +220,18 @@ const Form = ({
 
     const saveStepData = (validFields: Record<string, any>, invalidFields: Record<string, any>) => {
         const stepKey = formSteps[formStep - 1].stepName;
+        
+        if (stepKey === "contractSubmit") {
+            console.warn("Skipping data save for contractSubmit step");
+            return contractData;
+        }
 
-        const updatedContractData = {
+        const updatedContractData: ContractData = {
             ...contractData,
             [stepKey]: {
                 ...contractData[stepKey],
                 ...validFields,
-                ...invalidFields
+                ...invalidFields,
             },
         };
 
@@ -234,7 +241,6 @@ const Form = ({
         console.log(invalidFields, "SAVED INVALID");
         console.log(validFields, "SAVED VALID");
 
-
         return updatedContractData;
     };
 
@@ -242,13 +248,13 @@ const Form = ({
         const formSummary = formValidation();
         const updatedData = saveStepData(formSummary.validFields, formSummary.invalidFields);
 
-        if (formSummary.isValid && formStep === 4) {
+        if (formSummary.isValid && formStep && formStep === 4) {
             submitContractData(updatedData);
             setFormStep(formStep + 1);
         }
 
         console.log(formSummary, "form Summary!!!")
-        if (formSummary.isValid && formStep >= 1 && formStep <= 4) {
+        if (formSummary.isValid && formStep && formStep >= 1 && formStep <= 4) {
             setFormStep(formStep + 1);
         }
     }
@@ -258,21 +264,50 @@ const Form = ({
 
         saveStepData(formSummary.validFields, formSummary.invalidFields);
 
-        if (formStep >= 2 && formStep <= 4) {
+        if (formStep && formStep >= 2 && formStep <= 4) {
             setFormStep(formStep - 1);
         }
     }
+
+    useEffect(() => {
+        if (formStep && formStep >= 1 && formStep <= 4) {
+            window.history.pushState(
+                {},
+                "",
+                `/contract/step-${formStep}`
+            );
+        }
+    }, [formStep]);
+
+    useEffect(() => {
+        if (formStep === 5) {
+            const statusPath =
+                contractStatus === "success"
+                    ? "success"
+                    : contractStatus === "error"
+                        ? "error"
+                        : "processing";
+
+            window.history.replaceState(
+                {},
+                "",
+                `/contract/${statusPath}`
+            );
+        }
+    }, [formStep, contractStatus]);
+
 
     const currentStep = formSteps.find(({ step }) => step === formStep);
 
     return (
         <form
             ref={formRef}
-            className="max-w-5/10 mx-auto flex flex-col gap-6">
+            className="max-w-full md:max-w-5/10 mx-auto flex flex-col gap-6">
             {currentStep?.component}
 
             <FormChangeStepButtons
                 formStep={formStep}
+                setFormStep={setFormStep}
                 onNextStep={nextFormStep}
                 onPreviousStep={previousFormStep}
             />

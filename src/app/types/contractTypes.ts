@@ -6,10 +6,10 @@ export interface ContractFormProps {
     invalidFields?: Record<string, string>;
     persoanaJuridica?: (personType: string) => void;
     personType?: string;
-    formStep?: number;
+    formStep: number;
     onNextStep?: () => void;
     onPreviousStep?: () => void;
-    setFormStep?: Dispatch<SetStateAction<number>>;
+    setFormStep: Dispatch<SetStateAction<number>>;
     setBtnVariant?: Dispatch<SetStateAction<ButtonVariant>>;
     handlePersonType?: (selectedPerson: string) => void;
     hasAnotherHome?: boolean;
@@ -25,8 +25,12 @@ export type FormValidationSummary = {
 
 export interface StepProps {
     step: number;
-    stepName: string;
+    stepName: "seller" | "buyer" | "contractSubject" | "contractDetails" | "contractSubmit";
     component: ReactNode;
-
 }
-
+export interface ContractData {
+  seller?: Record<string, any>;
+  buyer?: Record<string, any>;
+  contractSubject?: Record<string, any>;
+  contractDetails?: Record<string, any>;
+}
