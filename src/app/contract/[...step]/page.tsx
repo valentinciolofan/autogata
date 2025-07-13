@@ -11,11 +11,11 @@ import { ContractFormProps, ButtonVariant } from "../../types";
 
 export default function ContractPage() {
   const [btnVariant, setBtnVariant] = useState<ButtonVariant>("primary");
-  const [formStep, setFormStep] = useState<number>(3);
+  const [formStep, setFormStep] = useState<number>(1);
   const formSteps = 4;
 
   return (
-    <main className="shadow-lg rounded-lg bg-white border border-custom px-5 py-10 xl-max-w-8/10 lg:p-20">
+    <main className={`${formStep === 5 ? "overflow-y-hidden" : ""} bg-white px-5 py-10 xl-max-w-8/10 lg:p-20`}>
 
       <h1 className={`${formStep > 4 ? "hidden" : "block"} text-md font-semibold uppercase mb-16 text-center md:text-xl lg:text-2xl xl:text-3xl`}>Contract de vânzare-cumpărare auto</h1>
 

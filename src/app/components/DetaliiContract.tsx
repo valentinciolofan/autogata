@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Button from "./Button";
 import { ContractFormProps } from "../types";
+import Link from "next/link";
 
 const DetaliiContract = ({ invalidFields }: ContractFormProps) => {
     const [storedFields, setStoredFields] = useState<Record<string, any>>({});
@@ -95,6 +96,17 @@ const DetaliiContract = ({ invalidFields }: ContractFormProps) => {
                     className={`contract-input-field ${invalidFields?.hasOwnProperty("contractPlace") ? "border-2 !border-danger" : ""
                         }`}
                     defaultValue={storedFields?.["contractPlace"] ?? ""}
+                />
+            </label>
+
+            <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                <p>Am citit și sunt de acord cu <Link href="/termeni-si-conditii" className="font-semibold hover:text-secondary hover:text-underline">Termenii și condițiile.</Link></p>
+                <input
+                    name="consimtamant"
+                    type="checkbox"
+                    className={`${invalidFields?.hasOwnProperty("consimtamant") ? "border-2 !border-danger" : ""
+                        }`}
+                    required
                 />
             </label>
         </fieldset>
