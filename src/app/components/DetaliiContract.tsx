@@ -104,8 +104,13 @@ const DetaliiContract = ({ invalidFields }: ContractFormProps) => {
                 <input
                     name="consimtamant"
                     type="checkbox"
-                    className={`${invalidFields?.hasOwnProperty("consimtamant") ? "border-2 !border-danger" : ""
-                        }`}
+                    className={`appearance-none w-4 h-4 rounded-sm border cursor-pointer
+        checked:appearance-auto
+        ${invalidFields?.hasOwnProperty("consimtamant")
+                            ? "!border-2 !border-danger bg-red-50"
+                            : "border-gray-400"
+                        }
+    `}
                     required
                 />
             </label>

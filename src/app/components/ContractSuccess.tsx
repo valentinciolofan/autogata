@@ -1,5 +1,6 @@
 import Button from "./Button";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 interface ContractSuccessProps {
   downloadLink: string;
@@ -33,7 +34,7 @@ const ContractSuccess = ({ downloadLink }: ContractSuccessProps) => {
         } catch (err) {
           console.error("Failed to revoke blob URL:", err);
         }
-      }, 120000); 
+      }, 120000);
     } catch (error: any) {
       console.error("Download failed:", error);
       setDownloadError(error.message ?? "Unknown error during download");
@@ -71,12 +72,23 @@ const ContractSuccess = ({ downloadLink }: ContractSuccessProps) => {
         jos.
       </p>
 
-      <Button
-        variant="primary"
-        label={"Descarcă PDF"}
-        onClick={handleDownload}
-      />
-      
+      <div className="flex flex-col gap-3 w-full max-w-64 mx-auto">
+        <Button
+          variant="primary"
+          className="!w-full"
+          label={"Descarcă PDF"}
+          onClick={handleDownload}
+        />
+
+
+        <Link
+          href="/contract"
+          className="btn-secondary !w-full transition duration-300 ease-in-out select-none"
+        >
+          Contract auto
+        </Link>
+      </div>
+
       {downloadError && (
         <p className="text-red-600 mt-2">Error: {downloadError}</p>
       )}

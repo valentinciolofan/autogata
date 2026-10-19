@@ -25,7 +25,7 @@ const Form = ({
 
     const [contractData, setContractData] = useState<ContractData>({});
 
-    const [contractStatus, setContractStatus] = useState<"success" | "error" | "generating">("generating");
+    const [contractStatus, setContractStatus] = useState<"success" | "error" | "generating">("success");
     const [isRepresented, setIsRepresented] = useState<true | false>(false);
 
     const [validation, setValidation] = useState<FormValidationSummary>({
@@ -61,7 +61,7 @@ const Form = ({
             const blob = await response.blob();
             const url = window.URL.createObjectURL(blob);
             console.log(url, 'download link');
-            setContractDownloadLink(url); 
+            setContractDownloadLink(url);
             setContractStatus("success");
 
             return blob;
@@ -176,6 +176,10 @@ const Form = ({
     const fieldValidation = (input: HTMLInputElement) => {
         const value = input.value.trim();
         const { name, required, minLength, maxLength, pattern } = input;
+
+        if (input.type === "checkbox") {
+            return !required || input.checked;
+        }
 
         if (required && value === "") {
             return false;

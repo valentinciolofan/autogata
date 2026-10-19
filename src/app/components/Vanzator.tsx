@@ -12,7 +12,6 @@ const Vanzator = ({
     setFormStep,
     validation,
     invalidFields,
-    personType,
     onNextStep
 }: ContractFormProps) => {
 
