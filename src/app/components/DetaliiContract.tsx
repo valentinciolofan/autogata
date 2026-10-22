@@ -5,6 +5,9 @@ import Link from "next/link";
 
 const DetaliiContract = ({ invalidFields }: ContractFormProps) => {
     const [storedFields, setStoredFields] = useState<Record<string, any>>({});
+    const [annexes, setAnnexes] = useState<"Da" | "Nu">(
+        storedFields?.["annexes"] === "Da" ? "Da" : "Nu"
+    );
 
     useEffect(() => {
         const raw = localStorage.getItem("contractDetails");
@@ -59,17 +62,49 @@ const DetaliiContract = ({ invalidFields }: ContractFormProps) => {
             </label>
 
             <label className="flex flex-col text-sm font-medium text-gray-700">
-                <span>Anexe la contract (Da/Nu)</span>
-                <input
-                    name="anexeYes"
-                    type="text"
-                    pattern="^(Da|Nu|da|nu|DA|NU)$"
-                    minLength={2}
-                    maxLength={2}
-                    className={`contract-input-field ${invalidFields?.hasOwnProperty("anexeYes") ? "border-2 !border-danger" : ""
-                        }`}
-                    defaultValue={storedFields?.["anexeYes"] ?? ""}
-                />
+                <div className="flex flex-col gap-2">
+                    <span className="text-sm font-medium text-gray-700">
+                        Anexe la contract
+                    </span>
+
+                    <div className="grid grid-cols-2 gap-3">
+                        {(["Da", "Nu"] as const).map((option) => (
+                            <button
+                                key={option}
+                                type="button"
+                                onClick={() => setAnnexes(option)}
+                                aria-pressed={annexes === option}
+                                className={`rounded-xl border px-4 py-3 text-sm font-medium transition-colors ${annexes === option
+                                        ? "border-blue-600 bg-blue-50 text-blue-700"
+                                        : "border-gray-200 bg-white text-gray-700 hover:border-gray-400"
+                                    }`}
+                            >
+                                {option}
+                            </button>
+                        ))}
+                    </div>
+
+                    <input
+                        type="text"
+                        name="annexes"
+                        value={annexes}
+                        readOnly
+                        required
+                        pattern="^(Da|Nu)$"
+                        className="sr-only"
+                        tabIndex={-1}
+                        aria-label="Anexe la contract"
+                    />
+
+                    {Object.prototype.hasOwnProperty.call(
+                        invalidFields ?? {},
+                        "annexes"
+                    ) && (
+                            <span className="text-xs text-red-600">
+                                Selectează o opțiune validă.
+                            </span>
+                        )}
+                </div>
             </label>
 
             <label className="flex flex-col text-sm font-medium text-gray-700">
@@ -100,7 +135,22 @@ const DetaliiContract = ({ invalidFields }: ContractFormProps) => {
             </label>
 
             <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                <p>Am citit și sunt de acord cu <Link href="/termeni-si-conditii" className="font-semibold hover:text-secondary hover:text-underline">Termenii și condițiile.</Link></p>
+                <p>
+                    Am citit
+                    <Link
+                        href="/politica-de-confidentialitate"
+                        className="font-semibold hover:text-secondary hover:text-underline"
+                    >
+                        {" Politica de confidențialitate "}
+                    </Link>
+                    și sunt de acord cu
+                    <Link
+                        href="/termeni-si-conditii"
+                        className="font-semibold hover:text-secondary hover:text-underline"
+                    >
+                        {" Termenii și condițiile."}
+                    </Link>
+                </p>
                 <input
                     name="consimtamant"
                     type="checkbox"

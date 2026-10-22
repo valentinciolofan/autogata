@@ -19,7 +19,7 @@ export default function Header() {
             </Link>
             <nav className="flex gap-4 *:hover:text-accent *:cursor-pointer *:transition-colors *:duration-300 *:ease-in-out *:font-medium">
                 <Link href="/contract" className={pathname.startsWith("/contract") ? "btn active" : ""}>Contract auto</Link>
-                <Link href="/verificare-numar" className={pathname === "/verificare-numar" ? "btn active" : ""}>Verificare număr</Link>
+                {/* <Link href="/verificare-numar" className={pathname === "/verificare-numar" ? "btn active" : ""}>Verificare număr</Link> */}
             </nav>
         </header>
     );

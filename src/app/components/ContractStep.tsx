@@ -25,7 +25,7 @@ const Form = ({
 
     const [contractData, setContractData] = useState<ContractData>({});
 
-    const [contractStatus, setContractStatus] = useState<"success" | "error" | "generating">("success");
+    const [contractStatus, setContractStatus] = useState<"success" | "error" | "generating">("error");
     const [isRepresented, setIsRepresented] = useState<true | false>(false);
 
     const [validation, setValidation] = useState<FormValidationSummary>({

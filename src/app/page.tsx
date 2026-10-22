@@ -15,12 +15,12 @@ export default function Home() {
             Contract de vânzare-cumpărare rapid.
           </li>
 
-          <li className="flex gap-4">
+          {/* <li className="flex gap-4">
             <span className="my-auto">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 36 36"><path fill="#333333" d="M34.459 1.375a3 3 0 0 0-4.149.884L13.5 28.17l-8.198-7.58a2.999 2.999 0 1 0-4.073 4.405l10.764 9.952s.309.266.452.359a3 3 0 0 0 4.15-.884L35.343 5.524a3 3 0 0 0-.884-4.149" /></svg>
             </span>
             Verificare disponbilitate număr înmatriculare
-          </li>
+          </li> */}
 
           <li className="flex gap-4">
             <span className="my-auto">

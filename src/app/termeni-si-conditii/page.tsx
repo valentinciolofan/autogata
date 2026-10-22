@@ -1,99 +1,22 @@
-const TermsAndConditions = () => {
-
-    return (
-        <main className="bg-white px-5 py-10 xl-max-w-8/10 lg:p-20">
-            <h1>Termeni și Condiții de Utilizare</h1>
-            <p><strong>Data ultimei actualizări:</strong> 15 iulie 2025</p>
-            <p>
-                Bine ai venit pe <strong>autoGata</strong>. Te rugăm să citești cu atenție acești Termeni și Condiții înainte de a utiliza serviciul de generare a contractelor de vânzare‑cumpărare auto. Prin accesarea și utilizarea platformei, confirmi că ai citit, înțeles și ești de acord cu toți acești termeni.
-            </p>
-
-            <h2>1. Definiții</h2>
-            <ul>
-                <li><strong>Platforma</strong>: site‑ul web, disponibilă la adresa <code>https://autogata.ro</code>, care permite generarea PDF-urilor de contract.</li>
-                <li><strong>Serviciu</strong>: procesul de completare a formularului de contract și generare a PDF‑ului aferent.</li>
-                <li><strong>Utilizator</strong>: orice persoană fizică sau juridică care accesează și utilizează serviciul.</li>
-                <li><strong>Date cu caracter personal</strong>: informațiile completate de utilizator în formular (nume, adresă, CNP/CIF, detalii despre vehicul ș.a.).</li>
-            </ul>
-
-            <h2>2. Obiectul Termenilor</h2>
-            <p>
-                Acești Termeni și Condiții guvernează drepturile și obligațiile tale în relația cu noi în ceea ce privește:
-            </p>
-            <ul>
-                <li>Utilizarea platformei și a serviciului de generare a contractelor;</li>
-                <li>Drepturile și responsabilitățile asupra datelor personale furnizate;</li>
-                <li>Limitarea răspunderii noastre.</li>
-            </ul>
-
-            <h2>3. Accesul și Utilizarea Serviciului</h2>
-            <ol>
-                <li><strong>Disponibilitate</strong><br />
-                    Platforma este gratuită și „as-is”. Nu există garanție de funcționare neîntreruptă.
-                </li>
-                <li><strong>Eligibilitate</strong><br />
-                    Poți folosi serviciul numai dacă ai capacitate juridică deplină.
-                </li>
-                <li><strong>Formularul de generare</strong><br />
-                    – Toate câmpurile marcate cu * sunt obligatorii.<br />
-                    – Prin completarea și trimiterea formularului, confirmi că informațiile furnizate sunt adevărate.
-                </li>
-            </ol>
-
-            <h2>4. Prelucrarea și Protecția Datelor</h2>
-            <ol>
-                <li><strong>Scop</strong><br />
-                    Prelucrăm datele cu caracter personal strict pentru generarea PDF‑ului de contract (bază legală: executarea contractului solicitat de utilizator).
-                </li>
-                <li><strong>Durata</strong><br />
-                    Datele sunt păstrate doar în memorie pe durata procesării și nu sunt stocate permanent pe server.
-                </li>
-                <li><strong>Drepturi</strong><br />
-                    Dreptul de acces, rectificare, ștergere și opoziție, conform GDPR. Pentru exercitarea drepturilor, contactează-ne la <a href="mailto:contact@autogata.ro">contact@autogata.ro</a>.
-                </li>
-            </ol>
-
-            <h2>5. Proprietate Intelectuală</h2>
-            <ol>
-                <li><strong>Drepturi de autor</strong><br />
-                    Codul sursă, designul și conținutul site‑ului sunt proprietatea autorului și sunt protejate prin lege.
-                </li>
-                <li><strong>Utilizare</strong><br />
-                    Nu este permisă copierea, redistribuirea sau republicarea oricărui element de pe site fără acordul explicit al autorului.
-                </li>
-            </ol>
-
-            <h2>6. Limitarea Răspunderii</h2>
-            <ol>
-                <li><strong>„As‑is”</strong><br />
-                    Serviciul este furnizat „în forma în care este”. Nu garantăm că PDF‑ul generat îndeplinește cerințele legale specifice fiecărei jurisdicții.
-                </li>
-                <li><strong>Daune</strong><br />
-                    Nu suntem răspunzători pentru nicio pierdere directă sau indirectă cauzată de utilizarea incorectă a contractului.
-                </li>
-            </ol>
-
-            <h2>7. Modificări ale Termenilor</h2>
-            <p>
-                Ne rezervăm dreptul de a modifica acești Termeni și Condiții în orice moment. Orice schimbare va fi anunțată prin actualizarea datei „Data ultimei actualizări” în partea de sus. Continuarea utilizării platformei după aceste modificări constituie acceptarea lor.
-            </p>
-
-            <h2>8. Legea aplicabilă și jurisdicție</h2>
-            <p>
-                Acești Termeni se supun legislației din România. Orice litigiu apărut în legătură cu acești Termeni va fi soluționat de instanțele competente din România.
-            </p>
-
-            <h2>9. Contact</h2>
-            <p>
-                Pentru întrebări sau solicitări privind acești Termeni și Condiții, scrie-ne la:
-            </p>
-            <address>
-                <strong>...</strong><br />
-                Aleea Cetațuia nr.4, București<br />
-                📧 <a href="mailto:contact@autogata.ro">contact@autogata.ro</a>
-            </address>
-        </main>
-    );
-};
-
-export default TermsAndConditions;
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { LegalLayout } from '../components/legal-layout';
+import { legal } from '../../lib/legal-config';
+export const metadata: Metadata = { title: 'Termeni și condiții | autoGata', description: 'Regulile utilizării serviciului gratuit de generare a contractelor auto autoGata.' };
+export default function TermsPage() {
+  const sections = [
+    { id:'operator', heading:'Operatorul platformei', content:<><p>Platforma <strong>{legal.brand}</strong>, disponibilă la <a href={legal.website}>{legal.website}</a>, este administrată de <strong>{legal.operator}</strong>, persoană fizică, cu adresa de contact {legal.address}, email <a href={`mailto:${legal.email}`}>{legal.email}</a> și telefon {legal.phone}.</p><p>Aceste informații sunt oferite pentru contact direct și efectiv. Serviciul este operat independent de orice autoritate publică.</p></> },
+    { id:'serviciu', heading:'Descrierea și gratuitatea serviciului', content:<><p>autoGata este un instrument gratuit pentru introducerea datelor tranzacției și generarea unui document PDF de înstrăinare-dobândire a unui mijloc de transport. Platforma nu presupune crearea unui cont și nu solicită plăți pentru funcția prezentată.</p><p>Funcționarea presupune introducerea datelor, verificarea acestora, solicitarea generării și descărcarea PDF-ului. Eventualele funcții plătite viitoare vor fi prezentate separat, cu condițiile corespunzătoare, înainte de utilizare.</p></> },
+    { id:'utilizare', heading:'Condiții și utilizări interzise', content:<><p>Utilizatorul trebuie să folosească serviciul legal, să introducă informații corecte și să aibă dreptul să furnizeze datele implicate în document. Este interzisă utilizarea pentru fals, fraudă, încălcarea drepturilor altor persoane, acces neautorizat sau perturbarea funcționării sistemului.</p><p>Administratorul poate aplica măsuri tehnice rezonabile împotriva abuzului.</p></> },
+    { id:'verificare', heading:'Verificarea informațiilor și a contractului', content:<><p>Documentul este completat automat pe baza informațiilor furnizate. Utilizatorul trebuie să verifice toate datele și câmpurile înainte de semnare, tipărire sau prezentare către instituții.</p><p>Platforma nu verifică identitatea sau consimțământul părților, dreptul de proprietate, eventualele sarcini asupra autovehiculului ori autenticitatea documentelor.</p></> },
+    { id:'juridic', heading:'Natura juridică a documentului', content:<><p>Generarea unui PDF nu reprezintă semnarea contractului, transferul automat al proprietății, validarea tranzacției de o instituție ori finalizarea operațiunilor fiscale și de înmatriculare.</p><p>Utilizatorul este responsabil pentru semnăturile necesare și formalitățile aplicabile. Platforma nu oferă consultanță juridică personalizată și nu garantează că documentul este suficient pentru orice situație particulară. Pentru cazuri neobișnuite, cere sprijinul unui profesionist calificat.</p><p>Formularul tipizat românesc ITL-054 este reglementat prin Ordinul nr. 1069/2016; descrierea exactă a documentului disponibil în aplicație trebuie să corespundă implementării.</p></> },
+    { id:'download', heading:'Generare, descărcare și disponibilitate', content:<><p>După completarea formularului, serviciul poate genera și transmite un PDF pentru descărcare. Utilizatorul este responsabil pentru salvarea în siguranță a fișierului primit.</p><p>Pot apărea întreruperi tehnice, mentenanță sau erori de generare. Pentru probleme, contactează administratorul. Nu se garantează disponibilitatea continuă sau compatibilitatea cu orice dispozitiv.</p></> },
+    { id:'date', heading:'Protecția datelor', content:<><p>Datele pot include nume, CNP/CIF, identificatori ai actelor, adresă, datele vehiculului și informații tehnice asociate utilizării. Explicațiile privind scopurile, temeiurile, destinatarii, păstrarea și drepturile persoanelor se găsesc în <Link href="/politica-de-confidentialitate">Politica de confidențialitate</Link>.</p></> },
+    { id:'drepturi', heading:'Proprietatea intelectuală', content:<><p>Elementele originale de design, textele originale și codul propriu pot fi protejate prin legislația proprietății intelectuale. Componentele terților rămân supuse propriilor licențe. Nu revendicăm drepturi exclusive asupra formularelor oficiale ca atare.</p><p>Utilizatorul poate folosi legitim, imprima și transmite contractul generat în legătură cu tranzacția sa.</p></> },
+    { id:'raspundere', heading:'Răspundere', content:<><p>Administratorul nu răspunde, în măsura permisă de lege, pentru consecințele informațiilor incorecte introduse de utilizator ori pentru folosirea documentului fără verificările și formalitățile necesare.</p><p>Nimic din aceste condiții nu exclude răspunderea care nu poate fi exclusă prin lege și nu limitează drepturile imperative ale utilizatorilor.</p></> },
+    { id:'contact', heading:'Sesizări și contact', content:<><p>Solicitările și reclamațiile legate de funcționarea site-ului pot fi transmise la <a href={`mailto:${legal.email}`}>{legal.email}</a> sau folosind datele de la secțiunea 1. Administratorul le analizează într-un termen rezonabil, fără afectarea dreptului de sesizare a autorităților competente.</p></> },
+    { id:'modificari', heading:'Modificări', content:<><p>Termenii pot fi actualizați în funcție de dezvoltarea aplicației sau de schimbările legislative. Data ultimei actualizări este afișată în partea superioară. Modificările se aplică utilizărilor viitoare; când legea impune, se va cere acceptarea noii versiuni.</p></> },
+    { id:'lege', heading:'Lege aplicabilă și litigii', content:<><p>Se aplică legislația română, fără prejudicierea normelor imperative sau a drepturilor consumatorilor. Litigiile se soluționează de instanțele competente conform legii.</p></> },
+  ];
+  return <LegalLayout title="Termeni și condiții" subtitle="Află cum funcționează autoGata și ce trebuie să verifici înainte de a utiliza un contract generat." sections={sections}/>;
+}
