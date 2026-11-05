@@ -7,7 +7,7 @@ import { ButtonVariant } from "../../types";
 
 export default function ContractPage() {
   const [btnVariant, setBtnVariant] = useState<ButtonVariant>("primary");
-  const [formStep, setFormStep] = useState<number>(4);
+  const [formStep, setFormStep] = useState<number>(1);
   const formSteps = 4;
 
   return (
