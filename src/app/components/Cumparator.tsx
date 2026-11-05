@@ -21,8 +21,7 @@ const Cumparator = ({
         const raw = localStorage.getItem("buyer");
         if (!raw) return;
 
-        let parsed: unknown;
-        parsed = JSON.parse(raw);
+        const parsed = JSON.parse(raw);
 
         if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
             setStoredFields(parsed as Record<string, any>);

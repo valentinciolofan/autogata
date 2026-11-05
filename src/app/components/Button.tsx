@@ -27,7 +27,7 @@ const multipleClasses = {
     // processing: "opacity-70 bg-processing flex"
 };
 
-export default function Button({ type = "button", label, variant = "primary", disabled = false, className, processing, href, onClick }: ButtonProps) {
+export default function Button({ type = "button", label, variant = "primary", disabled = false, className, href, onClick }: ButtonProps) {
     const [btnVariant, setBtnVariant] = useState<ButtonVariant>(variant);
     
     const variantClass = multipleClasses[variant];

@@ -1,13 +1,9 @@
 "use client"
 
-import Header from "@/app/components/Header";
-import Tooltip from "@/app/components/Tooltip";
-
-import Button from "@/app/components/Button";
 import Form from "@/app/components/ContractStep";
 
-import React, { useEffect, useState } from 'react';
-import { ContractFormProps, ButtonVariant } from "../../types";
+import React, { useState } from 'react';
+import { ButtonVariant } from "../../types";
 
 export default function ContractPage() {
   const [btnVariant, setBtnVariant] = useState<ButtonVariant>("primary");

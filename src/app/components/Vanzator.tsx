@@ -2,17 +2,12 @@ import { useEffect, useState } from "react";
 import { ContractFormProps } from "../types";
 
 import AdditionalFieldsSeller from "./AdditionalFieldsSeller";
-import Button from "./Button";
-
 import CustomCheckbox from "./CustomCheckbox";
-import { json } from "stream/consumers";
 
 const Vanzator = ({
     formStep,
     setFormStep,
-    validation,
     invalidFields,
-    onNextStep
 }: ContractFormProps) => {
 
     const [hasAnotherHomeSelected, setHasAnotherHomeSelected] = useState<boolean>(false);
@@ -20,16 +15,19 @@ const Vanzator = ({
     const [storedFields, setStoredFields] = useState<Record<string, any>>({});
 
     useEffect(() => {
-        const raw = localStorage.getItem("seller");
-        if (!raw) return;
+    const raw = localStorage.getItem("seller");
+    if (!raw) return;
 
-        let parsed: unknown;
-        parsed = JSON.parse(raw);
+    try {
+        const parsed: unknown = JSON.parse(raw);
 
         if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
-            setStoredFields(parsed as Record<string, any>);
+            setStoredFields(parsed as Record<string, unknown>);
         }
-    }, []);
+    } catch (error) {
+        console.error("Failed to parse seller:", error);
+    }
+}, []);
 
 
 

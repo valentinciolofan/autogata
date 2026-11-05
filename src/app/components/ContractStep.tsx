@@ -5,36 +5,29 @@ import ObiectContract from "./ObiectContract";
 import DetaliiContract from "./DetaliiContract";
 
 import FormChangeStepButtons from "./FormStepsControl";
-import { useState, useRef, ReactNode, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import ContractSuccess from "./ContractSuccess";
 import ContractError from "./ContractError";
 
 import ProgressBar from "./ProgressBar";
-import { fileURLToPath } from "url";
 
 import { ContractFormProps, FormValidationSummary, StepProps, ContractData } from "../types"
-import { useRouter, useParams, usePathname } from "next/navigation";
-
 
 const Form = ({
     formStep,
     setFormStep,
-    setBtnVariant,
 }: ContractFormProps) => {
 
     const [contractData, setContractData] = useState<ContractData>({});
 
     const [contractStatus, setContractStatus] = useState<"success" | "error" | "generating">("error");
-    const [isRepresented, setIsRepresented] = useState<true | false>(false);
 
     const [validation, setValidation] = useState<FormValidationSummary>({
         validFields: {},
         invalidFields: {},
         isValid: false,
     });
-
-    const [hasAnotherHome, setHasAnotherHome] = useState<true | false>(false);
 
     const [contractDownloadLink, setContractDownloadLink] = useState<string>("#");
 
@@ -172,7 +165,7 @@ const Form = ({
 
     const fieldValidation = (input: HTMLInputElement) => {
         const value = input.value.trim();
-        const { name, required, minLength, maxLength, pattern } = input;
+        const { required, minLength, maxLength, pattern } = input;
 
         if (input.type === "checkbox") {
             return !required || input.checked;

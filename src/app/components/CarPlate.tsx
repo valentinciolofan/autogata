@@ -1,7 +1,7 @@
 interface CarPlateProps {
-    carNumber: String,
-    availability?: Boolean,
-    date: String,
+    carNumber: string,
+    availability?: boolean,
+    date: string,
 }
 
 export default function CarPlate({ carNumber, availability, date }: CarPlateProps) {
