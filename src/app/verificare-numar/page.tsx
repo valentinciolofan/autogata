@@ -24,8 +24,5 @@ export default function CarPlatesCheckPage() {
                 <CarPlate carNumber={"vl07cio"} availability={true} date={"Azi la 10:45"} />
             </section>
         </main>
-
-
-
     );
 };

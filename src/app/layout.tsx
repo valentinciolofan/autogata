@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css"
 import Header from "@/app/components/Header"
+import Footer from "@/app/components/Footer";
 
 export const metadata: Metadata = {
   title: "autoGATA",
@@ -15,10 +16,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`antialiased`}
+        className={`antialiased min-h-dvh flex flex-col`}
       >
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

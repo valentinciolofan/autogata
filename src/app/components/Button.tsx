@@ -1,7 +1,9 @@
+"use client"
+
 import Link from "next/link";
 import { useState } from "react";
+import { ButtonVariant } from "../types"
 
-export type ButtonVariant = "primary" | "success" | "danger" | "processing";
 
 interface ButtonProps {
     type?: "button" | "submit" | "reset",
@@ -11,6 +13,7 @@ interface ButtonProps {
     processing?: boolean,
     href?: string
     disabled?: boolean;
+    onClick?: () => void
 }
 
 
@@ -19,10 +22,12 @@ const multipleClasses = {
     success: "btn-success",
     danger: "btn-danger",
     processing: "btn-processing",
+    active: "btn-active",
+    custom: "",
     // processing: "opacity-70 bg-processing flex"
 };
 
-export default function Button({ type = "button", label, variant = "primary", disabled = false, className, processing, href }: ButtonProps) {
+export default function Button({ type = "button", label, variant = "primary", disabled = false, className, processing, href, onClick }: ButtonProps) {
     const [btnVariant, setBtnVariant] = useState<ButtonVariant>(variant);
     
     const variantClass = multipleClasses[variant];
@@ -51,23 +56,21 @@ export default function Button({ type = "button", label, variant = "primary", di
     );
 
     if (href) {
-        return <Link className="btn-primary" href={href}>
+        return <Link className={`btn-primary ${className}`} href={href}>
             {label}
         </Link>
     }
 
     return (
-        // !processing ? (
         <button
             type={type}
-            className={`${variantClass} ${className}`}
+            className={`${variantClass} ${className} transition duration-300 ease-in-out select-none`}
             disabled={disabled || variant === "processing"}
+            onClick={onClick}
         >
             {variant === "processing" && processingSvgs}
 
             {label}
         </button>
-
-
     );
 };

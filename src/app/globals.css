@@ -1,6 +1,10 @@
   @import "tailwindcss";
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap');
+
 
   :root {
+    --font-headline: 'Montserrat', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
     --background: #fafafa;
     --foreground: #333333;
     --color-primary: #2563eb;
@@ -26,83 +30,99 @@
     --color-accent-hover: var(--color-accent-hover);
     --color-processing: var(--color-processing);
     --color-car-plates: var(--color-car-plates);
-    --font-sans: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
+    --font-headline: var(--font-headline);
+    --font-sans: var(--font-body);
+
   }
 
   body {
     background: var(--background);
     color: var(--foreground);
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font-body);
+  }
+
+
+  h1 {
+    @apply font-headline;
+    font-weight: 700;
   }
 
   .btn-primary {
-    @apply 
-    text-white
-    bg-primary
-    px-8
-    py-4
-    hover:bg-accent-hover
-    cursor-pointer
-    w-fit
-    h-fit
-    rounded-md
-    text-nowrap
+    @apply text-white bg-primary px-8 py-4 hover:bg-accent-hover cursor-pointer w-fit h-fit rounded-md shadow-lg text-nowrap
   }
+
+  .btn-secondary {
+    @apply text-primary bg-white border border-primary/30 px-8 py-4 hover:bg-primary/5 hover:border-primary cursor-pointer w-fit h-fit rounded-md shadow-sm hover:shadow-md text-nowrap transition-all duration-200;
+  }
+
   .btn-success {
-    @apply 
-    text-white
-    bg-success
-    px-8
-    py-4
-    hover:bg-accent-hover
-    cursor-pointer
-    w-fit
-    h-fit
-    rounded-md
-    text-nowrap
+    @apply text-white bg-success px-8 py-4 hover:bg-accent-hover cursor-pointer w-fit h-fit rounded-md shadow-lg text-nowrap
   }
+
   .btn-danger {
-    @apply 
-    text-white
-    bg-danger
-    px-8
-    py-4
-    hover:bg-accent-hover
-    cursor-pointer
-    w-fit
-    h-fit
-    rounded-md
-    text-nowrap
+    @apply text-white bg-danger px-8 py-4 hover:bg-accent-hover cursor-pointer w-fit h-fit rounded-md shadow-lg text-nowrap
   }
+
   .btn-processing {
-    @apply 
-    text-white
-    bg-primary
-    opacity-70
-    px-8
-    py-4
-    cursor-not-allowed
-    flex
-    w-fit
-    h-fit
-    rounded-md
-    text-nowrap
+    @apply text-white bg-primary opacity-70 px-8 py-4 cursor-not-allowed flex w-fit h-fit rounded-md shadow-lg text-nowrap
   }
+
+  .btn-active {
+    @apply bg-transparent px-8 py-4 text-custom border border-custom rounded-md hover:border-accent shadow-lg hover:text-accent
+  }
+
   .btn.active {
-    @apply
-    text-accent
+    @apply text-accent border-accent
   }
+
   .contract-input-field {
-    @apply
-    border 
-    border-custom 
-    rounded-md 
-    pl-2 
-    py-2 
-    outline-accent
+    @apply border border-custom rounded-md pl-2 py-2 outline-accent inset-shadow-sm bg-gray-50
   }
+
   label span {
-    @apply
-    mb-1.5
+    @apply mb-1.5
+  }
+
+  .tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: -9%;
+    left: 9%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #777777 transparent;
+  }
+
+  @media screen {
+    .tooltip .tooltiptext::after {
+      top: 100%;
+      left: 10px;
+      border-color: #777777 transparent transparent transparent;
+    }
+  }
+
+  @keyframes move-stripes {
+    0% {
+      background-position: 0 0;
+    }
+
+    100% {
+      background-position: 40px 0;
+    }
+  }
+
+  .animate-stripes {
+    background-image: repeating-linear-gradient(45deg,
+        var(--color-accent) 0 10px,
+        var(--color-primary) 10px 20px);
+    background-size: 40px 40px;
+    animation: move-stripes 1s linear infinite;
+  }
+
+  root,
+  html {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
   }
