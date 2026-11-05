@@ -42,11 +42,11 @@ const Form = ({
 
     const submitContractData = async (data: object) => {
         try {
-            console.log(data, 'this is the data');
+            const apiUrl = process.env.CONTRACT_API_URL;
 
             setContractStatus("generating");
 
-            const response = await fetch('http://localhost:3001/api/contract', {
+            const response = await fetch(`${apiUrl}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -157,9 +157,6 @@ const Form = ({
                 invalidFields[field.name] = field.value;
         }
 
-        console.log(validFields, 'valid');
-        console.log(invalidFields, 'invalid');
-
         setValidation({
             validFields,
             invalidFields,
@@ -186,23 +183,17 @@ const Form = ({
         }
 
         if (minLength > 0 && value.length < minLength) {
-            console.log(name, "nu indeplineste minima lungime")
             return false;
         }
 
         if (maxLength > 0 && value.length > maxLength) {
-            console.log(name, "nu indeplineste maxima lungime")
-
             return false;
         }
 
         if (pattern) {
             const regex = new RegExp(pattern);
 
-            console.log(name, pattern, regex.test(value), "pattern ok")
-
             if (!regex.test(value)) {
-                console.log(name, pattern, regex.test(value), "nu indeplineste pattern")
 
                 return false;
             }
@@ -215,7 +206,6 @@ const Form = ({
         const stepKey = formSteps[formStep - 1].stepName;
 
         if (stepKey === "contractSubmit") {
-            console.warn("Skipping data save for contractSubmit step");
             return contractData;
         }
 
@@ -230,9 +220,6 @@ const Form = ({
 
         setContractData(updatedContractData);
         localStorage.setItem(stepKey, JSON.stringify(updatedContractData[stepKey]));
-        console.log("Saved data for", stepKey);
-        console.log(invalidFields, "SAVED INVALID");
-        console.log(validFields, "SAVED VALID");
 
         return updatedContractData;
     };
@@ -246,7 +233,6 @@ const Form = ({
             setFormStep(formStep + 1);
         }
 
-        console.log(formSummary, "form Summary!!!")
         if (formSummary.isValid && formStep && formStep >= 1 && formStep <= 4) {
             setFormStep(formStep + 1);
         }
